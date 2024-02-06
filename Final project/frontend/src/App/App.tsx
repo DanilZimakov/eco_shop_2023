@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import Home from "../components/Home/Home";
 import Auth from "../components/Auth/Auth";
@@ -11,7 +11,15 @@ import AdminProfile from "../components/Profile/AdminProfile/AdminProfile";
 function App(): JSX.Element {
   return (
     <Routes>
-      <Route path="/" element={<Navbar />}>
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar />
+            <Outlet />
+          </>
+        }
+      >
         <Route index element={<Home />} />
         <Route path="/login" element={<Auth />} />
         <Route path="/registration" element={<Register />} />
