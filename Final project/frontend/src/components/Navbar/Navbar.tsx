@@ -37,10 +37,10 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <NavLink className="button is-primary" to={"/registration"}>
-                  <strong>Sign up</strong>
+                <NavLink className="button is-black" to={"/registration"}>
+                  Sign up
                 </NavLink>
-                <NavLink className="button is-light" to={"/login"}>
+                <NavLink className="button is-black" to={"/login"}>
                   Log in
                 </NavLink>
               </div>
