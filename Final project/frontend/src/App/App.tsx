@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/authSlice/authSlice";
-import axios from "axios";
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
