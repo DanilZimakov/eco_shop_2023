@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom"; // Переместите оператор импорта сюда
+import { NavLink } from "react-router-dom";
+
 import "./logo_1.svg";
 
 const Navbar = () => {
@@ -8,6 +9,7 @@ const Navbar = () => {
         <div className="navbar-brand">
           <NavLink className="navbar-item" to={"/"}>
             <img src="logo_1.svg" />
+            пше
           </NavLink>
 
           <NavLink
