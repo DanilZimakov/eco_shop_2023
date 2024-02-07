@@ -2,6 +2,7 @@ const generateToken = require("../jwt/generateJwt");
 const { User, Token } = require("../db/models");
 const sendMail = require("../config/nodemailer");
 const bcrypt = require("bcrypt");
+const { validateRefreshToken } = require("../jwt/validateToken");
 
 class AuthController {
   async signUp(req, res) {
@@ -39,10 +40,10 @@ class AuthController {
         refresh_token: refreshToken,
       });
       res
-        .cookie("access", accessToken, {
-          httpOnly: true,
-          maxAge: 1000 * 60 * 5,
-        })
+        // .cookie("access", accessToken, {
+        //   httpOnly: true,
+        //   maxAge: 1000 * 60 * 5,
+        // })
         .cookie("refresh", refreshToken, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000,
@@ -80,10 +81,10 @@ class AuthController {
       await tokenIsUser.update({ refresh_token: refreshToken });
 
       res
-        .cookie("access", accessToken, {
-          httpOnly: true,
-          maxAge: 1000 * 60 * 5,
-        })
+        // .cookie("access", accessToken, {
+        //   httpOnly: true,
+        //   maxAge: 1000 * 60 * 5,
+        // })
         .cookie("refresh", refreshToken, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000,
@@ -98,30 +99,62 @@ class AuthController {
       const { refresh } = req.cookies;
       await Token.destroy({ where: { refresh_token: refresh } });
 
-      res.clearCookie("access").clearCookie("refresh");
+      res.clearCookie("refresh");
       res.status(200).json({ message: "Вышли" });
     } catch (error) {
       console.error("ERROR LOGOUT: ", error);
     }
   }
+  async refresh(req, res) {
+    try {
+      const { refresh } = req.cookies;
+    const userToken = validateRefreshToken(refresh)
+    
+    const tokenInDb = await Token.findOne({ where: { refresh_token: refresh } });
+    
+    if (!userToken || !tokenInDb) {
+      res.status(400).json({ message: "Ты кто такой давай досвидания" });
+      return;
+    }
+    const user = await User.findOne({where: {id: userToken.id}})
+    const userData = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone_number,
+    }
+    const {accessToken, refreshToken} = generateToken(userData);
+    tokenInDb.refresh_token = refreshToken;
+    await tokenInDb.save();
+
+    res.cookie("refresh", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    res.status(201).json({ accessToken, refreshToken, user: userData });
+
+    
+    } catch (error) {
+      console.error("ERORR REFRESH: ",error)
+    }
+  }
   async check(req, res) {
     try {
-      if (res.locals.user) {
-        const { user } = res.locals;
-        const userInDb = await User.findOne({ where: { id: user?.id } });
-        if (user && userInDb) {
-          res.status(200).json({
-            user: {
-              id: user.id,
-              name: user.name,
-              email: user.email,
-              phone: user.phone_number,
-            },
-          });
-        } else {
-          res.status(400).json({ user: false });
-        }
-      }
+      // const { refresh } = res.cookies;
+      // console.log(refresh);
+      // const userInDb = await User.findOne({ where: { id: user?.id } });
+      // if (user && userInDb) {
+      //   res.status(200).json({
+      //     user: {
+      //       id: user.id,
+      //       name: user.name,
+      //       email: user.email,
+      //       phone: user.phone_number,
+      //     },
+      //   });
+      // } else {
+      //   res.status(400).json({ user: false });
+      // }
     } catch (error) {
       console.error("ERROR CHECK: ", error);
     }

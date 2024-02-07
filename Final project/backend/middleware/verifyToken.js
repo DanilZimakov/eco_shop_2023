@@ -4,7 +4,9 @@ const generateToken = require("../jwt/generateJwt");
 function verifyRefreshToken(req, res, next) {
   try {
     const { refresh } = req.cookies;
+   
     const { user } = jwt.verify(refresh, process.env.REFRESH_TOKEN_SECRET);
+    
     const { accessToken, refreshToken } = generateToken({
       user: {
         id: user.id,
@@ -14,7 +16,7 @@ function verifyRefreshToken(req, res, next) {
       },
     });
 
-    res.locals.user = user;
+    // res.locals.user = user;
     res
       .cookie("refresh", refreshToken, {
         httpOnly: true,
