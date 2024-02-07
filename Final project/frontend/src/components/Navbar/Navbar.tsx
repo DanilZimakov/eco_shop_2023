@@ -1,13 +1,13 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
-import "./logo_1.svg";
+import svg from "./swap.svg";
+import "./navbar.css";
 const Navbar = () => {
   return (
     <>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to={"/"}>
-            <img src="logo_1.svg" />
+            <img className="svg" src={svg} />
           </NavLink>
 
           <NavLink
