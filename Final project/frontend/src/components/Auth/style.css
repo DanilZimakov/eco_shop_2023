@@ -1,0 +1,11 @@
+.main-auth{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-auth{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
