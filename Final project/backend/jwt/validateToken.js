@@ -1,5 +1,5 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 function validateRefreshToken(token) {
   const userData = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
@@ -10,6 +10,7 @@ function validateRefreshToken(token) {
 }
 function validateAccessToken(token) {
   const userData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
   if (userData) {
     return userData;
   }

@@ -1,5 +1,5 @@
 import { User } from "../user/userType"
 
 export type initialAuthType = {
-    user: User | null
+    user: User | undefined
 }
