@@ -1,4 +1,7 @@
 
+import svg from "./swap.svg";
+import "./navbar.css";
+
 import { NavLink, useNavigate } from "react-router-dom";
 import "./logo_1.svg";
 import { useSelector } from "react-redux";
@@ -19,7 +22,7 @@ const Navbar = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to={"/"}>
-            <img src="logo_1.svg" />
+            <img className="svg" src={svg} />
           </NavLink>
 
           <NavLink
