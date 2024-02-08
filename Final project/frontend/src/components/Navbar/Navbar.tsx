@@ -10,7 +10,7 @@ import { RootState, useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/authSlice/authSlice";
 const Navbar = () => {
   const user = useSelector((store: RootState) => store.auth.user);
-  console.log(user);
+  
 
   const dispath = useAppDispatch();
   const navigate = useNavigate();

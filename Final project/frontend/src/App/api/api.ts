@@ -22,6 +22,8 @@ export const axiosSignUp = async (data: SignUpType): Promise<User> => {
   return res.data.user;
 };
 export const axiosSingIn = async (data: SignInType): Promise<User> => {
+  console.log("Zahel: ");
+  
   const res = await axios.post(
     `${BASE_URL}/api/auth/sign-in`,
     {
