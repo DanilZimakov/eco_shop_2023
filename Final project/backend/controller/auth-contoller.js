@@ -96,13 +96,14 @@ class AuthController {
   }
   async logout(req,res) {
     try {
+      console.log(req);
       const { refresh } = req.cookies;
       console.log(refresh);
       
-      await Token.destroy({ where: { refresh_token: refresh } });
+      // await Token.destroy({ where: { refresh_token: refresh } });
 
-      res.clearCookie("refresh");
-      res.status(200).json({ message: "Вышли" });
+      // res.clearCookie("refresh");
+      // res.status(200).json({ message: "Вышли" });
     } catch (error) {
       console.error("ERROR LOGOUT: ", error);
     }
