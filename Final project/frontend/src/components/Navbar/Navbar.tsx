@@ -10,7 +10,6 @@ import { RootState, useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/authSlice/authSlice";
 const Navbar = () => {
   const user = useSelector((store: RootState) => store.auth.user);
-  
 
   const dispath = useAppDispatch();
   const navigate = useNavigate();
@@ -23,8 +22,6 @@ const Navbar = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to={"/"}>
-            <img src="logo_1.svg" />
-            пше
             <img className="svg" src={svg} />
           </NavLink>
 

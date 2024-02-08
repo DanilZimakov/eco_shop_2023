@@ -14,7 +14,7 @@ export const signIn = createAsyncThunk(
   Action.AUTH_SIGN_IN,
   (data: SignInType) => api.axiosSingIn(data)
 );
-export const logout = createAsyncThunk(Action.AUTH_LOGOUT, api.axiosLogout)
+export const logout = createAsyncThunk(Action.AUTH_LOGOUT, api.axiosLogout);
 export const check = createAsyncThunk(Action.AUTH_CHECK, api.axiosCheckAuth);
 
 const authSlice = createSlice({
@@ -30,12 +30,11 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.user = undefined
+        state.user = undefined;
       })
-      .addCase(check.fulfilled, (state,action) => {
-        state.user = action.payload
-      })
-      
+      .addCase(check.fulfilled, (state, action) => {
+        state.user = action.payload;
+      });
   },
 });
 
