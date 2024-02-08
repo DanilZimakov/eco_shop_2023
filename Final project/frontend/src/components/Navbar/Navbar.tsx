@@ -1,3 +1,4 @@
+import "./logo_1.svg";
 
 import svg from "./swap.svg";
 import "./navbar.css";
@@ -10,18 +11,20 @@ import { logout } from "../../redux/authSlice/authSlice";
 const Navbar = () => {
   const user = useSelector((store: RootState) => store.auth.user);
   console.log(user);
-  
-  const dispath = useAppDispatch()
-  const navigate = useNavigate()
+
+  const dispath = useAppDispatch();
+  const navigate = useNavigate();
   function handlerLogout() {
-    dispath(logout())
-    navigate("/")
+    dispath(logout());
+    navigate("/");
   }
   return (
     <>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to={"/"}>
+            <img src="logo_1.svg" />
+            пше
             <img className="svg" src={svg} />
           </NavLink>
 
