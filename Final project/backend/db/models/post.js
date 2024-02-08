@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: "user_id" });
       this.belongsTo(Category, { foreignKey: "category_id" });
       this.belongsTo(Sub_category, { foreignKey: "sub_category_id" });
-      this.hasMany(Admin, { foreignKey: "post_id" });
       this.hasMany(Review, { foreignKey: "post_id" });
       this.hasMany(Cart, { foreignKey: "post_id" });
       this.hasMany(Like, { foreignKey: "post_id" });
