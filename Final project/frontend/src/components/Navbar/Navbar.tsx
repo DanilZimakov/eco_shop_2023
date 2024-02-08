@@ -52,7 +52,7 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                {!user ? (
+                {user ? (
                   <>
                     <button className="button is-black" onClick={handlerLogout}>
                       Logout

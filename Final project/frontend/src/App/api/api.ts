@@ -2,7 +2,7 @@ import axios from "axios";
 import { User } from "../../types/user/userType";
 import {  SignInType, SignUpType } from "../../types/auth/authTypes";
 const BASE_URL = "http://localhost:3000";
-
+axios.defaults.withCredentials = true;
 export const axiosSignUp = async (data: SignUpType): Promise<User> => {
   const res = await axios.post(
     `${BASE_URL}/api/auth/sign-up`,
@@ -13,9 +13,9 @@ export const axiosSignUp = async (data: SignUpType): Promise<User> => {
       cpassword: data.cpassword,
       phone: data.phone,
     },
-    {
-      withCredentials: true,
-    }
+    // {
+    //   withCredentials: true,
+    // }
   );
     localStorage.setItem("token",res.data.accessToken)
     
@@ -28,9 +28,9 @@ export const axiosSingIn = async (data: SignInType): Promise<User> => {
       email: data.email,
       password: data.password,
     },
-    {
-      withCredentials: true,
-    }
+    // {
+    //   withCredentials: true,
+    // }
   );
     localStorage.setItem("token", res.data.accessToken);
 
@@ -38,10 +38,11 @@ export const axiosSingIn = async (data: SignInType): Promise<User> => {
 };
 export const axiosLogout = async ():Promise<void> => {
     console.log("Axios logout");
-    
-    const res = await axios.post(`${BASE_URL}/api/auth/logout`,{
-        withCredentials:true
-    })
+    // {
+    //   withCredentials: true;
+    // }
+    const res = await axios.post(`${BASE_URL}/api/auth/logout`,)
+    console.log("DATA: ",res.data);
     
     localStorage.removeItem("token")
     return res.data
@@ -49,7 +50,7 @@ export const axiosLogout = async ():Promise<void> => {
 
 export const axiosCheckAuth = async ():Promise<User> => {
     const res = await axios.get(`${BASE_URL}/api/auth/check`,{
-        withCredentials:true,
+        // withCredentials:true,
         headers:{
             Authorization:`Bearer ${localStorage.getItem("token")}`
         }

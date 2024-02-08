@@ -94,9 +94,11 @@ class AuthController {
       console.error("ERORR SIGN IN:", error);
     }
   }
-  async logout() {
+  async logout(req,res) {
     try {
       const { refresh } = req.cookies;
+      console.log(refresh);
+      
       await Token.destroy({ where: { refresh_token: refresh } });
 
       res.clearCookie("refresh");
