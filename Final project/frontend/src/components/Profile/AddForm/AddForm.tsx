@@ -1,85 +1,102 @@
-// AddForm.tsx
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 
-interface AddFormProps {
-  onSubmit: (data: { productName: string, productType: string, gender: string, compositions: Array<{ material: string, quantity: number }> }) => void;
-}
+// Функция для создания элементов выбора процента
+const createPercentOptions = () => {
+  const options = [];
+  for (let i =  10; i <=  100; i +=  10) {
+    options.push(<option key={i} value={i}>{i}%</option>);
+  }
+  return options;
+};
 
-const AddForm: React.FC<AddFormProps> = ({ onSubmit }) => {
-  const [productName, setProductName] = useState("");
-  const [productType, setProductType] = useState("");
-  const [gender, setGender] = useState("");
-  const [compositions, setCompositions] = useState([{ material: "", quantity:  0 }]);
+function AddForm (): JSX.Element {
+  // Создание состояний для каждого поля формы
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
+  const [size, setSize] = useState('');
+  const [material, setMaterial] = useState('хлопок');
+  const [percentage, setPercentage] = useState(10);
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+  // Обработчик изменения значений полей
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
-    const newCompositions = [...compositions];
-    newCompositions[index][name] = value;
-    setCompositions(newCompositions);
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'price':
+        setPrice(value);
+        break;
+      case 'description':
+        setDescription(value);
+        break;
+      case 'image':
+        setImage(value);
+        break;
+      case 'size':
+        setSize(value);
+        break;
+      case 'material':
+        setMaterial(value);
+        break;
+      case 'percentage':
+        setPercentage(Number(value));
+        break;
+      default:
+        break;
+    }
   };
 
-  const handleMaterialChange = (event: ChangeEvent<HTMLSelectElement>, index: number) => {
-    const { value } = event.target;
-    const newCompositions = [...compositions];
-    newCompositions[index].material = value;
-    setCompositions(newCompositions);
-  };
-
-  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-    const { value } = event.target;
-    const newCompositions = [...compositions];
-    newCompositions[index].quantity = Number(value);
-    setCompositions(newCompositions);
-  };
-
+  // Обработчик отправки формы
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit({ productName, productType, gender, compositions });
+    // Здесь вы можете обработать данные формы
+    console.log({ name, price, description, image, size, material, percentage });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Форма добавления товара</h2>
+    <form onSubmit={handleSubmit}>  
       <label>
-        Название товара:
-        <input type="text" value={productName} onChange={e => setProductName(e.target.value)} />
+        Имя:
+        <input type="text" name="name" value={name} onChange={handleInputChange} />
       </label>
       <label>
-        Тип товара:
-        <select value={productType} onChange={e => setProductType(e.target.value)}>
-          <option value="">Выберите тип товара</option>
-          <option value="clothing">Одежда</option>
-          <option value="footwear">Обувь</option>
+        Цена:
+        <input type="number" name="price" value={price} onChange={handleInputChange} />
+      </label>
+      <label>
+        Описание:
+        <input type="text" name="description" value={description} onChange={handleInputChange} />
+      </label>
+      <label>
+        Изображение:
+        <input type="file" name="image" value={image} onChange={handleInputChange} />
+      </label>
+      <label>
+        Размер:
+        <input type="text" name="size" value={size} onChange={handleInputChange} />
+      </label>
+      <label>
+        Материал:
+        <select name="material" value={material} onChange={handleInputChange}>
+          <option value="хлопок">Хлопок</option>
+          <option value="вискоза">Вискоза</option>
+          <option value="полиэстер">Полиэстер</option>
+          <option value="шелк">Шелк</option>
+          <option value="шерсть">Шерсть</option>
         </select>
       </label>
       <label>
-        Пол:
-        <select value={gender} onChange={e => setGender(e.target.value)}>
-          <option value="">Выберите пол</option>
-          <option value="male">Мужской</option>
-          <option value="female">Женский</option>
+        Процентное содержание:
+        <select name="percentage" value={percentage} onChange={handleInputChange}>
+          {createPercentOptions()}
         </select>
       </label>
-      {compositions.map((comp, index) => (
-        <div key={index}>
-          <label>
-            Материал:
-            <select value={comp.material} onChange={e => handleMaterialChange(e, index)}>
-              <option value="">Выберите материал</option>
-              <option value="cotton">Хлопок</option>
-              <option value="viscose">Вискоза</option>
-              <option value="polyester">Полиэстер</option>
-            </select>
-          </label>
-          <label>
-            Количество:
-            <input type="number" value={comp.quantity} onChange={e => handleQuantityChange(e, index)} min="1" max="100" />
-          </label>
-        </div>
-      ))}
-      <button type="submit">Отправить на публикацию</button>
+      <button type="submit">Отправить форму</button>
     </form>
   );
-};
+}
 
 export default AddForm;

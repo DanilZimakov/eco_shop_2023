@@ -1,23 +1,14 @@
 import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
+import ProductItem from "../../Product/ProductItem";
 
 function UserProfile(): JSX.Element {
-  const [rating, setRating] = useState(0);
+  // const [rating, setRating] = useState(0);
 
-  const handleRatingChange = (newRating: number) => {
-    setRating(newRating);
-  };
-
-  const handleFormSubmit = (data: {
-    productName: string;
-    productType: string;
-    gender: string;
-    compositions: Array<{ material: string; quantity: number }>;
-  }) => {
-    console.log("Форма отправлена с данными:", data);
-    // Здесь можно обработать данные формы, например, отправить их на сервер
-  };
+  // const handleRatingChange = (newRating: number) => {
+  //   setRating(newRating);
+  // };
 
   return (
     <>
@@ -33,7 +24,7 @@ function UserProfile(): JSX.Element {
         <div className="user-info">
           <h5 className="user-info details">Инфо о пользователе</h5>
           <p>Тут будет информация о пользователе</p>
-          <div className="rating-section">
+          {/* <div className="rating-section">
             <h3>Рейтинг</h3>
             <div className="stars">
               {[...Array(5)].map((_, i) => (
@@ -46,10 +37,15 @@ function UserProfile(): JSX.Element {
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="add">
-          <AddForm onSubmit={handleFormSubmit} />
+        <div>
+          <h2>Форма добавления товара</h2>
+          <AddForm />
+        </div>
+        <div>
+          <h2>Ваш товар</h2>
+          <ProductItem image={""} name={""} price={""} description={""} size={""} material={""} percentage={10} />
         </div>
       </div>
     </>
