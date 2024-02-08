@@ -38,7 +38,7 @@ function App(): JSX.Element {
         <Route path="/login" element={<SignIn />} />
         <Route path="/registration" element={<SignUp />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/sub-categories" element={<SubCategories />} />
+        <Route path="/categories/:categoryId" element={<SubCategories />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
       </Route>

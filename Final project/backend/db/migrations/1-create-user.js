@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       is_admin: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

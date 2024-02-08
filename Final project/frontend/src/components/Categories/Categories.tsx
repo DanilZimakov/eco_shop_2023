@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./categories.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Category {
   id: number;
@@ -45,7 +46,8 @@ const Categories: React.FC = () => {
           <div
             className={`card-body text-${index % 2 === 0 ? "dark" : "light"}`}
           >
-            <h5 className="card-title">{category.category_name}</h5>
+            <Link to={`/categories/${category.id}`}>
+            <h5 className="card-title">{category.category_name}</h5></Link>
             <p className="card-text">
               Категория обещает уникальные и модные товары, соответствующие
               трендам ресайкла и устойчивости.
