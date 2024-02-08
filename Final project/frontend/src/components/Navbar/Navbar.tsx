@@ -10,7 +10,7 @@ import { RootState, useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/authSlice/authSlice";
 const Navbar = () => {
   const user = useSelector((store: RootState) => store.auth.user);
-  console.log(user);
+  
 
   const dispath = useAppDispatch();
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                {!user ? (
+                {user ? (
                   <>
                     <button className="button is-black" onClick={handlerLogout}>
                       Logout
