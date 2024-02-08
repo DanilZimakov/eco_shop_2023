@@ -1,3 +1,5 @@
+import { User } from "../user/userType";
+
 export type SignUpType = {
     name: string;
     email: string;
@@ -8,4 +10,9 @@ export type SignUpType = {
 export type SignInType = {
     email: string;
     password: string;
+}
+export type AuthResponce = {
+    accessToken:string,
+    refreshToken:string,
+    user: User
 }

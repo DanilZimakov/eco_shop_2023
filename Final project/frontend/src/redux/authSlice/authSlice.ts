@@ -4,7 +4,7 @@ import * as api from "../../App/api/api";
 import { SignInType, SignUpType } from "../../types/auth/authTypes";
 import { initialAuthType } from "../../types/store/store";
 const initialState: initialAuthType = {
-  user: null,
+  user: undefined,
 };
 export const signUp = createAsyncThunk(
   Action.AUTH_SIGN_UP,
@@ -15,7 +15,8 @@ export const signIn = createAsyncThunk(
   (data: SignInType) => api.axiosSingIn(data)
 );
 export const logout = createAsyncThunk(Action.AUTH_LOGOUT, api.axiosLogout)
-export const check = createAsyncThunk(Action.AUTH_CHECK, api.axiosCheckAuth)
+export const check = createAsyncThunk(Action.AUTH_CHECK, api.axiosCheckAuth);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -29,11 +30,12 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.user = null
+        state.user = undefined
       })
-      .addCase(check.fulfilled, (state, action) => {
+      .addCase(check.fulfilled, (state,action) => {
         state.user = action.payload
       })
+      
   },
 });
 

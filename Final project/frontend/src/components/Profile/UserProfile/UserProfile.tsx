@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+const UserProfile = () => {
+  return <div>UserProfile</div>;
+};
+=======
 import React, { useState } from "react";
 import './UserProfile.css';
 import AddForm from '../AddForm/AddForm';
@@ -45,5 +50,6 @@ function UserProfile(): JSX.Element {
     </>
   );
 }
+>>>>>>> 82c6cee093577a721013c851c73c200a64cb7373
 
 export default UserProfile;

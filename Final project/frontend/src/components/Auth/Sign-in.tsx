@@ -15,7 +15,7 @@ function SignIn() {
     dispatch(signIn({ email, password }));
     setEmail("");
     setPassword("");
-    navigate("/");
+    // navigate("/");
   }
 
   return (

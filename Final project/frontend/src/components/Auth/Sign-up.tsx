@@ -15,10 +15,12 @@ function SignUp() {
     e.preventDefault();
     dispatch(signUp({ name, email, password, cpassword, phone }));
     setName(""), setEmail(""), setPassword(""), setCpassword(""), setPhone("");
-    navigate("/");
+    // navigate("/");
   }
   function logout1 (){
-    dispatch(logout)
+    dispatch(logout())
+    console.log("logout");
+    
   }
   return (
     <main className="main-auth">

@@ -140,21 +140,9 @@ class AuthController {
   }
   async check(req, res) {
     try {
-      // const { refresh } = res.cookies;
-      // console.log(refresh);
-      // const userInDb = await User.findOne({ where: { id: user?.id } });
-      // if (user && userInDb) {
-      //   res.status(200).json({
-      //     user: {
-      //       id: user.id,
-      //       name: user.name,
-      //       email: user.email,
-      //       phone: user.phone_number,
-      //     },
-      //   });
-      // } else {
-      //   res.status(400).json({ user: false });
-      // }
+     const user = await User.findOne({where: {id: req.user.id}})
+     
+     res.status(201).json({user: {id: user.id, name: user.name, email: user.email, phone: user.phone_number}})
     } catch (error) {
       console.error("ERROR CHECK: ", error);
     }
