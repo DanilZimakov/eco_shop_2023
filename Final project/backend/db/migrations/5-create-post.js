@@ -24,6 +24,15 @@ module.exports = {
       size: {
         type: Sequelize.STRING,
       },
+      publich: {
+        type: Sequelize.STRING,
+      },
+      material: {
+        type: Sequelize.STRING,
+      },
+      percentage: {
+        type: Sequelize.STRING,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {
