@@ -1,3 +1,4 @@
+import { PostType } from "../posts/posts";
 import { SubCategoryType } from "../sub_category/sub_category";
 import { User } from "../user/userType"
 
@@ -8,3 +9,6 @@ export type initialAuthType = {
 export type InitialSubCategory = {
   subCategories: SubCategoryType[];
 };
+export type InitialPost = {
+  posts: PostType[];
+}

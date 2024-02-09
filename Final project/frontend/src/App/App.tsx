@@ -11,6 +11,7 @@ import SignIn from "../components/Auth/Sign-in";
 import {  useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/authSlice/authSlice";
+import PostPage from "../components/Posts/PostPage";
 
 
 function App(): JSX.Element {
@@ -40,6 +41,7 @@ function App(): JSX.Element {
         <Route path="/registration" element={<SignUp />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:categoryId" element={<SubCategories />} />
+        <Route path="/posts" element={<PostPage />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
       </Route>
