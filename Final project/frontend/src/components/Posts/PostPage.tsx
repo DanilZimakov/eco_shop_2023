@@ -1,24 +1,38 @@
-import { useEffect } from "react";
-import { RootState, useAppDispatch } from "../../redux/store";
-import { loadPost } from "../../redux/PostsSlice/postsSlice";
+import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { PostType } from "../../types/posts/posts";
 
 function PostPage() {
-    const {postId} = useParams()
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(loadPost())
-    },[])
-    const {posts} = useSelector((store:RootState) => store.posts)
-    console.log(posts);
-    const postFiller = posts.filter(el => el.id === Number(postId))
-    
-    return (
-        <div className="card-container">
-            post
-        </div>
-    );
+  const { categoryId, postId } = useParams();
+  const { posts } = useSelector((store: RootState) => store.posts);
+  
+  function fillPost (posts: PostType[]) {
+   const all = posts.filter(
+     (post: PostType) =>
+       post.category_id === Number(categoryId) &&
+       post.sub_category_id === Number(postId)
+   );
+   return all
+  }
+  const filteredPosts = fillPost(posts);
+  
+  
+  
+
+  return (
+    <div className="card-container">
+      {filteredPosts.map((post) => {
+        return <div key={post.id}>
+            <img src={post.image} alt={post.name} />
+            <h3>{post.name}</h3>
+            <p>{post.price}</p>
+            <p>{post.description}</p>
+            <p>{post.size}</p>
+            </div>;
+      })}
+    </div>
+  );
 }
 
 export default PostPage;
