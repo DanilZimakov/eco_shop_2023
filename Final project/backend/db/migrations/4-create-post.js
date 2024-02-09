@@ -24,6 +24,10 @@ module.exports = {
       size: {
         type: Sequelize.STRING,
       },
+      publich: {
+        type: Sequelize.BOOLEAN,
+      },
+
       user_id: {
         type: Sequelize.INTEGER,
         references: {

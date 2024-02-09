@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { useAppDispatch } from "../../redux/store";
-import { logout, signUp } from "../../redux/authSlice/authSlice";
+import { signUp } from "../../redux/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 function SignUp() {
   const [name, setName] = useState<string>("");
@@ -15,13 +15,9 @@ function SignUp() {
     e.preventDefault();
     dispatch(signUp({ name, email, password, cpassword, phone }));
     setName(""), setEmail(""), setPassword(""), setCpassword(""), setPhone("");
-    // navigate("/");
+    navigate("/");
   }
-  function logout1 (){
-    dispatch(logout())
-    console.log("logout");
-    
-  }
+  
   return (
     <main className="main-auth">
       <form className="form-auth" onSubmit={hadnlerSignUp}>
@@ -62,7 +58,7 @@ function SignUp() {
         />
         <button type="submit">Зарегистрироваться</button>
       </form>
-      <button onClick={logout1}>llll</button>
+      
     </main>
   );
 }

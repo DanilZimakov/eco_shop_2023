@@ -25,6 +25,7 @@ class AuthController {
         email,
         password: hash,
         phone_number: phone,
+        is_admin: false,
       });
       //   sendMail(email);
       const userData = {
@@ -32,6 +33,7 @@ class AuthController {
         name: user.name,
         email: user.email,
         phone: user.phone_number,
+        admin: user.is_admin,
       };
       const { accessToken, refreshToken } = generateToken(userData);
 
@@ -40,10 +42,7 @@ class AuthController {
         refresh_token: refreshToken,
       });
       res
-        // .cookie("access", accessToken, {
-        //   httpOnly: true,
-        //   maxAge: 1000 * 60 * 5,
-        // })
+        
         .cookie("refresh", refreshToken, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000,
@@ -54,19 +53,24 @@ class AuthController {
     }
   }
   async singIn(req, res) {
+    
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ where: { email } });
+      
+      
       const userData = {
         id: user.id,
         name: user.name,
         email: user.email,
         phone: user.phone_number,
+        admin: user.is_admin,
       };
       if (!user) {
         res.status(400).json({ message: "Зарегистрируйтесь" });
       }
       const isPass = await bcrypt.compare(password, user.password);
+      
       if (!isPass) {
         res.status(400).json({ message: "Неверный пароль" });
       }
@@ -81,10 +85,7 @@ class AuthController {
       await tokenIsUser.update({ refresh_token: refreshToken });
 
       res
-        // .cookie("access", accessToken, {
-        //   httpOnly: true,
-        //   maxAge: 1000 * 60 * 5,
-        // })
+        
         .cookie("refresh", refreshToken, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000,
@@ -94,11 +95,8 @@ class AuthController {
       console.error("ERORR SIGN IN:", error);
     }
   }
-  async logout() {
+  async logout(req, res) {
     try {
-      const { refresh } = req.cookies;
-      await Token.destroy({ where: { refresh_token: refresh } });
-
       res.clearCookie("refresh");
       res.status(200).json({ message: "Вышли" });
     } catch (error) {
@@ -108,41 +106,52 @@ class AuthController {
   async refresh(req, res) {
     try {
       const { refresh } = req.cookies;
-    const userToken = validateRefreshToken(refresh)
-    
-    const tokenInDb = await Token.findOne({ where: { refresh_token: refresh } });
-    
-    if (!userToken || !tokenInDb) {
-      res.status(400).json({ message: "Ты кто такой давай досвидания" });
-      return;
-    }
-    const user = await User.findOne({where: {id: userToken.id}})
-    const userData = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      phone: user.phone_number,
-    }
-    const {accessToken, refreshToken} = generateToken(userData);
-    tokenInDb.refresh_token = refreshToken;
-    await tokenInDb.save();
+      const userToken = validateRefreshToken(refresh);
 
-    res.cookie("refresh", refreshToken, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-    });
-    res.status(201).json({ accessToken, refreshToken, user: userData });
+      const tokenInDb = await Token.findOne({
+        where: { refresh_token: refresh },
+      });
 
-    
+      if (!userToken || !tokenInDb) {
+        res.status(400).json({ message: "Ты кто такой давай досвидания" });
+        return;
+      }
+      const user = await User.findOne({ where: { id: userToken.id } });
+      const userData = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone_number,
+        admin: user.is_admin,
+      };
+      const { accessToken, refreshToken } = generateToken(userData);
+      tokenInDb.refresh_token = refreshToken;
+      await tokenInDb.save();
+
+      res.cookie("refresh", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.status(201).json({ accessToken, refreshToken, user: userData });
     } catch (error) {
-      console.error("ERORR REFRESH: ",error)
+      console.error("ERORR REFRESH: ", error);
     }
   }
   async check(req, res) {
     try {
-     const user = await User.findOne({where: {id: req.user.id}})
-     
-     res.status(201).json({user: {id: user.id, name: user.name, email: user.email, phone: user.phone_number}})
+      const user = await User.findOne({ where: { id: req.user.id } });
+
+      res
+        .status(201)
+        .json({
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            phone: user.phone_number,
+            admin: user.is_admin,
+          },
+        });
     } catch (error) {
       console.error("ERROR CHECK: ", error);
     }

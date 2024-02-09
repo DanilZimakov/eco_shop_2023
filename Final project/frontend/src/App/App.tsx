@@ -11,6 +11,7 @@ import SignIn from "../components/Auth/Sign-in";
 import { useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/authSlice/authSlice";
+import Cart from "../components/Cart/Cart";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -34,8 +35,10 @@ function App(): JSX.Element {
         <Route path="/registration" element={<SignUp />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/sub-categories" element={<SubCategories />} />
+        <Route path="/categories/:categoryId" element={<SubCategories />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
+        <Route path="/cart" element={<Cart />} />
       </Route>
     </Routes>
   );
