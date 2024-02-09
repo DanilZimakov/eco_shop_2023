@@ -1,4 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 // Функция для создания элементов выбора процента
 const createPercentOptions = () => {
@@ -9,6 +12,7 @@ const createPercentOptions = () => {
   return options;
 };
 
+
 function AddForm (): JSX.Element {
   // Создание состояний для каждого поля формы
   const [name, setName] = useState('');
@@ -16,7 +20,7 @@ function AddForm (): JSX.Element {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
-  const [material, setMaterial] = useState('хлопок');
+  const [material, setMaterial] = useState('');
   const [percentage, setPercentage] = useState(10);
 
   // Обработчик изменения значений полей
@@ -49,17 +53,22 @@ function AddForm (): JSX.Element {
     }
   };
 
-  // Обработчик отправки формы
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Здесь вы можете обработать данные формы
-    console.log({ name, price, description, image, size, material, percentage });
-  };
+  const user = useSelector((store: RootState) => store.auth.user)
 
+  // Обработчик отправки формы
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const res = await axios.post('http://localhost:3000/products/add', {
+      name, price, description, image, size, material, percentage, user_id: user?.id
+    })
+    return res.data
+    };
+
+  
   return (
-    <form onSubmit={handleSubmit}>  
+    <form onSubmit={handleSubmit}> 
       <label>
-        Имя:
+        Наименование товара:
         <input type="text" name="name" value={name} onChange={handleInputChange} />
       </label>
       <label>
@@ -72,7 +81,7 @@ function AddForm (): JSX.Element {
       </label>
       <label>
         Изображение:
-        <input type="file" name="image" value={image} onChange={handleInputChange} />
+        <input type="text" name="image" value={image} onChange={handleInputChange} />
       </label>
       <label>
         Размер:
