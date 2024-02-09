@@ -53,6 +53,7 @@ const Navbar = () => {
             <NavLink className="navbar-item" to={"/cart"}>
               Cart
             </NavLink>
+            {user && <NavLink className="navbar-item" to="/user-profile">User profile</NavLink>}
           </div>
 
           <div className="navbar-end">

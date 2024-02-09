@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
+import store, { RootState } from "../../../redux/store";
+import { useSelector } from "react-redux";
+
 
 function UserProfile(): JSX.Element {
-  const [rating, setRating] = useState(0);
+  // const [rating, setRating] = useState(0);
 
-  const handleRatingChange = (newRating: number) => {
-    setRating(newRating);
-  };
+  // const handleRatingChange = (newRating: number) => {
+  //   setRating(newRating);
+  // };
 
-  const handleFormSubmit = (data: {
-    productName: string;
-    productType: string;
-    gender: string;
-    compositions: Array<{ material: string; quantity: number }>;
-  }) => {
-    console.log("Форма отправлена с данными:", data);
-    // Здесь можно обработать данные формы, например, отправить их на сервер
-  };
+  const {posts} = useSelector((store:RootState) => store.posts)
+  const {user} = useSelector((store: RootState) => store.auth)
+  const FilterUserPost = posts.filter(el => el.user_id === user?.id)
+   
 
   return (
     <>
@@ -33,7 +31,7 @@ function UserProfile(): JSX.Element {
         <div className="user-info">
           <h5 className="user-info details">Инфо о пользователе</h5>
           <p>Тут будет информация о пользователе</p>
-          <div className="rating-section">
+          {/* <div className="rating-section">
             <h3>Рейтинг</h3>
             <div className="stars">
               {[...Array(5)].map((_, i) => (
@@ -46,10 +44,25 @@ function UserProfile(): JSX.Element {
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="add">
-          <AddForm onSubmit={handleFormSubmit} />
+        <div>
+          <h2>Форма добавления товара</h2>
+          <AddForm />
+        </div>
+        <div>
+          <h2>Ваш товар</h2>
+          <div>
+            {FilterUserPost.map(el =>
+              <div key={el.id} className="product-card">
+                <img src={el.image} alt={el.name} />
+                <h3>{el.name}</h3>
+                <p>Цена: {el.price}</p>
+                <p>Описание: {el.description}</p>
+                <p>Размер: {el.size}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
