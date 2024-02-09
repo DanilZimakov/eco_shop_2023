@@ -25,6 +25,7 @@ class AuthController {
         email,
         password: hash,
         phone_number: phone,
+        is_admin: false,
       });
       //   sendMail(email);
       const userData = {
@@ -32,6 +33,7 @@ class AuthController {
         name: user.name,
         email: user.email,
         phone: user.phone_number,
+        admin: user.is_admin,
       };
       const { accessToken, refreshToken } = generateToken(userData);
 
@@ -40,10 +42,7 @@ class AuthController {
         refresh_token: refreshToken,
       });
       res
-        // .cookie("access", accessToken, {
-        //   httpOnly: true,
-        //   maxAge: 1000 * 60 * 5,
-        // })
+        
         .cookie("refresh", refreshToken, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000,
@@ -59,11 +58,13 @@ class AuthController {
       const { email, password } = req.body;
       const user = await User.findOne({ where: { email } });
       
+      
       const userData = {
         id: user.id,
         name: user.name,
         email: user.email,
         phone: user.phone_number,
+        admin: user.is_admin,
       };
       if (!user) {
         res.status(400).json({ message: "Зарегистрируйтесь" });
@@ -84,10 +85,7 @@ class AuthController {
       await tokenIsUser.update({ refresh_token: refreshToken });
 
       res
-        // .cookie("access", accessToken, {
-        //   httpOnly: true,
-        //   maxAge: 1000 * 60 * 5,
-        // })
+        
         .cookie("refresh", refreshToken, {
           httpOnly: true,
           maxAge: 24 * 60 * 60 * 1000,
@@ -124,6 +122,7 @@ class AuthController {
         name: user.name,
         email: user.email,
         phone: user.phone_number,
+        admin: user.is_admin,
       };
       const { accessToken, refreshToken } = generateToken(userData);
       tokenInDb.refresh_token = refreshToken;
@@ -150,6 +149,7 @@ class AuthController {
             name: user.name,
             email: user.email,
             phone: user.phone_number,
+            admin: user.is_admin,
           },
         });
     } catch (error) {
