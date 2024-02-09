@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
-import ProductItem from "../../Product/ProductItem";
+import store, { RootState } from "../../../redux/store";
+import { useSelector } from "react-redux";
+
 
 function UserProfile(): JSX.Element {
   // const [rating, setRating] = useState(0);
@@ -9,6 +11,11 @@ function UserProfile(): JSX.Element {
   // const handleRatingChange = (newRating: number) => {
   //   setRating(newRating);
   // };
+
+  const {posts} = useSelector((store:RootState) => store.posts)
+  const {user} = useSelector((store: RootState) => store.auth)
+  const FilterUserPost = posts.filter(el => el.user_id === user?.id)
+   
 
   return (
     <>
@@ -45,7 +52,17 @@ function UserProfile(): JSX.Element {
         </div>
         <div>
           <h2>Ваш товар</h2>
-          <ProductItem image={""} name={""} price={""} description={""} size={""} material={""} percentage={10} />
+          <div>
+            {FilterUserPost.map(el =>
+              <div key={el.id} className="product-card">
+                <img src={el.image} alt={el.name} />
+                <h3>{el.name}</h3>
+                <p>Цена: {el.price}</p>
+                <p>Описание: {el.description}</p>
+                <p>Размер: {el.size}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

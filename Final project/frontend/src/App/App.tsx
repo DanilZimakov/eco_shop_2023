@@ -14,6 +14,7 @@ import { check } from "../redux/authSlice/authSlice";
 import PostPage from "../components/Posts/PostPage";
 
 import Cart from "../components/Cart/Cart";
+import { loadPost } from "../redux/PostsSlice/postsSlice";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ function App(): JSX.Element {
    if(localStorage.getItem("token")){
      dispatch(check());
    }
+   dispatch(loadPost())
   }, []);
 
   return (
