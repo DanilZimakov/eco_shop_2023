@@ -4,7 +4,6 @@ import AddForm from "../AddForm/AddForm";
 import store, { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 
-
 function UserProfile(): JSX.Element {
   // const [rating, setRating] = useState(0);
 
@@ -12,10 +11,9 @@ function UserProfile(): JSX.Element {
   //   setRating(newRating);
   // };
 
-  const {posts} = useSelector((store:RootState) => store.posts)
-  const {user} = useSelector((store: RootState) => store.auth)
-  const FilterUserPost = posts.filter(el => el.user_id === user?.id)
-   
+  const { posts } = useSelector((store: RootState) => store.posts);
+  const { user } = useSelector((store: RootState) => store.auth);
+  const FilterUserPost = posts.filter((el) => el.user_id === user?.id);
 
   return (
     <>
@@ -53,7 +51,7 @@ function UserProfile(): JSX.Element {
         <div>
           <h2>Ваш товар</h2>
           <div>
-            {FilterUserPost.map(el =>
+            {FilterUserPost.map((el) => (
               <div key={el.id} className="product-card">
                 <img src={el.image} alt={el.name} />
                 <h3>{el.name}</h3>
@@ -61,7 +59,7 @@ function UserProfile(): JSX.Element {
                 <p>Описание: {el.description}</p>
                 <p>Размер: {el.size}</p>
               </div>
-            )}
+            ))}
           </div>
         </div>
       </div>
