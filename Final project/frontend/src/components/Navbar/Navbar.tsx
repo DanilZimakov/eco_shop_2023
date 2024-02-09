@@ -8,9 +8,9 @@ import "./logo_1.svg";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/authSlice/authSlice";
+
 const Navbar = () => {
   const user = useSelector((store: RootState) => store.auth.user);
-  
 
   const dispath = useAppDispatch();
   const navigate = useNavigate();
@@ -49,6 +49,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink className="navbar-item" to={"/categories"}>
               Categories
+            </NavLink>
+            <NavLink className="navbar-item" to={"/cart"}>
+              Cart
             </NavLink>
           </div>
 
