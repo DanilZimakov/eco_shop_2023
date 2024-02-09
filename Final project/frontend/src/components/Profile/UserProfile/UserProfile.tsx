@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./UserProfile.css";
-import AddForm from "../AddForm/AddForm";
+// import AddForm from "../AddForm/AddForm";
 
 function UserProfile(): JSX.Element {
   const [rating, setRating] = useState(0);
@@ -9,15 +9,15 @@ function UserProfile(): JSX.Element {
     setRating(newRating);
   };
 
-  const handleFormSubmit = (data: {
-    productName: string;
-    productType: string;
-    gender: string;
-    compositions: Array<{ material: string; quantity: number }>;
-  }) => {
-    console.log("Форма отправлена с данными:", data);
-    // Здесь можно обработать данные формы, например, отправить их на сервер
-  };
+  // const handleFormSubmit = (data: {
+  //   productName: string;
+  //   productType: string;
+  //   gender: string;
+  //   compositions: Array<{ material: string; quantity: number }>;
+  // }) => {
+  //   console.log("Форма отправлена с данными:", data);
+  //   // Здесь можно обработать данные формы, например, отправить их на сервер
+  // };
 
   return (
     <>
@@ -49,7 +49,7 @@ function UserProfile(): JSX.Element {
           </div>
         </div>
         <div className="add">
-          <AddForm onSubmit={handleFormSubmit} />
+          {/* <AddForm onSubmit={handleFormSubmit} /> */}
         </div>
       </div>
     </>
