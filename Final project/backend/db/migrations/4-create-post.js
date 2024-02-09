@@ -25,14 +25,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       publich: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
       },
-      material: {
-        type: Sequelize.STRING,
-      },
-      percentage: {
-        type: Sequelize.STRING,
-      },
+
       user_id: {
         type: Sequelize.INTEGER,
         references: {
