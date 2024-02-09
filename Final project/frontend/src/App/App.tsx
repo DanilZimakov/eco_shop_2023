@@ -8,20 +8,15 @@ import AdminProfile from "../components/Profile/AdminProfile/AdminProfile";
 import SignUp from "../components/Auth/Sign-up";
 import SignIn from "../components/Auth/Sign-in";
 
-import {  useAppDispatch } from "../redux/store";
+import { useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/authSlice/authSlice";
-
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
-   
     dispatch(check());
   }, []);
-  
-  
-  
 
   return (
     <Routes>
