@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { SubCategoryType } from "../../../types/sub_category/sub_category";
 import { useEffect } from "react";
 import { loadSubCategory } from "../../../redux/subCategorySlice/SubCategory";
-
+import "./subStyle.css"
 const SubCategories = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -22,11 +22,15 @@ const SubCategories = () => {
 
   return (
     <div>
-      {sub.map((el) => {
-        return (
-          <div key={el.id}>{el.name}</div>
-        )
-      })}
+      <div className="nav-sub">
+        {sub.map((el) => {
+          return (
+            <Link className="link-sub" to={`/`} key={el.id}>
+              {el.name}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

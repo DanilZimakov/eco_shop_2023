@@ -16,8 +16,9 @@ import { check } from "../redux/authSlice/authSlice";
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
-   
-    dispatch(check());
+   if(localStorage.getItem("token")){
+     dispatch(check());
+   }
   }, []);
   
   
