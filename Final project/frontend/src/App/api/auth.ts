@@ -13,9 +13,6 @@ export const axiosSignUp = async (data: SignUpType): Promise<User> => {
       cpassword: data.cpassword,
       phone: data.phone,
     },
-    // {
-    //   withCredentials: true,
-    // }
   );
     localStorage.setItem("token",res.data.accessToken)
     

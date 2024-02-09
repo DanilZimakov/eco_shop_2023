@@ -58,7 +58,7 @@ function AddForm (): JSX.Element {
   // Обработчик отправки формы
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const res = await axios.post('http://localhost:3000/products/add', {
+    const res = await axios.post('http://localhost:3000/posts/add', {
       name, price, description, image, size, material, percentage, user_id: user?.id
     })
     return res.data
