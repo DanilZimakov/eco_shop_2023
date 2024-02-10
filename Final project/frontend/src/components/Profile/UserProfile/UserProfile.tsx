@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
-import store, { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 
 function UserProfile(): JSX.Element {
