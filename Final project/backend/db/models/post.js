@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       Cart,
       Review,
       Like,
+      Image,
     }) {
       this.belongsTo(User, { foreignKey: "user_id" });
       this.belongsTo(Category, { foreignKey: "category_id" });
@@ -25,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       price: DataTypes.STRING,
       description: DataTypes.STRING,
-      image: DataTypes.STRING,
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,
 
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Post",
-    }
+    },
   );
   return Post;
 };

@@ -15,14 +15,20 @@ import PostPage from "../components/Posts/PostPage";
 
 import Cart from "../components/Cart/Cart";
 import { loadPost } from "../redux/PostsSlice/postsSlice";
+import { loadSubCategory } from "../redux/subCategorySlice/SubCategory";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
-   if(localStorage.getItem("token")){
-     dispatch(check());
-   }
-   dispatch(loadPost())
+    if (localStorage.getItem("token")) {
+      dispatch(check());
+    }
+    dispatch(loadSubCategory())
+    dispatch(loadPost())
+function App(): JSX.Element {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(check());
   }, []);
 
   return (
@@ -40,9 +46,14 @@ function App(): JSX.Element {
         <Route path="/login" element={<SignIn />} />
         <Route path="/registration" element={<SignUp />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:categoryId" element={<SubCategories />}>
+          <Route
+            path="/categories/:categoryId/posts/:postId"
+            element={<PostPage />}
+          />
+        </Route>
         <Route path="/sub-categories" element={<SubCategories />} />
         <Route path="/categories/:categoryId" element={<SubCategories />} />
-        <Route path="/posts" element={<PostPage />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
         <Route path="/cart" element={<Cart />} />
