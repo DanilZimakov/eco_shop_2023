@@ -23,12 +23,8 @@ function App(): JSX.Element {
     if (localStorage.getItem("token")) {
       dispatch(check());
     }
-    dispatch(loadSubCategory())
-    dispatch(loadPost())
-function App(): JSX.Element {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(check());
+    dispatch(loadSubCategory());
+    dispatch(loadPost());
   }, []);
 
   return (
