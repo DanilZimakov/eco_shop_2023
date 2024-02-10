@@ -1,36 +1,29 @@
 import React from 'react';
-import styles from './ProductItem.module.css'; // Импортируем стили
+import './ProductItem.css';
+import { RootState } from "..//..//redux/store";
+import { useSelector } from "react-redux";
 
-interface ProductProps {
-  image: string;
-  name: string;
-  price: string;
-  description: string;
-  size: string;
-  material: string;
-  percentage: number;
+function ProductItem():JSX.Element {
+  const {posts} = useSelector((store:RootState) => store.posts)
+  const {user} = useSelector((store: RootState) => store.auth)
+  const FilterUserPost = posts.filter(el => el.user_id === user?.id)
+  
+  return (
+    <div>
+      {FilterUserPost.map(el =>
+        <div key={el.id} className="product-card">
+          <img src={el.image} alt={el.name} />
+          <h3>{el.name}</h3>
+          <p>Цена: {el.price}</p>
+          <p>Описание: {el.description}</p>
+          <p>Размер: {el.size}</p>
+          <button onClick={() => handleDelete(el.id)}>Удалить публикацию</button>
+          <button onClick={() => handleEdit(el.id)}>Изменить публикацию</button>
+        </div>
+       )}
+    </div>
+  )
 }
 
-const ProductItem: React.FC<ProductProps> = ({
-  image,
-  name,
-  price,
-  description,
-  size,
-  material,
-  percentage,
-}) => {
-  return (
-    <div className={styles.productCard}> {/* Применяем класс стиля */}
-      <img src={image} alt={name} />
-      <h3>{name}</h3>
-      <p>Цена: {price}</p>
-      <p>Описание: {description}</p>
-      <p>Размер: {size}</p>
-      <p>Материал: {material}</p>
-      <p>Процентное содержание: {percentage}%</p>
-    </div>
-  );
-};
+export default ProductItem
 
-export default ProductItem;

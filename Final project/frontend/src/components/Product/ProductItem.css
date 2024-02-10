@@ -1,5 +1,5 @@
-/* ProductItem.module.css */
-.productCard {
+/* для карточек юзера */
+  .product-card {
     background-color: #fff;
     border-radius:  7px;
     box-shadow:  2px  2px  4px rgba(0,  0,  0,  0.15);
@@ -8,25 +8,24 @@
     overflow: hidden;
     transition: transform  0.3s ease-in-out;
   }
-  
-  .productCard:hover {
+
+  .product-card:hover {
     transform: scale(1.05);
   }
-  
-  .productCard img {
+
+  .product-card img {
     width:  100%;
     height: auto;
   }
-  
-  .productCard h3 {
+
+  .product-card h3 {
     font-size:  1.5rem;
     margin-bottom:  10px;
   }
-  
-  .productCard p {
+
+  .product-card p {
     font-size:  1rem;
     color: #333;
     line-height:  1.5;
     margin-bottom:  5px;
   }
-  
