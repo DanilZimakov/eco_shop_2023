@@ -24,7 +24,8 @@ function UserProfile(): JSX.Element {
           <h2>Форма добавления товара</h2>
           <AddForm />
         </div>
-        <div>git add
+        <div>
+          git add
           <h2>Ваш товар</h2>
           <ProductItem />
         </div>
