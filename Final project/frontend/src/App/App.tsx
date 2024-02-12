@@ -18,12 +18,15 @@ import Profile from "../components/Profile/Profile/Profile";
 
 import Favorites from "../components/Favorites/Favorites";
 
+import { loadCategory } from "../redux/Slice/categorySlice/categorySlice";
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (localStorage.getItem("token")) {
       dispatch(check());
     }
+    dispatch(loadCategory());
     dispatch(loadSubCategory());
     dispatch(loadPost());
   }, []);

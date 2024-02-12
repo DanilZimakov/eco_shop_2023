@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { CategoriesType } from "../../../types/categories/categories";
 
 const AddForm = (): JSX.Element => {
   const [name, setName] = useState("");
@@ -12,8 +13,15 @@ const AddForm = (): JSX.Element => {
   const [compositions, setCompositions] = useState([
     { material: "", percentage: 0 },
   ]);
+  
 
   const user = useSelector((state: RootState) => state.auth.user);
+  const categories = useSelector((state: RootState) => state.categories.category)
+  
+  
+
+  const [category, setCategory] = useState('')
+  console.log(category);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -65,6 +73,7 @@ const AddForm = (): JSX.Element => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    
     try {
       const response = await axios.post("http://localhost:3000/posts/add", {
         name,
@@ -74,6 +83,7 @@ const AddForm = (): JSX.Element => {
         size,
         materials: compositions,
         user_id: user?.id,
+        category_id: Number(category),
       });
       console.log("Form submission response:", response.data);
       console.log("Отправляемые данные", {
@@ -145,6 +155,16 @@ const AddForm = (): JSX.Element => {
           value={size}
           onChange={handleInputChange}
         />
+      </label>
+
+      <label>
+        Выбор категории товара:
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option>Выберите категорию</option>
+            {categories.map((el) => <option value={el.id} key={el.id}>
+              {el.category_name}
+              </option>)}
+          </select>
       </label>
 
       {compositions.map((composition, index) => (
