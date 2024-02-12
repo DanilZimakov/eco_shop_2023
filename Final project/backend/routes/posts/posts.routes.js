@@ -19,15 +19,15 @@ router.post("/add", async (req, res) => {
     }
   });
 
-  router.delete("/delete", async (req, res) => {
+  router.delete("/delete/:postId", async (req, res) => {
     try {
-      const { id } = req.body;
+      const { postId } = req.params;
       const result = await Post.destroy({
-        where: { id: id },
+        where: { id: postId },
       });
   
       if (result > 0) {
-        res.json(id);
+        res.json(postId);
         return;
       }
       throw new Error();
@@ -35,25 +35,27 @@ router.post("/add", async (req, res) => {
       res.json({ message });
     }
   });
-  
-  router.put("/:animalId", async (req, res) => {
-    try {
-      const { animalId } = req.params;
-      const { name, image, user_id, type_id } = req.body;
-      const animal = await Animal.update(
-        {
-          name,
-          image,
-          user_id,
-          type_id,
-        },
-        { where: { id: animalId, user_id: req.session.userId } },
-      );
-      res.json(animal);
-    } catch (message) {
-      res.json(message);
-    }
-  });
+
+
+    
+  // router.put("/:animalId", async (req, res) => {
+  //   try {
+  //     const { animalId } = req.params;
+  //     const { name, image, user_id, type_id } = req.body;
+  //     const animal = await Animal.update(
+  //       {
+  //         name,
+  //         image,
+  //         user_id,
+  //         type_id,
+  //       },
+  //       { where: { id: animalId, user_id: req.session.userId } },
+  //     );
+  //     res.json(animal);
+  //   } catch (message) {
+  //     res.json(message);
+  //   }
+  // });
 
   
 
