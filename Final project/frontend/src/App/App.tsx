@@ -23,8 +23,8 @@ function App(): JSX.Element {
     if (localStorage.getItem("token")) {
       dispatch(check());
     }
-    dispatch(loadSubCategory())
-    dispatch(loadPost())
+    dispatch(loadSubCategory());
+    dispatch(loadPost());
   }, []);
 
   return (
@@ -48,6 +48,8 @@ function App(): JSX.Element {
             element={<PostPage />}
           />
         </Route>
+        <Route path="/sub-categories" element={<SubCategories />} />
+        <Route path="/categories/:categoryId" element={<SubCategories />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
         <Route path="/cart" element={<Cart />} />

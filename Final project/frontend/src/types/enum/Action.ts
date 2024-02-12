@@ -9,7 +9,6 @@ export enum ActionAuth {
 export enum ActionSubCategory {
   LOAD_SUB_CATEGORY = "LOAD_SUB_CATEGORY",
 }
-
 export enum ActionPosts {
   LOAD_POSTS = "LOAD_POSTS",
 }
