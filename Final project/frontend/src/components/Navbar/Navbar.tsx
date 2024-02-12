@@ -23,8 +23,6 @@ const Navbar = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to={"/"}>
-            <img src="logo_1.svg" />
-            пше
             <img className="svg" src={svg} />
           </NavLink>
 
@@ -53,7 +51,14 @@ const Navbar = () => {
             <NavLink className="navbar-item" to={"/cart"}>
               Cart
             </NavLink>
-            {user && <NavLink className="navbar-item" to="/user-profile">User profile</NavLink>}
+            <NavLink className="navbar-item" to={"/favorites"}>
+              Favorites
+            </NavLink>
+            {user && (
+              <NavLink className="navbar-item" to="/user-profile">
+                User profile
+              </NavLink>
+            )}
           </div>
 
           <div className="navbar-end">

@@ -27,6 +27,10 @@ module.exports = {
       publich: {
         type: Sequelize.BOOLEAN,
       },
+      likesCount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
 
       user_id: {
         type: Sequelize.INTEGER,

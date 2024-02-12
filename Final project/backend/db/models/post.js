@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.STRING,
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,
-
+      likesCount: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
       sub_category_id: DataTypes.INTEGER,

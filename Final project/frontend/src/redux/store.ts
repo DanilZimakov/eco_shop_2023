@@ -3,6 +3,7 @@ import authSlice from "./authSlice/authSlice";
 import cartSlice from "./cartSlice/cartSlice";
 import subCategorySlice from "./subCategorySlice/SubCategory";
 import postsSlice from "./PostsSlice/postsSlice";
+import modalSlice from "./modalSlice/modalSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     cart: cartSlice,
     subCategories: subCategorySlice,
     posts: postsSlice,
+    modal: modalSlice,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

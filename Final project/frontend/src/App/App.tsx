@@ -16,6 +16,7 @@ import PostPage from "../components/Posts/PostPage";
 import Cart from "../components/Cart/Cart";
 import { loadPost } from "../redux/PostsSlice/postsSlice";
 import { loadSubCategory } from "../redux/subCategorySlice/SubCategory";
+import Favorites from "../components/Favorites/Favorites";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -53,6 +54,7 @@ function App(): JSX.Element {
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );
