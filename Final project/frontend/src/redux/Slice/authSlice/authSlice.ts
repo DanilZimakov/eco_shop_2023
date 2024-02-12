@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ActionAuth } from "../../types/enum/Action";
-import * as api from "../../App/api/auth";
-import { SignInType, SignUpType } from "../../types/auth/authTypes";
-import { initialAuthType } from "../../types/initialState/initialState";
+import { ActionAuth } from "../../../types/enum/Action";
+import * as api from "../../../App/api/auth";
+import { SignInType, SignUpType } from "../../../types/auth/authTypes";
+import { initialAuthType } from "../../../types/initialState/initialState";
 const initialState: initialAuthType = {
   user: undefined,
   error: undefined,

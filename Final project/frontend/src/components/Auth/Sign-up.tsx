@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { useAppDispatch } from "../../redux/store";
-import { signUp } from "../../redux/authSlice/authSlice";
+import { signUp } from "../../redux/Slice/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 function SignUp() {
   const [name, setName] = useState<string>("");
@@ -17,7 +17,7 @@ function SignUp() {
     setName(""), setEmail(""), setPassword(""), setCpassword(""), setPhone("");
     navigate("/");
   }
-  
+
   return (
     <main className="main-auth">
       <form className="form-auth" onSubmit={hadnlerSignUp}>
@@ -58,7 +58,6 @@ function SignUp() {
         />
         <button type="submit">Зарегистрироваться</button>
       </form>
-      
     </main>
   );
 }

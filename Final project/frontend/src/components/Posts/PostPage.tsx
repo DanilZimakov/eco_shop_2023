@@ -16,6 +16,8 @@ function PostPage() {
    return all
   }
   const filteredPosts = fillPost(posts);
+  console.log(filteredPosts);
+  
   
   
   

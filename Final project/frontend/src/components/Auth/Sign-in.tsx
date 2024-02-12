@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./style.css";
 import { useAppDispatch } from "../../redux/store";
 
-import { signIn } from "../../redux/authSlice/authSlice";
+import { signIn } from "../../redux/Slice/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
