@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ActionProduct } from '../../types/enum/Action';
+import { ActionProduct } from '../../../types/enum/Action';
 
 // Определение типа части состояния
 interface ProductState {

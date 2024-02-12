@@ -1,13 +1,12 @@
 import "./logo_1.svg";
 
-import svg from "./swap.svg";
 import "./navbar.css";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import "./logo_1.svg";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
-import { logout } from "../../redux/authSlice/authSlice";
+import { logout } from "../../redux/Slice/authSlice/authSlice";
 
 const Navbar = () => {
   const user = useSelector((store: RootState) => store.auth.user);
@@ -22,12 +21,6 @@ const Navbar = () => {
     <>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <NavLink className="navbar-item" to={"/"}>
-            <img src="logo_1.svg" />
-            пше
-            <img className="svg" src={svg} />
-          </NavLink>
-
           <NavLink
             role="button"
             className="navbar-burger"
@@ -53,7 +46,14 @@ const Navbar = () => {
             <NavLink className="navbar-item" to={"/cart"}>
               Cart
             </NavLink>
-            {user && <NavLink className="navbar-item" to="/user-profile">User profile</NavLink>}
+            <NavLink className="navbar-item" to={"/favorites"}>
+              Favorites
+            </NavLink>
+            {user && (
+              <NavLink className="navbar-item" to="/profile">
+                User profile
+              </NavLink>
+            )}
           </div>
 
           <div className="navbar-end">

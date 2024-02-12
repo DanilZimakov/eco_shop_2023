@@ -14,7 +14,6 @@ export const axiosLoadPosts = async() => {
 
 // }
 
-
 export const axiosDelPosts = async(postId:CategoryId): Promise<number> => {
     const res = await axios.delete(`${BASE_URL}/posts/delete/${postId}`, );
     console.log(res.data);

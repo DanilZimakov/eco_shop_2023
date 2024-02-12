@@ -25,11 +25,8 @@ export const axiosSingIn = async (data: SignInType): Promise<User> => {
       email: data.email,
       password: data.password,
     }
-    // {
-    //   withCredentials: true,
-    // }
   );
-  console.log(res.data);
+ 
   
   localStorage.setItem("token", res.data.accessToken);
   return res.data.user;

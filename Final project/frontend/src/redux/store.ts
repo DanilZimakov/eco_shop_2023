@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./authSlice/authSlice";
-import cartSlice from "./cartSlice/cartSlice";
-import subCategorySlice from "./subCategorySlice/SubCategory"
-import postsSlice from "./PostsSlice/postsSlice";
-import categorySlice from "./categorySlice/categorySlice";
+import authSlice from "./Slice/authSlice/authSlice";
+import cartSlice from "./Slice/cartSlice/cartSlice";
+import subCategorySlice from "./Slice/subCategorySlice/SubCategory";
+import postsSlice from "./Slice/PostsSlice/postsSlice";
+import modalSlice from "./Slice/modalSlice/modalSlice";
+import categorySlice from "./Slice/categorySlice/categorySlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     cart: cartSlice,
     subCategories: subCategorySlice,
     posts: postsSlice,
+    modal: modalSlice,
     categories: categorySlice,
   },
 });
@@ -19,6 +21,3 @@ export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => store.dispatch;
 
 export default store;
-
-
-

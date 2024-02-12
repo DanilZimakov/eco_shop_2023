@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./style.css";
 import { useAppDispatch } from "../../redux/store";
 
-import { signIn } from "../../redux/authSlice/authSlice";
+import { signIn } from "../../redux/Slice/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
@@ -24,19 +24,19 @@ function SignIn() {
         <input
           className="input-auth"
           type="email"
-          placeholder="Введите вашу почту"
+          placeholder="Введите почту"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="input-auth"
           type="password"
-          placeholder="Придумайте пароль"
+          placeholder="Введите пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Авторизоваться</button>
       </form>
     </main>
   );

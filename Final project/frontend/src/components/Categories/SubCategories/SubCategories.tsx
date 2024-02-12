@@ -8,11 +8,11 @@ const SubCategories = () => {
   const { categoryId } = useParams();
 
   const subCategory = useSelector(
-    (store: RootState) => store.subCategories.subCategories
+    (store: RootState) => store.subCategories.subCategories,
   );
 
   const sub = subCategory.filter(
-    (el: SubCategoryType) => el.category_id === Number(categoryId)
+    (el: SubCategoryType) => el.category_id === Number(categoryId),
   );
 
   return (
@@ -29,9 +29,8 @@ const SubCategories = () => {
             </Link>
           );
         })}
-        
       </div>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };

@@ -48,7 +48,6 @@ const AddForm = (): JSX.Element => {
     }
   };
 
-  //Обрабатывает изменения в полях выбора материалов и их процентного содержания, обновляя массив compositions.
   const handleCompositionChange = (
     index: number,
     field: string,
@@ -63,13 +62,10 @@ const AddForm = (): JSX.Element => {
     setCompositions(updatedCompositions);
   };
 
-
-  //Добавляет в compositions новый объект для ввода информации о дополнительном материале.
   const addCompositionField = () => {
     setCompositions([...compositions, { material: "", percentage: 0 }]);
   };
 
-  //Удаляет из compositions объект по индексу, позволяя убрать информацию о материале.
   const removeCompositionField = (index: number) => {
     setCompositions(compositions.filter((_, i) => i !== index));
   };
@@ -85,7 +81,7 @@ const AddForm = (): JSX.Element => {
         description,
         image,
         size,
-        materials: compositions, // Отправляем массив compositions как есть
+        materials: compositions,
         user_id: user?.id,
         category_id: Number(category),
       });
@@ -173,7 +169,6 @@ const AddForm = (): JSX.Element => {
 
       {compositions.map((composition, index) => (
         <div key={index}>
-          {/* Добавленный блок для выбора материала */}
           <label>
             Материал:
             <select

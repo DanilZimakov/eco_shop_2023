@@ -33,7 +33,8 @@ const Categories: React.FC = () => {
             className={`card-body text-${index % 2 === 0 ? "dark" : "light"}`}
           >
             <Link to={`/categories/${category.id}`}>
-            <h5 className="card-title">{category.category_name}</h5></Link>
+              <h5 className="card-title">{category.category_name}</h5>
+            </Link>
             <p className="card-text">
               Категория обещает уникальные и модные товары, соответствующие
               трендам ресайкла и устойчивости.

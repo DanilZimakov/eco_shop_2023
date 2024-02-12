@@ -1,4 +1,3 @@
-
 export enum ActionAuth {
   AUTH_SIGN_UP = "AUTH_SIGN_UP",
   AUTH_SIGN_IN = "AUTH_SIGN_IN",
@@ -9,7 +8,6 @@ export enum ActionAuth {
 export enum ActionSubCategory {
   LOAD_SUB_CATEGORY = "LOAD_SUB_CATEGORY",
 }
-
 export enum ActionPosts {
   LOAD_POSTS = "LOAD_POSTS",
   DELETE_POST = 'DELETE_POST',
@@ -21,6 +19,10 @@ export enum ActionCart {
   CLEAR_CART = "CLEAR_CART",
 }
 
+export enum ActionModal {
+  OPEN_MODAL = "OPEN_MODAL",
+  CLOSE_MODAL = "CLOSE_MODAL",
+}
 
 export enum ActionCategory {
   LOAD_CATEGORY = "LOAD_CATEGORY"

@@ -1,8 +1,8 @@
-import React from "react";
+// import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
-import ProductItem from "../../Product/ProductItem";
 
+import ProductItem from "../../Product/ProductItem";
 
 function UserProfile(): JSX.Element {
   return (

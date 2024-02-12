@@ -10,15 +10,15 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message });
   }
 });
-router.get("/sub", async (req,res) => {
-    const subCategories = await Sub_category.findAll();
-    res.json(subCategories)
-})
+router.get("/sub", async (req, res) => {
+  const subCategories = await Sub_category.findAll();
+  res.json(subCategories);
+});
 router.get("/sub/:subId", async (req, res) => {
-    const { subId } = req.params;
-    const subCategory = await Sub_category.findAll({
-      where: {category_id: subId}
-    })
-    res.json(subCategory)
-})
+  const { subId } = req.params;
+  const subCategory = await Sub_category.findAll({
+    where: { category_id: subId },
+  });
+  res.json(subCategory);
+});
 module.exports = router;
