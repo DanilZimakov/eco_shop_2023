@@ -1,3 +1,4 @@
+import { CategoriesType } from "../categories/categories";
 import { PostType } from "../posts/posts";
 import { SubCategoryType } from "../sub_category/sub_category";
 import { User } from "../user/userType"
@@ -11,4 +12,7 @@ export type InitialSubCategory = {
 };
 export type InitialPost = {
   posts: PostType[];
+}
+export type InitialCategoryType = {
+  category: CategoriesType[],
 }

@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./categories.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
-interface Category {
-  id: number;
-  category_name: string;
-  category_image: string;
-}
 
 const Categories: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/categories");
-        setCategories(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const {category} = useSelector((store: RootState) => store.categories)
+  console.log(category);
+  
 
   const getCardColorClass = (index: number) => {
     const colors = ["primary", "secondary", "success", "danger", "warning"];
@@ -32,7 +18,7 @@ const Categories: React.FC = () => {
 
   return (
     <div className="card-container">
-      {categories.map((category, index) => (
+      {category.map((category, index) => (
         <div
           key={category.id}
           className={`animated-card ${getCardColorClass(index)}`}

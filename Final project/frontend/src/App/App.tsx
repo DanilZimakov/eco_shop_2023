@@ -16,6 +16,7 @@ import PostPage from "../components/Posts/PostPage";
 import Cart from "../components/Cart/Cart";
 import { loadPost } from "../redux/PostsSlice/postsSlice";
 import { loadSubCategory } from "../redux/subCategorySlice/SubCategory";
+import { loadCategory } from "../redux/categorySlice/categorySlice";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,12 +24,9 @@ function App(): JSX.Element {
     if (localStorage.getItem("token")) {
       dispatch(check());
     }
+    dispatch(loadCategory())
     dispatch(loadSubCategory())
     dispatch(loadPost())
-function App(): JSX.Element {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(check());
   }, []);
 
   return (

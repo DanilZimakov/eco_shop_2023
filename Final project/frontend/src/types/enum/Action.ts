@@ -12,9 +12,16 @@ export enum ActionSubCategory {
 
 export enum ActionPosts {
   LOAD_POSTS = "LOAD_POSTS",
+  DELETE_POST = 'DELETE_POST',
+  EDIT_POST = 'EDIT_POST',
 }
 export enum ActionCart {
   ADD_ITEM = "ADD_ITEM",
   REMOVE_ITEM = "REMOVE_ITEM",
   CLEAR_CART = "CLEAR_CART",
+}
+
+
+export enum ActionCategory {
+  LOAD_CATEGORY = "LOAD_CATEGORY"
 }

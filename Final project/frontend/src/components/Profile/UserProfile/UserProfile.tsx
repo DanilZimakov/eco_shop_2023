@@ -4,7 +4,7 @@ import AddForm from "../AddForm/AddForm";
 import ProductItem from "../../Product/ProductItem";
 
 
-function UserProfile(): JSX.Element {  
+function UserProfile(): JSX.Element {
   return (
     <>
       <div className="user-profile">
@@ -25,7 +25,7 @@ function UserProfile(): JSX.Element {
           <AddForm />
         </div>
         <div>
-          <h2>Ваш товар</h2>
+          <h2>Ваши товары</h2>
           <ProductItem />
         </div>
       </div>
