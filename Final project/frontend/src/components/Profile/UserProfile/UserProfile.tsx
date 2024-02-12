@@ -1,14 +1,9 @@
 // import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
-import { RootState } from "../../../redux/store";
-import { useSelector } from "react-redux";
+
 import ProductItem from "../../Product/ProductItem";
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/update_delete
 function UserProfile(): JSX.Element {
   return (
     <>
@@ -30,12 +25,7 @@ function UserProfile(): JSX.Element {
           <AddForm />
         </div>
         <div>
-<<<<<<< HEAD
-          git add
-          <h2>Ваш товар</h2>
-=======
           <h2>Ваши товары</h2>
->>>>>>> feature/update_delete
           <ProductItem />
         </div>
       </div>

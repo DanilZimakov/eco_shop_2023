@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CategoryId } from "../../types/categories/categories";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -13,7 +14,9 @@ export const axiosLoadPosts = async() => {
 
 // }
 
-export const axiosDelPosts = async(id): Promise<number> => {
-    const res = await axios.delete(`${BASE_URL}/delete`, id)
+export const axiosDelPosts = async(postId:CategoryId): Promise<number> => {
+    const res = await axios.delete(`${BASE_URL}/posts/delete`, {id:postId})
+    console.log(res.data);
+    
     return res.data
 }

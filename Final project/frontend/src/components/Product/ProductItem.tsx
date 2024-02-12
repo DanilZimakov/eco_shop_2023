@@ -3,6 +3,8 @@ import './ProductItem.css';
 import { RootState, useAppDispatch } from "..//..//redux/store";
 import { useSelector } from "react-redux";
 import { deletePost } from '../../redux/Slice/PostsSlice/postsSlice';
+import { CategoryId } from '../../types/categories/categories';
+import LikeButton from '../LikeButton/LikeButton';
 
 function ProductItem():JSX.Element {
   const {posts} = useSelector((store:RootState) => store.posts)
@@ -10,7 +12,7 @@ function ProductItem():JSX.Element {
   const dispatch = useAppDispatch();
   const FilterUserPost = posts.filter(el => el.user_id === user?.id)
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id:CategoryId) => {
     dispatch(deletePost(id));
   };
 
@@ -30,7 +32,7 @@ function ProductItem():JSX.Element {
           <button onClick={() => handleDelete(el.id)}>
             Удалить публикацию
           </button>
-          <button onClick={() => handleEdit(el.id)}>Изменить публикацию</button>
+          {/* <button onClick={() => handleEdit(el.id)}>Изменить публикацию</button> */}
           <LikeButton postId={el.id} categoryId={0} />
         </div>
       ))}

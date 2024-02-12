@@ -3,3 +3,5 @@ export type CategoriesType = {
     category_name: string,
     category_image: string,
   };
+
+export type CategoryId = CategoriesType["id"]
