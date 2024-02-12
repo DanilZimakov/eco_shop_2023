@@ -41,24 +41,20 @@ class AuthController {
         user_id: user.id,
         refresh_token: refreshToken,
       });
-      res
-        
-        .cookie("refresh", refreshToken, {
-          httpOnly: true,
-          maxAge: 24 * 60 * 60 * 1000,
-        });
+      res.cookie("refresh", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
       res.status(201).json({ accessToken, refreshToken, user: userData });
     } catch (error) {
       console.error("ERORR SIGN UP: ", error);
     }
   }
   async singIn(req, res) {
-    
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ where: { email } });
-      
-      
+
       const userData = {
         id: user.id,
         name: user.name,
@@ -70,7 +66,7 @@ class AuthController {
         res.status(400).json({ message: "Зарегистрируйтесь" });
       }
       const isPass = await bcrypt.compare(password, user.password);
-      
+
       if (!isPass) {
         res.status(400).json({ message: "Неверный пароль" });
       }
@@ -84,12 +80,10 @@ class AuthController {
       }
       await tokenIsUser.update({ refresh_token: refreshToken });
 
-      res
-        
-        .cookie("refresh", refreshToken, {
-          httpOnly: true,
-          maxAge: 24 * 60 * 60 * 1000,
-        });
+      res.cookie("refresh", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
       res.status(201).json({ accessToken, refreshToken, user: userData });
     } catch (error) {
       console.error("ERORR SIGN IN:", error);
@@ -141,17 +135,15 @@ class AuthController {
     try {
       const user = await User.findOne({ where: { id: req.user.id } });
 
-      res
-        .status(201)
-        .json({
-          user: {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            phone: user.phone_number,
-            admin: user.is_admin,
-          },
-        });
+      res.status(201).json({
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone_number,
+          admin: user.is_admin,
+        },
+      });
     } catch (error) {
       console.error("ERROR CHECK: ", error);
     }

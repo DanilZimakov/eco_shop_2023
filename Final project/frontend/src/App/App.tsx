@@ -16,6 +16,8 @@ import { loadPost } from "../redux/Slice/PostsSlice/postsSlice";
 import { loadSubCategory } from "../redux/Slice/subCategorySlice/SubCategory";
 import Profile from "../components/Profile/Profile/Profile";
 
+import Favorites from "../components/Favorites/Favorites";
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -51,6 +53,7 @@ function App(): JSX.Element {
         <Route path="/categories/:categoryId" element={<SubCategories />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );

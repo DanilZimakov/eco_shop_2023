@@ -24,21 +24,21 @@ function SignUp() {
         <input
           className="input-auth"
           type="text"
-          placeholder="Придумайте имя"
+          placeholder="Имя"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           className="input-auth"
           type="email"
-          placeholder="Введите вашу почту"
+          placeholder="Почта"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="input-auth"
           type="password"
-          placeholder="Придумайте пароль"
+          placeholder="Пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -52,7 +52,7 @@ function SignUp() {
         <input
           className="input-auth"
           type="text"
-          placeholder="Введите ваш номер телефона"
+          placeholder="Номер телефона"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />

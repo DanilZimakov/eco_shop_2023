@@ -1,4 +1,3 @@
-
 export enum ActionAuth {
   AUTH_SIGN_UP = "AUTH_SIGN_UP",
   AUTH_SIGN_IN = "AUTH_SIGN_IN",
@@ -16,4 +15,9 @@ export enum ActionCart {
   ADD_ITEM = "ADD_ITEM",
   REMOVE_ITEM = "REMOVE_ITEM",
   CLEAR_CART = "CLEAR_CART",
+}
+
+export enum ActionModal {
+  OPEN_MODAL = "OPEN_MODAL",
+  CLOSE_MODAL = "CLOSE_MODAL",
 }

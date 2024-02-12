@@ -46,9 +46,12 @@ const Navbar = () => {
             <NavLink className="navbar-item" to={"/cart"}>
               Cart
             </NavLink>
+            <NavLink className="navbar-item" to={"/favorites"}>
+              Favorites
+            </NavLink>
             {user && (
-              <NavLink className="navbar-item" to="/profile">
-                Profile
+              <NavLink className="navbar-item" to="/user-profile">
+                User profile
               </NavLink>
             )}
           </div>
