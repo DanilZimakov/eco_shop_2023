@@ -50,7 +50,7 @@ const Navbar = () => {
               Favorites
             </NavLink>
             {user && (
-              <NavLink className="navbar-item" to="/user-profile">
+              <NavLink className="navbar-item" to="/profile">
                 User profile
               </NavLink>
             )}

@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { deletePost } from '../../redux/Slice/PostsSlice/postsSlice';
 import { CategoryId } from '../../types/categories/categories';
 import LikeButton from '../LikeButton/LikeButton';
+import { PostType } from '../../types/posts/posts';
 
 function ProductItem():JSX.Element {
   const {posts} = useSelector((store:RootState) => store.posts)
   const {user} = useSelector((store: RootState) => store.auth)
   const dispatch = useAppDispatch();
-  const FilterUserPost = posts.filter(el => el.user_id === user?.id)
+  const FilterUserPost = posts.filter((el:PostType) => el.user_id === user?.id)
 
   const handleDelete = (id:CategoryId) => {
     dispatch(deletePost(id));
@@ -22,7 +23,7 @@ function ProductItem():JSX.Element {
   
   return (
     <div>
-      {FilterUserPost.map((el) => (
+      {FilterUserPost.map((el:PostType) => (
         <div key={el.id} className="product-card">
           <img src={el.image} alt={el.name} />
           <h3>{el.name}</h3>

@@ -6,14 +6,7 @@ import AdminProfile from "../AdminProfile/AdminProfile";
 function Profile() {
     const user = useSelector((store:RootState) => store.auth.user)
     const isAdmin = user?.admin !== false;
-    console.log(isAdmin);
-    
-    
-    
-    
-    
-    
-    
+
     return (
         <div>
             {isAdmin ? (
