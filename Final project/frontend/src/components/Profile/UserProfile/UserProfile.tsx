@@ -1,8 +1,7 @@
 // import React, { useState } from "react";
 import "./UserProfile.css";
 import AddForm from "../AddForm/AddForm";
-import { RootState } from "../../../redux/store";
-import { useSelector } from "react-redux";
+
 import ProductItem from "../../Product/ProductItem";
 
 function UserProfile(): JSX.Element {
@@ -26,8 +25,7 @@ function UserProfile(): JSX.Element {
           <AddForm />
         </div>
         <div>
-          git add
-          <h2>Ваш товар</h2>
+          <h2>Ваши товары</h2>
           <ProductItem />
         </div>
       </div>

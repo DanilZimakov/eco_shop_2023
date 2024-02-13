@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { useAppDispatch } from "../../redux/store";
-import { signUp } from "../../redux/authSlice/authSlice";
+import { signUp } from "../../redux/Slice/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 function SignUp() {
   const [name, setName] = useState<string>("");

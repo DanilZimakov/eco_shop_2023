@@ -2,30 +2,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Materials", {
+    await queryInterface.createTable("UserProfiles", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING,
-      },
-
-      harm: {
-        type: Sequelize.STRING,
-      },
-
-      harmfulness: {
-        type: Sequelize.STRING,
-      },
-
-      environmental_impact: {
+      user_id: {
         type: Sequelize.INTEGER,
-        defaultValue: 0,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+        onDelete: "CASCADE",
       },
-
+      age: {
+        type: Sequelize.INTEGER,
+      },
+      gender: {
+        type: Sequelize.STRING,
+      },
+      image: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -37,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Materials");
+    await queryInterface.dropTable("UserProfiles");
   },
 };

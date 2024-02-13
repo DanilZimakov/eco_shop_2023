@@ -3,20 +3,22 @@ import Navbar from "../components/Navbar/Navbar";
 import Home from "../components/Home/Home";
 import Categories from "../components/Categories/Categories";
 import SubCategories from "../components/Categories/SubCategories/SubCategories";
-import UserProfile from "../components/Profile/UserProfile/UserProfile";
-import AdminProfile from "../components/Profile/AdminProfile/AdminProfile";
 import SignUp from "../components/Auth/Sign-up";
 import SignIn from "../components/Auth/Sign-in";
 
 import { useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
-import { check } from "../redux/authSlice/authSlice";
+import { check } from "../redux/Slice/authSlice/authSlice";
 import PostPage from "../components/Posts/PostPage";
 
 import Cart from "../components/Cart/Cart";
-import { loadPost } from "../redux/PostsSlice/postsSlice";
-import { loadSubCategory } from "../redux/subCategorySlice/SubCategory";
+import { loadPost } from "../redux/Slice/PostsSlice/postsSlice";
+import { loadSubCategory } from "../redux/Slice/subCategorySlice/SubCategory";
+import Profile from "../components/Profile/Profile/Profile";
+
 import Favorites from "../components/Favorites/Favorites";
+
+import { loadCategory } from "../redux/Slice/categorySlice/categorySlice";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,6 +26,7 @@ function App(): JSX.Element {
     if (localStorage.getItem("token")) {
       dispatch(check());
     }
+    dispatch(loadCategory());
     dispatch(loadSubCategory());
     dispatch(loadPost());
   }, []);
@@ -51,8 +54,7 @@ function App(): JSX.Element {
         </Route>
         <Route path="/sub-categories" element={<SubCategories />} />
         <Route path="/categories/:categoryId" element={<SubCategories />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/admin-profile" element={<AdminProfile />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
       </Route>

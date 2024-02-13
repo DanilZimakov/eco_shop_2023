@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialModal } from "../../types/initialState/initialState";
-import { ActionModal } from "../../types/enum/Action";
+import { InitialModal } from "../../../types/initialState/initialState";
+import { ActionModal } from "../../../types/enum/Action";
 
 const initialState: InitialModal = {
   modal: false,

@@ -1,28 +1,29 @@
-import React from "react";
-import "./ProductItem.css";
+
+import './ProductItem.css';
+import { RootState, useAppDispatch } from "..//..//redux/store";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import LikeButton from "../LikeButton/LikeButton";
+import { deletePost } from '../../redux/Slice/PostsSlice/postsSlice';
+import { CategoryId } from '../../types/categories/categories';
+import LikeButton from '../LikeButton/LikeButton';
+import { PostType } from '../../types/posts/posts';
 
-function ProductItem(): JSX.Element {
-  const { posts } = useSelector((store: RootState) => store.posts);
-  const { user } = useSelector((store: RootState) => store.auth);
-  const FilterUserPost = posts.filter((el) => el.user_id === user?.id);
+function ProductItem():JSX.Element {
+  const {posts} = useSelector((store:RootState) => store.posts)
+  const {user} = useSelector((store: RootState) => store.auth)
+  const dispatch = useAppDispatch();
+  const FilterUserPost = posts.filter((el:PostType) => el.user_id === user?.id)
 
-  // Предполагаемая реализация функций handleDelete и handleEdit
-  const handleDelete = (postId: number) => {
-    // Логика удаления поста
-    console.log(`Deleting post with ID ${postId}`);
+  const handleDelete = (id:CategoryId) => {
+    dispatch(deletePost(id));
   };
 
-  const handleEdit = (postId: number) => {
-    // Логика редактирования поста
-    console.log(`Editing post with ID ${postId}`);
-  };
-
+  // const handleEdit = (postId: string) => {
+  //   dispatch(editProduct(postId));
+  // };
+  
   return (
     <div>
-      {FilterUserPost.map((el) => (
+      {FilterUserPost.map((el:PostType) => (
         <div key={el.id} className="product-card">
           <img src={el.image} alt={el.name} />
           <h3>{el.name}</h3>
@@ -32,7 +33,7 @@ function ProductItem(): JSX.Element {
           <button onClick={() => handleDelete(el.id)}>
             Удалить публикацию
           </button>
-          <button onClick={() => handleEdit(el.id)}>Изменить публикацию</button>
+          {/* <button onClick={() => handleEdit(el.id)}>Изменить публикацию</button> */}
           <LikeButton postId={el.id} categoryId={0} />
         </div>
       ))}

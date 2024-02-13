@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { OPEN_MODAL, CLOSE_MODAL } from "../../redux/modalSlice/modalSlice";
+import {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+} from "../../redux/Slice/modalSlice/modalSlice";
 import axios from "axios";
 import { PostType } from "../../types/posts/posts";
 
