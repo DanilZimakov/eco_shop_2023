@@ -81,3 +81,5 @@ function PostPage() {
     </div>
   );
 }
+
+export default PostPage;

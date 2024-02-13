@@ -1,6 +1,4 @@
-
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ActionProduct } from '../../../types/enum/Action';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Определение типа части состояния
 interface ProductState {
@@ -16,16 +14,26 @@ const initialState: ProductState = {
 };
 
 export const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     deleteProduct: (state, action: PayloadAction<string>) => {
-      state.products = state.products.filter(product => product.id !== action.payload);
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload,
+      );
     },
-    editProduct: (state, action: PayloadAction<{ id: string; changes: Partial<any> }>) => {
-      const index = state.products.findIndex(product => product.id === action.payload.id);
+    editProduct: (
+      state,
+      action: PayloadAction<{ id: string; changes: Partial<ProductState> }>,
+    ) => {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload.id,
+      );
       if (index !== -1) {
-        state.products[index] = { ...state.products[index], ...action.payload.changes };
+        state.products[index] = {
+          ...state.products[index],
+          ...action.payload.changes,
+        };
       }
     },
   },

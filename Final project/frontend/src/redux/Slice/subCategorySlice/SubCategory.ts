@@ -9,7 +9,7 @@ const initialSubCat: InitialSubCategory = {
 
 export const loadSubCategory = createAsyncThunk(
   ActionSubCategory.LOAD_SUB_CATEGORY,
-  () => api.axiosSubCategoryLoad()
+  () => api.axiosSubCategoryLoad(),
 );
 
 const subCategorySlice = createSlice({

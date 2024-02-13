@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Cart, { foreignKey: "post_id" });
       this.hasMany(models.Like, { foreignKey: "post_id" });
       this.hasMany(models.Compoud, { foreignKey: "post_id" });
-      this.hasMany(models.Image, { foreignKey: "post_id" });
     }
   }
   Post.init(
@@ -22,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,
       likesCount: DataTypes.INTEGER,
+      image: DataTypes.TEXT,
       weight: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Post",
-    }
+    },
   );
   return Post;
 };

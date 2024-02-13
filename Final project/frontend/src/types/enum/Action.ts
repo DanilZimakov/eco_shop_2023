@@ -10,8 +10,8 @@ export enum ActionSubCategory {
 }
 export enum ActionPosts {
   LOAD_POSTS = "LOAD_POSTS",
-  DELETE_POST = 'DELETE_POST',
-  EDIT_POST = 'EDIT_POST',
+  DELETE_POST = "DELETE_POST",
+  EDIT_POST = "EDIT_POST",
 }
 export enum ActionCart {
   ADD_ITEM = "ADD_ITEM",
@@ -25,5 +25,5 @@ export enum ActionModal {
 }
 
 export enum ActionCategory {
-  LOAD_CATEGORY = "LOAD_CATEGORY"
+  LOAD_CATEGORY = "LOAD_CATEGORY",
 }

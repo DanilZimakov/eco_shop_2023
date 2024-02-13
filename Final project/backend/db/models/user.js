@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Review, { foreignKey: "user_id" });
       this.hasMany(Cart, { foreignKey: "user_id" });
       this.hasMany(Like, { foreignKey: "user_id" });
-      this.hasMany(Image, { foreignKey: "user_id" });
     }
   }
   User.init(

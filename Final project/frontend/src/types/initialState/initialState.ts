@@ -13,7 +13,7 @@ export type InitialSubCategory = {
 export type InitialPost = {
   posts: PostType[];
 };
-
+c
 export type InitialModal = {
   modal: boolean;
 };
