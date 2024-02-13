@@ -1,35 +1,21 @@
 "use strict";
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Posts", {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable("Images", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      filename: {
         type: Sequelize.STRING,
       },
-      price: {
+      filepath: {
         type: Sequelize.STRING,
       },
-      description: {
+      mimetype: {
         type: Sequelize.STRING,
-      },
-      image: {
-        type: Sequelize.TEXT,
-      },
-      size: {
-        type: Sequelize.STRING,
-      },
-      publich: {
-        type: Sequelize.BOOLEAN,
-      },
-      likesCount: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -39,18 +25,10 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
-      category_id: {
+      post_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Categories",
-          key: "id",
-        },
-        onDelete: "CASCADE",
-      },
-      sub_category_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Sub_categories",
+          model: "Posts",
           key: "id",
         },
         onDelete: "CASCADE",
@@ -65,7 +43,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Posts");
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable("Images");
   },
 };

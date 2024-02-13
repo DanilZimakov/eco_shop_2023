@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const { Post, Like } = require("../../db/models");
-const checkUser = require("../../middleware/chekUser");
+const { Post, Image } = require("../../db/models");
 
 router.get("/", async (req, res) => {
   const posts = await Post.findAll();
@@ -37,5 +36,3 @@ router.post("/add", async (req, res) => {
     res.json(message);
   }
 });
-
-module.exports = router;
