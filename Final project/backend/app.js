@@ -1,4 +1,4 @@
-require("@babel/register");
+
 
 const express = require("express");
 const serverConfig = require("./config/serverConfig");

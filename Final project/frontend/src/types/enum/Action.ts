@@ -10,8 +10,10 @@ export enum ActionSubCategory {
 }
 export enum ActionPosts {
   LOAD_POSTS = "LOAD_POSTS",
+  ADD_POST = "ADD_POST",
   DELETE_POST = "DELETE_POST",
   EDIT_POST = "EDIT_POST",
+  PUBLICH_POST = "PUBLICH_POST",
 }
 export enum ActionCart {
   ADD_ITEM = "ADD_ITEM",

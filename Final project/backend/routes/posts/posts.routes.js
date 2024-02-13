@@ -1,5 +1,10 @@
 const router = require("express").Router();
+<<<<<<< HEAD
 const { Post, Image } = require("../../db/models");
+=======
+const { Post, Like } = require("../../db/models");
+const { validateAccessToken } = require("../../jwt/validateToken");
+>>>>>>> dev
 
 router.get("/", async (req, res) => {
   const posts = await Post.findAll();
@@ -40,38 +45,34 @@ router.post("/add", async (req, res) => {
 router.delete("/delete/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
+    const token = req.headers.authorization?.split(" ")[1];
 
-    const result = await Post.destroy({
-      where: { id: postId },
+    const validToken = validateAccessToken(token);
+    const deletePost = await Post.destroy({
+      where: { id: postId, user_id: validToken.id },
     });
-
-    if (result > 0) {
+    if (deletePost) {
       res.json(postId);
       return;
     }
     throw new Error();
   } catch ({ message }) {
-    res.json({ message });
+    res.status(500).json({ message });
   }
 });
 
-router.put("/:animalId", async (req, res) => {
-  try {
-    const { animalId } = req.params;
-    const { name, image, user_id, type_id } = req.body;
-    const animal = await Animal.update(
-      {
-        name,
-        image,
-        user_id,
-        type_id,
-      },
-      { where: { id: animalId, user_id: req.session.userId } },
-    );
-    res.json(animal);
-  } catch (message) {
-    res.json(message);
+router.put("/publich/:postId", async (req, res) => {
+  const { postId } = req.params;
+  const post = await Post.findByPk(postId);
+
+  if (post.publich === false) {
+    post.publich = true;
+    post.save();
+  } else {
+    post.publich = false;
+    post.save();
   }
+  res.json(post);
 });
 
 module.exports = router;

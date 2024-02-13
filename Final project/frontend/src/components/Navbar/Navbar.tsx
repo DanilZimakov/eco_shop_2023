@@ -1,15 +1,15 @@
-import "./logo_1.svg";
+import "./image/logo_1.svg";
 
 import "./navbar.css";
-
+import adminIcon from "./image/admin-icon.png"
 import { NavLink, useNavigate } from "react-router-dom";
-import "./logo_1.svg";
+import "./image/logo_1.svg";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/Slice/authSlice/authSlice";
 
 const Navbar = () => {
-  const user = useSelector((store: RootState) => store.auth.user);
+  const { user } = useSelector((store: RootState) => store.auth);
 
   const dispath = useAppDispatch();
   const navigate = useNavigate();
@@ -58,6 +58,11 @@ const Navbar = () => {
 
           <div className="navbar-end">
             <div className="navbar-item">
+              {user?.admin && (
+                <div>
+                  <img src={adminIcon} alt="noPhoto" />
+                </div>
+              )}
               <div className="buttons">
                 {user ? (
                   <>
