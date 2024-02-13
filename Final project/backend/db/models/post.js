@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,
       likesCount: DataTypes.INTEGER,
+      weight: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
       sub_category_id: DataTypes.INTEGER,
@@ -36,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Post",
-    },
+    }
   );
   return Post;
 };

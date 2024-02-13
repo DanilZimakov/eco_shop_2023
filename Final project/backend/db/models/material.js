@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       harm: DataTypes.STRING,
+      harmfulness: DataTypes.STRING,
+      environmental_impact: DataTypes.INTEGER,
     },
     {
       sequelize,
