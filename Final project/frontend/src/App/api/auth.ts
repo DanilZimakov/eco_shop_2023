@@ -1,44 +1,47 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { User } from "../../types/user/userType";
 import {  SignInType, SignUpType } from "../../types/auth/authTypes";
 const BASE_URL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
 export const axiosSignUp = async (data: SignUpType): Promise<User> => {
-  const res = await axios.post(
-    `${BASE_URL}/api/auth/sign-up`,
-    {
+  try {
+    const res = await axios.post(`${BASE_URL}/api/auth/sign-up`, {
       name: data.name,
       email: data.email,
       password: data.password,
       cpassword: data.cpassword,
       phone: data.phone,
-    },
-  );
-    localStorage.setItem("token",res.data.accessToken)
-    
-  return res.data.user;
+    });
+
+    localStorage.setItem("token", res.data.accessToken);
+    return res.data.user;
+  } catch (error) {
+    if(error instanceof AxiosError){
+      if(error.request.status === 400){
+        throw error.response?.data.message 
+      }
+    }
+  }
 };
 export const axiosSingIn = async (data: SignInType): Promise<User> => {
-  const res = await axios.post(
-    `${BASE_URL}/api/auth/sign-in`,
-    {
-      email: data.email,
-      password: data.password,
+ try {
+   const res = await axios.post(`${BASE_URL}/api/auth/sign-in`, {
+     email: data.email,
+     password: data.password,
+   });
+
+   localStorage.setItem("token", res.data.accessToken);
+   return res.data.user;
+ } catch (error) {
+    if(error instanceof AxiosError){
+      if(error.request.status === 400){
+        throw error.response?.data.message 
+      }
     }
-  );
- 
-  
-  localStorage.setItem("token", res.data.accessToken);
-  return res.data.user;
+ }
 };
 export const axiosLogout = async ():Promise<void> => {
-    
-    // {
-    //   withCredentials: true;
-    // }
     const res = await axios.post(`${BASE_URL}/api/auth/logout`,)
-    
-    
     localStorage.removeItem("token")
     return res.data
 }

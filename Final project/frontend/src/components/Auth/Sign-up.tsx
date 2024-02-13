@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./style.css";
-import { useAppDispatch } from "../../redux/store";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { signUp } from "../../redux/Slice/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function SignUp() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -11,16 +12,29 @@ function SignUp() {
   const [phone, setPhone] = useState<string>("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { error } = useSelector((store: RootState) => store.auth);
   function hadnlerSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(signUp({ name, email, password, cpassword, phone }));
-    setName(""), setEmail(""), setPassword(""), setCpassword(""), setPhone("");
-    navigate("/");
+    dispatch(signUp({ name, email, password, cpassword, phone })).then(
+      (res) => {
+        if (res.payload) {
+          setName(""),
+            setEmail(""),
+            setPassword(""),
+            setCpassword(""),
+            setPhone("");
+          navigate("/");
+        }
+      }
+    );
   }
 
   return (
     <main className="main-auth">
       <form className="form-auth" onSubmit={hadnlerSignUp}>
+        {error && (
+          <span style={{ color: "red", fontSize: "20px" }}>{error}</span>
+        )}
         <input
           className="input-auth"
           type="text"

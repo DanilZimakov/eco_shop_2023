@@ -11,6 +11,7 @@ export const signUp = createAsyncThunk(
   ActionAuth.AUTH_SIGN_UP,
   (data: SignUpType) => api.axiosSignUp(data)
 );
+
 export const signIn = createAsyncThunk(
   ActionAuth.AUTH_SIGN_IN,
   (data: SignInType) => api.axiosSingIn(data)
@@ -31,12 +32,13 @@ const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         state.user = action.payload;
       })
+      .addCase(signUp.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = action.payload;
       })
       .addCase(signIn.rejected, (state, action) => {
-        console.log(action.error.message);
-
         state.error = action.error.message;
       })
       .addCase(logout.fulfilled, (state) => {
