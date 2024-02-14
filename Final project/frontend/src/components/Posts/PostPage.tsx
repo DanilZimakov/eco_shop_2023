@@ -64,9 +64,8 @@ function PostPage() {
       {filteredPosts.map((post) => {
         return (
           <div key={post.id}>
-            {/* Проверяем, есть ли изображения и отображаем первое из них */}
             {post.image && post.image.length > 0 && (
-              <img src={post.image[0].url} alt={post.name} />
+              <img src={post.image[0]} alt={post.name} />
             )}
             <h3>{post.name}</h3>
             <p>{post.price}</p>

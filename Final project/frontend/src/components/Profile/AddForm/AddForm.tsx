@@ -22,16 +22,13 @@ const AddForm = (): JSX.Element => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [subCategories, setSubCategories] = useState<Subcategories[]>([]);
-
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>("");
-
   const [size, setSize] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [name, setName] = useState("");
   const referenceElement = useRef(null);
-
   const [compositions, setCompositions] = useState<Compouds[]>([
     { material_id: "", parcent: 0 },
   ]);
@@ -174,143 +171,188 @@ const AddForm = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Наименование товара:
-        <input
-          type="text"
-          value={name}
-          name="name"
-          onChange={handleInputChange}
-        />
-      </label>
+    <form onSubmit={handleSubmit} className="form">
+      <div className="field">
+        <label className="label">Наименование товара:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={name}
+            name="name"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      <label>
-        Цена:
-        <input
-          type="number"
-          value={price}
-          name="price"
-          onChange={handleInputChange}
-        />
-      </label>
+      <div className="field">
+        <label className="label">Цена:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            value={price}
+            name="price"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      <label>
-        Описание:
-        <input
-          type="text"
-          value={description}
-          name="description"
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Размер
-        <input
-          value={size}
-          type="number"
-          name="size"
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Изображение:
-        <input type="file" name="image" onChange={handleFileChange} />
-      </label>
-      {image && (
-        <img
-          src={image}
-          alt="Preview"
-          style={{ width: "100px", height: "100px" }}
-        />
-      )}
-      <label className="dropdown is-active">
-        Выбор категории товара:
-        <select
-          className="dropdown-trigge"
-          ref={referenceElement}
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">Выберите категорию</option>
-          {categories.map((category) => (
-            <option
-              className="dropdown-item"
-              key={category.id}
-              value={category.id}
-              style={{
-                color: "black",
-              }}
-            >
-              {category.category_name}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="field">
+        <label className="label">Описание:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={description}
+            name="description"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      {subCategories.length > 0 && (
-        <label className="dropdown is-active">
-          Выбор подкатегории:
-          <select
-            className="dropdown-trigger"
-            value={selectedSubCategory}
-            onChange={handleSubCategoryChange}
-          >
-            <option value="">Выберите подкатегорию</option>
-            {subCategories.map((subCategory) => (
-              <option key={subCategory.id} value={subCategory.id}>
-                {subCategory.name}
-              </option>
-            ))}
-          </select>
+      <div className="field">
+        <label className="label">Размер:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            value={size}
+            name="size"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label">Изображение:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="file"
+            name="image"
+            onChange={handleFileChange}
+          />
+          {image && (
+            <img
+              src={image}
+              alt="Preview"
+              style={{ width: "100px", height: "100px", marginTop: "10px" }}
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label dropdown is-active">
+          Выбор категории товара:
         </label>
-      )}
-
-      {compositions.map((composition, index) => (
-        <div key={index}>
-          <label>
-            Материал:
+        <div className="control">
+          <div className="select">
             <select
-              value={composition.material_id}
-              onChange={(e) =>
-                handleCompositionChange(index, "material", e.target.value)
-              }
+              className="dropdown-trigger"
+              ref={referenceElement}
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
             >
-              <option value="">Выберите материал</option>
-              <option value="cotton">Хлопок</option>
-              <option value="viscose">Вискоза</option>
-              <option value="polyester">Полиэстер</option>
-            </select>
-          </label>
-          <label>
-            Процентное соотношение:
-            <select
-              name="quantity"
-              value={composition.parcent}
-              onChange={(e) =>
-                handleCompositionChange(
-                  index,
-                  "percentage",
-                  Number(e.target.value),
-                )
-              }
-            >
-              {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((value) => (
-                <option key={value} value={value}>
-                  {value}%
+              <option value="">Выберите категорию</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.category_name}
                 </option>
               ))}
             </select>
+          </div>
+        </div>
+      </div>
+
+      {subCategories.length > 0 && (
+        <div className="field">
+          <label className="label dropdown is-active">
+            Выбор подкатегории:
           </label>
-          <button type="button" onClick={() => removeCompositionField(index)}>
+          <div className="control">
+            <div className="select">
+              <select
+                value={selectedSubCategory}
+                onChange={handleSubCategoryChange}
+              >
+                <option value="">Выберите подкатегорию</option>
+                {subCategories.map((subCategory) => (
+                  <option key={subCategory.id} value={subCategory.id}>
+                    {subCategory.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {compositions.map((composition, index) => (
+        <div key={index} className="field">
+          <label className="label">Материал:</label>
+          <div className="control">
+            <div className="select">
+              <select
+                value={composition.material_id}
+                onChange={(e) =>
+                  handleCompositionChange(index, "material", e.target.value)
+                }
+              >
+                <option value="">Выберите материал</option>
+                <option value="cotton">Хлопок</option>
+                <option value="viscose">Вискоза</option>
+                <option value="polyester">Полиэстер</option>
+              </select>
+            </div>
+          </div>
+
+          <label className="label">Процентное соотношение:</label>
+          <div className="control">
+            <div className="select">
+              <select
+                name="quantity"
+                value={composition.parcent}
+                onChange={(e) =>
+                  handleCompositionChange(
+                    index,
+                    "percentage",
+                    Number(e.target.value),
+                  )
+                }
+              >
+                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
+                  (value) => (
+                    <option key={value} value={value}>
+                      {value}%
+                    </option>
+                  ),
+                )}
+              </select>
+            </div>
+          </div>
+          <button
+            className="button is-small is-danger"
+            type="button"
+            onClick={() => removeCompositionField(index)}
+          >
             Удалить материал
           </button>
         </div>
       ))}
-      <button type="button" onClick={addCompositionField}>
+      <button
+        className="button is-info"
+        type="button"
+        onClick={addCompositionField}
+      >
         Добавить материал
       </button>
-      <button type="submit">Отправить форму</button>
+      <div className="control">
+        <button className="button is-primary" type="submit">
+          Отправить форму
+        </button>
+      </div>
     </form>
   );
 };

@@ -1,11 +1,12 @@
 import "./ProductItem.css";
+import React, { useEffect, useState } from "react";
 import { RootState, useAppDispatch } from "..//..//redux/store";
 import { useSelector } from "react-redux";
 import { deletePost } from "../../redux/Slice/PostsSlice/postsSlice";
 import { CategoryId } from "../../types/categories/categories";
 import LikeButton from "../LikeButton/LikeButton";
 import { PostType } from "../../types/posts/posts";
-import { editProduct } from "../../redux/Slice/ProductSlice/productSlice";
+import Modal from "../Modal/Modal";
 
 function ProductItem(): JSX.Element {
   const { posts } = useSelector((store: RootState) => store.posts);
@@ -15,13 +16,26 @@ function ProductItem(): JSX.Element {
     (el: PostType) => el.user_id === user?.id,
   );
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingPost, setEditingPost] = useState<PostType | null>(null);
+
   const handleDelete = (id: CategoryId) => {
     dispatch(deletePost(id));
   };
 
-  const handleEdit = (postId: number) => {
-    dispatch(editProduct({ id: postId.toString(), changes: {} }));
+  // const handleEdit = (postId: number) => {
+  //   dispatch(editProduct({ id: postId.toString(), changes: {} }));
+  // };
+
+  const handleEdit = (post: PostType) => {
+    setEditingPost(post);
+    setIsModalOpen(true);
   };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingPost(null);
+  };
+
   return (
     <div>
       {FilterUserPost.map((el: PostType) => (
@@ -31,11 +45,25 @@ function ProductItem(): JSX.Element {
           <p>Цена: {el.price}</p>
           <p>Описание: {el.description}</p>
           <p>Размер: {el.size}</p>
-          <button onClick={() => handleDelete(el.id)}>
-            Удалить публикацию
-          </button>
-          <button onClick={() => handleEdit(el.id)}>Изменить публикацию</button>
-          <LikeButton postId={el.id} categoryId={0} />
+
+          <div>
+            <button onClick={() => handleDelete(el.id)}>
+              Удалить публикацию
+            </button>
+          </div>
+          <div>
+            <button onClick={() => handleEdit(el)}>Изменить публикацию</button>
+          </div>
+          {isModalOpen && editingPost && (
+            <Modal
+              isOpen={isModalOpen}
+              post={editingPost}
+              onRequestClose={handleCloseModal}
+            />
+          )}
+          <div>
+            <LikeButton postId={el.id} categoryId={0} />
+          </div>
         </div>
       ))}
     </div>

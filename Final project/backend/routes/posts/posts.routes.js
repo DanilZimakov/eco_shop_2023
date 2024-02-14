@@ -74,4 +74,31 @@ router.put("/publich/:postId", async (req, res) => {
   res.json(post);
 });
 
+router.post("/edit/:postId", async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const { name, price, description, image, size, material, parcent } =
+      req.body;
+
+    const post = await Post.findByPk(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    post.name = name;
+    post.price = price;
+    post.description = description;
+    post.image = image;
+    post.size = size;
+    post.material = material;
+    post.parcent = parcent;
+    post.save();
+    res.json(post);
+  } catch (error) {
+    сonsole.error("Error editing post:", error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
+});
+
 module.exports = router;
