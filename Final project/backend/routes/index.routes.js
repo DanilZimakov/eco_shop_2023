@@ -4,13 +4,12 @@ const categoriesRouter = require("./categories/categories.routes");
 const postsRouter = require("./posts/posts.routes");
 const likesRouter = require("./posts/likes.routes");
 const favoritesRouter = require("./posts/favorites.routes");
-// const imageRouter = require("../routes/api/image.routes");
 
 router.use("/api/auth", authRouter);
 router.use("/categories", categoriesRouter);
 router.use("/posts", postsRouter);
 router.use("/categories/:categoryId/posts", likesRouter);
 router.use("/", favoritesRouter);
-// router.use("/", imageRouter);
+
 
 module.exports = router;

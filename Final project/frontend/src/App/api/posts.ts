@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CategoryId } from "../../types/categories/categories";
-import { PostAddType, PostId, PostType } from "../../types/posts/posts";
+import { PostId, PostType } from "../../types/posts/posts";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -9,11 +9,11 @@ export const axiosLoadPosts = async () => {
   return res.data;
 };
 
-export const axiosDelPosts = async (postId: CategoryId): Promise<number> => {
-  const res = await axios.delete(`${BASE_URL}/posts/delete/${postId}`);
-  console.log(res.data);
-  return res.data;
-};
+// export const axiosDelPosts = async (postId: CategoryId): Promise<number> => {
+//   const res = await axios.delete(`${BASE_URL}/posts/delete/${postId}`);
+//   console.log(res.data);
+//   return res.data;
+// };
 
 // export const axiosAddPost = async (data:PostAddType): Promise<PostType> => {
 //     const res =  await

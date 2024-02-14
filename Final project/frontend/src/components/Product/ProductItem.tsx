@@ -5,6 +5,7 @@ import { deletePost } from "../../redux/Slice/PostsSlice/postsSlice";
 import { CategoryId } from "../../types/categories/categories";
 import LikeButton from "../LikeButton/LikeButton";
 import { PostType } from "../../types/posts/posts";
+import { editProduct } from "../../redux/Slice/ProductSlice/productSlice";
 
 function ProductItem(): JSX.Element {
   const { posts } = useSelector((store: RootState) => store.posts);
@@ -18,10 +19,9 @@ function ProductItem(): JSX.Element {
     dispatch(deletePost(id));
   };
 
-  const handleEdit = (postId: string) => {
-    dispatch(editProduct(postId));
+  const handleEdit = (postId: number) => {
+    dispatch(editProduct({ id: postId.toString(), changes: {} }));
   };
-
   return (
     <div>
       {FilterUserPost.map((el: PostType) => (
@@ -41,5 +41,4 @@ function ProductItem(): JSX.Element {
     </div>
   );
 }
-ц;
 export default ProductItem;

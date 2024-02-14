@@ -1,10 +1,6 @@
 const router = require("express").Router();
-<<<<<<< HEAD
-const { Post, Image } = require("../../db/models");
-=======
-const { Post, Like } = require("../../db/models");
+const { Post } = require("../../db/models");
 const { validateAccessToken } = require("../../jwt/validateToken");
->>>>>>> dev
 
 router.get("/", async (req, res) => {
   const posts = await Post.findAll();
@@ -20,8 +16,10 @@ router.post("/add", async (req, res) => {
       image,
       size,
       material,
-      percentage,
+      parcent,
       user_id,
+      category_id,
+      sub_category_id,
     } = req.body;
     const post = await Post.create({
       name,
@@ -31,14 +29,15 @@ router.post("/add", async (req, res) => {
       size,
       publich: false,
       material,
-      percentage,
+      parcent,
       user_id,
-      category_id: 1,
-      sub_category_id: 1,
+      category_id,
+      sub_category_id,
     });
-    res.json(post);
-  } catch (message) {
-    res.json(message);
+    res.json({ success: true, post: post });
+  } catch (error) {
+    console.error("Error processing request:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
