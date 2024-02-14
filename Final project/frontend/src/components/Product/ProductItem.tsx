@@ -55,7 +55,9 @@ function ProductItem(): JSX.Element {
             </button>
           </div>
           <div>
-            <button onClick={() => handleEdit()}>Изменить публикацию</button>
+            <button onClick={() => handleEdit(post)}>
+              Изменить публикацию
+            </button>
           </div>
           {isModalOpen && editingPost && (
             <Modal
