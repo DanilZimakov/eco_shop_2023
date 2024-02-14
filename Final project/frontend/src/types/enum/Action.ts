@@ -29,3 +29,6 @@ export enum ActionModal {
 export enum ActionCategory {
   LOAD_CATEGORY = "LOAD_CATEGORY",
 }
+export enum ActionHarm {
+  LOAD_HARM = "LOAD_HARM",
+}
