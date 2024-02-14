@@ -1,27 +1,68 @@
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { CategoriesType } from "../../../types/categories/categories";
+import "bulma/css/bulma.min.css";
+
+interface Category {
+  id: number;
+  category_name: string;
+}
+
+interface Subcategories {
+  id: number;
+  name: string;
+}
+interface Compouds {
+  material_id: string;
+  parcent: number;
+}
 
 const AddForm = (): JSX.Element => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [subCategories, setSubCategories] = useState<Subcategories[]>([]);
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string>("");
   const [size, setSize] = useState("");
-  const [compositions, setCompositions] = useState([
-    { material: "", percentage: 0 },
+  const [image, setImage] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [name, setName] = useState("");
+  const referenceElement = useRef(null);
+  const [compositions, setCompositions] = useState<Compouds[]>([
+    { material_id: "", parcent: 0 },
   ]);
-  
-
   const user = useSelector((state: RootState) => state.auth.user);
-  const categories = useSelector((state: RootState) => state.categories.category)
-  
-  
 
-  const [category, setCategory] = useState('')
-  console.log(category);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/categories/")
+      .then((response) => {
+        setCategories(response.data);
+        console.log("setCategories", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      axios
+        .get(`http://localhost:3000/categories/sub/${selectedCategory}`)
+        .then((response) => {
+          setSubCategories(response.data);
+          console.log("setSubCategories", response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching subcategories:", error);
+        });
+
+      console.log("selectedCategory", selectedCategory);
+    } else {
+      setSubCategories([]);
+    }
+  }, [selectedCategory]);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -37,11 +78,11 @@ const AddForm = (): JSX.Element => {
       case "description":
         setDescription(value);
         break;
-      case "image":
-        setImage(value);
-        break;
       case "size":
         setSize(value);
+        break;
+      case "image":
+        setImage(value);
         break;
       default:
         break;
@@ -55,163 +96,263 @@ const AddForm = (): JSX.Element => {
   ) => {
     const updatedCompositions = [...compositions];
     if (field === "material") {
-      updatedCompositions[index].material = value as string;
-    } else {
-      updatedCompositions[index].percentage = Number(value);
+      updatedCompositions[index].material_id = value as string;
+    } else if (field === "percentage") {
+      updatedCompositions[index].parcent = Number(value);
     }
     setCompositions(updatedCompositions);
   };
 
   const addCompositionField = () => {
-    setCompositions([...compositions, { material: "", percentage: 0 }]);
+    setCompositions([...compositions, { material_id: "", parcent: 0 }]);
   };
 
   const removeCompositionField = (index: number) => {
     setCompositions(compositions.filter((_, i) => i !== index));
   };
 
+  const handleSubCategoryChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setSelectedSubCategory(event.target.value);
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    
     try {
-      const response = await axios.post("http://localhost:3000/posts/add", {
-        name,
-        price,
-        description,
-        image,
-        size,
-        materials: compositions,
-        user_id: user?.id,
-        category_id: Number(category),
-      });
+      const response = await axios.post(
+        "http://localhost:3000/posts/add",
+        {
+          name,
+          price,
+          description,
+          image,
+          size,
+          sub_category_id: selectedSubCategory,
+          materials: compositions,
+          user_id: user?.id,
+          category_id: selectedCategory,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
       console.log("Form submission response:", response.data);
-      console.log("Отправляемые данные", {
-        name,
-        price,
-        description,
-        image,
-        size,
-        materials: compositions,
-        user_id: user?.id,
-      });
 
       setName("");
       setPrice("");
       setDescription("");
-      setImage("");
       setSize("");
-      setCompositions([{ material: "", percentage: 0 }]);
+      setCompositions([{ material_id: "", parcent: 0 }]);
+      setImage("");
+      setSubCategories([]);
     } catch (error) {
       console.error("Error submitting form:", error);
       alert(
-        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.",
+        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.",
       );
     }
   };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          setImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Наименование товара:
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Цена:
-        <input
-          type="number"
-          name="price"
-          value={price}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Описание:
-        <input
-          type="text"
-          name="description"
-          value={description}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Изображение:
-        <input
-          type="text"
-          name="image"
-          value={image}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Размер:
-        <input
-          type="text"
-          name="size"
-          value={size}
-          onChange={handleInputChange}
-        />
-      </label>
+    <form onSubmit={handleSubmit} className="form">
+      <div className="field">
+        <label className="label">Наименование товара:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={name}
+            name="name"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      <label>
-        Выбор категории товара:
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option>Выберите категорию</option>
-            {categories.map((el) => <option value={el.id} key={el.id}>
-              {el.category_name}
-              </option>)}
-          </select>
-      </label>
+      <div className="field">
+        <label className="label">Цена:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            value={price}
+            name="price"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-      {compositions.map((composition, index) => (
-        <div key={index}>
-          <label>
-            Материал:
+      <div className="field">
+        <label className="label">Описание:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={description}
+            name="description"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label">Размер:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            value={size}
+            name="size"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label">Изображение:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="file"
+            name="image"
+            onChange={handleFileChange}
+          />
+          {image && (
+            <img
+              src={image}
+              alt="Preview"
+              style={{ width: "100px", height: "100px", marginTop: "10px" }}
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label dropdown is-active">
+          Выбор категории товара:
+        </label>
+        <div className="control">
+          <div className="select">
             <select
-              value={composition.material}
-              onChange={(e) =>
-                handleCompositionChange(index, "material", e.target.value)
-              }
+              className="dropdown-trigger"
+              ref={referenceElement}
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
             >
-              <option value="">Выберите материал</option>
-              <option value="cotton">Хлопок</option>
-              <option value="viscose">Вискоза</option>
-              <option value="polyester">Полиэстер</option>
-            </select>
-          </label>
-          <label>
-            Процентное соотношение:
-            <select
-              name="quantity"
-              value={composition.percentage}
-              onChange={(e) =>
-                handleCompositionChange(
-                  index,
-                  "percentage",
-                  Number(e.target.value),
-                )
-              }
-            >
-              {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((value) => (
-                <option key={value} value={value}>
-                  {value}%
+              <option value="">Выберите категорию</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.category_name}
                 </option>
               ))}
             </select>
+          </div>
+        </div>
+      </div>
+
+      {subCategories.length > 0 && (
+        <div className="field">
+          <label className="label dropdown is-active">
+            Выбор подкатегории:
           </label>
-          <button type="button" onClick={() => removeCompositionField(index)}>
+          <div className="control">
+            <div className="select">
+              <select
+                value={selectedSubCategory}
+                onChange={handleSubCategoryChange}
+              >
+                <option value="">Выберите подкатегорию</option>
+                {subCategories.map((subCategory) => (
+                  <option key={subCategory.id} value={subCategory.id}>
+                    {subCategory.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {compositions.map((composition, index) => (
+        <div key={index} className="field">
+          <label className="label">Материал:</label>
+          <div className="control">
+            <div className="select">
+              <select
+                value={composition.material_id}
+                onChange={(e) =>
+                  handleCompositionChange(index, "material", e.target.value)
+                }
+              >
+                <option value="">Выберите материал</option>
+                <option value="cotton">Хлопок</option>
+                <option value="viscose">Вискоза</option>
+                <option value="polyester">Полиэстер</option>
+              </select>
+            </div>
+          </div>
+
+          <label className="label">Процентное соотношение:</label>
+          <div className="control">
+            <div className="select">
+              <select
+                name="quantity"
+                value={composition.parcent}
+                onChange={(e) =>
+                  handleCompositionChange(
+                    index,
+                    "percentage",
+                    Number(e.target.value),
+                  )
+                }
+              >
+                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
+                  (value) => (
+                    <option key={value} value={value}>
+                      {value}%
+                    </option>
+                  ),
+                )}
+              </select>
+            </div>
+          </div>
+          <button
+            className="button is-small is-danger"
+            type="button"
+            onClick={() => removeCompositionField(index)}
+          >
             Удалить материал
           </button>
         </div>
       ))}
-      <button type="button" onClick={addCompositionField}>
+      <button
+        className="button is-info"
+        type="button"
+        onClick={addCompositionField}
+      >
         Добавить материал
       </button>
-      <button type="submit">Отправить форму</button>
+      <div className="control">
+        <button className="button is-primary" type="submit">
+          Отправить форму
+        </button>
+      </div>
     </form>
   );
 };

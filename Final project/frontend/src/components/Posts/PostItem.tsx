@@ -8,6 +8,7 @@ import { harmLoad } from "../../redux/Slice/harmSlice/harmSlice";
 
 
 
+
 function PostItem({post}:{post:PostType}) {
     const dispatch = useAppDispatch()
     const handleDelete = (id: CategoryId) => {

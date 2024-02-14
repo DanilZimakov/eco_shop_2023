@@ -2,23 +2,15 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
-    static associate({
-      User,
-      Category,
-      Sub_category,
-      Compoud,
-      Cart,
-      Review,
-      Like,
-      Image,
-    }) {
-      this.belongsTo(User, { foreignKey: "user_id" });
-      this.belongsTo(Category, { foreignKey: "category_id" });
-      this.belongsTo(Sub_category, { foreignKey: "sub_category_id" });
-      this.hasMany(Review, { foreignKey: "post_id" });
-      this.hasMany(Cart, { foreignKey: "post_id" });
-      this.hasMany(Like, { foreignKey: "post_id" });
-      this.hasMany(Compoud, { foreignKey: "post_id" });
+    static associate(models) {
+      // <-- change is here
+      this.belongsTo(models.User, { foreignKey: "user_id" });
+      this.belongsTo(models.Category, { foreignKey: "category_id" });
+      this.belongsTo(models.Sub_category, { foreignKey: "sub_category_id" });
+      this.hasMany(models.Review, { foreignKey: "post_id" });
+      this.hasMany(models.Cart, { foreignKey: "post_id" });
+      this.hasMany(models.Like, { foreignKey: "post_id" });
+      this.hasMany(models.Compoud, { foreignKey: "post_id" });
     }
   }
   Post.init(
@@ -29,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,
       likesCount: DataTypes.INTEGER,
+      image: DataTypes.TEXT,
       weight: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
@@ -37,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Post",
-    }
+    },
   );
   return Post;
 };
