@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { deletePost } from "../../redux/Slice/PostsSlice/postsSlice";
 import { CategoryId } from "../../types/categories/categories";
 import LikeButton from "../LikeButton/LikeButton";
-import { PostType } from "../../types/posts/posts";
+import { PostEditType, PostType } from "../../types/posts/posts";
 import Modal from "../Modal/Modal";
 
 function ProductItem(): JSX.Element {
@@ -17,7 +17,8 @@ function ProductItem(): JSX.Element {
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingPost, setEditingPost] = useState<PostType | null>(null);
+  const [editingPost, setEditingPost] = useState<PostEditType | null>(null);
+  const [editingPostId, setEditingPostId] = useState<number | null>(null);
 
   const handleDelete = (id: CategoryId) => {
     dispatch(deletePost(id));
@@ -27,13 +28,15 @@ function ProductItem(): JSX.Element {
   //   dispatch(editProduct({ id: postId.toString(), changes: {} }));
   // };
 
-  const handleEdit = (post: PostType) => {
+  const handleEdit = (post: PostEditType) => {
     setEditingPost(post);
+    setEditingPostId(post.id);
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingPost(null);
+    setEditingPostId(null);
   };
 
   return (
@@ -52,7 +55,7 @@ function ProductItem(): JSX.Element {
             </button>
           </div>
           <div>
-            <button onClick={() => handleEdit(el)}>Изменить публикацию</button>
+            <button onClick={() => handleEdit()}>Изменить публикацию</button>
           </div>
           {isModalOpen && editingPost && (
             <Modal
