@@ -1,4 +1,5 @@
 import { CategoriesType } from "../categories/categories";
+import { HarmType } from "../harm/harm";
 import { PostType } from "../posts/posts";
 import { SubCategoryType } from "../sub_category/sub_category";
 import { User } from "../user/userType";
@@ -21,3 +22,6 @@ export type InitialModal = {
 export type InitialCategoryType = {
   category: CategoriesType[];
 };
+export type InitialHarmType = {
+  harm: HarmType[]
+}
