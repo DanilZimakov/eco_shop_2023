@@ -23,5 +23,5 @@ export type InitialCategoryType = {
   category: CategoriesType[];
 };
 export type InitialHarmType = {
-  harm: HarmType[]
-}
+  harm: HarmType[];
+};

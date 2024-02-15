@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Review, { foreignKey: "post_id" });
       this.hasMany(models.Cart, { foreignKey: "post_id" });
       this.hasMany(models.Like, { foreignKey: "post_id" });
-      this.hasMany(models.Compoud, { foreignKey: "post_id" });
+      this.hasMany(models.Compound, { foreignKey: "post_id" });
     }
   }
   Post.init(

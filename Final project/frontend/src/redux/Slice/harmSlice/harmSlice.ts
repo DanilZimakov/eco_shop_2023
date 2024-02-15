@@ -3,12 +3,12 @@ import { ActionHarm } from "../../../types/enum/Action";
 import { PostId } from "../../../types/posts/posts";
 import * as api from "../../../App/api/harm";
 import { InitialHarmType } from "../../../types/initialState/initialState";
-const initialHarm :InitialHarmType = {
+const initialHarm: InitialHarmType = {
   harm: [],
 };
 
 export const harmLoad = createAsyncThunk(ActionHarm.LOAD_HARM, (id: PostId) =>
-  api.axiosHarm(id)
+  api.axiosHarm(id),
 );
 
 const harmSlice = createSlice({
@@ -23,3 +23,6 @@ const harmSlice = createSlice({
 });
 
 export default harmSlice.reducer;
+
+
+

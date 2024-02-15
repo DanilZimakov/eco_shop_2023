@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import "bulma/css/bulma.min.css";
+// import "bulma/css/bulma.min.css";
 
 interface Category {
   id: number;
@@ -13,7 +13,7 @@ interface Subcategories {
   id: number;
   name: string;
 }
-interface Compouds {
+interface Compounds {
   material_id: string;
   parcent: number;
 }
@@ -29,7 +29,7 @@ const AddForm = (): JSX.Element => {
   const [price, setPrice] = useState("");
   const [name, setName] = useState("");
   const referenceElement = useRef(null);
-  const [compositions, setCompositions] = useState<Compouds[]>([
+  const [compositions, setCompositions] = useState<Compounds[]>([
     { material_id: "", parcent: 0 },
   ]);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -39,7 +39,6 @@ const AddForm = (): JSX.Element => {
       .get("http://localhost:3000/categories/")
       .then((response) => {
         setCategories(response.data);
-        console.log("setCategories", response.data);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -52,13 +51,10 @@ const AddForm = (): JSX.Element => {
         .get(`http://localhost:3000/categories/sub/${selectedCategory}`)
         .then((response) => {
           setSubCategories(response.data);
-          console.log("setSubCategories", response.data);
         })
         .catch((error) => {
           console.error("Error fetching subcategories:", error);
         });
-
-      console.log("selectedCategory", selectedCategory);
     } else {
       setSubCategories([]);
     }

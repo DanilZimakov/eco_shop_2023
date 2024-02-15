@@ -1,53 +1,15 @@
 import { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { PostType } from "../../types/posts/posts";
 import LikeButton from "../LikeButton/LikeButton";
-
-// function PostPage() {
-//   const { categoryId, postId } = useParams();
-//   const { posts } = useSelector((store: RootState) => store.posts);
-
-//   function fillPost(posts: PostType[]) {
-//     const all = posts.filter(
-//       (post: PostType) =>
-//         post.category_id === Number(categoryId) &&
-//         post.sub_category_id === Number(postId),
-//     );
-//     return all;
-//   }
-//   const filteredPosts = fillPost(posts);
-
-//   return (
-//     <div className="card-container">
-//       {filteredPosts.map((post) => {
-//         // const imageUrl =
-//         //   post.image && post.image.length > 0
-//         //     ? post.image[0].url
-//         //     : "путь_к_изображению_по_умолчанию.jpg";
-//         // console.log("Filtered posts:", filteredPosts);
-//         return (
-//           <div key={post.id}>
-//             <img src={imageUrl} alt={post.name} />
-//             <h3>{post.name}</h3>
-//             <p>{post.price}</p>
-//             <p>{post.description}</p>
-//             <p>{post.size}</p>
-//             <div>
-//               <LikeButton postId={post.id} categoryId={0} />
-//             </div>
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// }
-
-// export default PostPage;
+import "./PostPage.css";
+import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 
 function PostPage() {
   const { categoryId, postId } = useParams();
   const { posts } = useSelector((store: RootState) => store.posts);
+  const dispatch = useDispatch();
 
   function fillPost(posts: PostType[]) {
     return posts.filter(
@@ -59,20 +21,28 @@ function PostPage() {
 
   const filteredPosts = fillPost(posts);
 
+  const handleAddClick = (post) => {
+    dispatch(addItem(post));
+  };
+
   return (
-    <div className="card-container">
+    <div className="product-card">
       {filteredPosts.map((post) => {
         return (
           <div key={post.id}>
-            {post.image && post.image.length > 0 && (
-              <img src={post.image[0]} alt={post.name} />
-            )}
+            <img src={post.image} alt={post.name} />
             <h3>{post.name}</h3>
             <p>{post.price}</p>
             <p>{post.description}</p>
             <p>{post.size}</p>
-            <div>
+            <div className="buttons">
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
+              <button
+                className="bis-primary is-small"
+                onClick={() => handleAddClick(post)}
+              >
+                Add
+              </button>
             </div>
           </div>
         );

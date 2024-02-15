@@ -5,7 +5,7 @@ import PostItem from "../../Posts/PostItem";
 
 const AdminProfile = () => {
   const { posts } = useSelector((store: RootState) => store.posts);
-  
+
   return (
     <div>
       {posts.map((el) => {
