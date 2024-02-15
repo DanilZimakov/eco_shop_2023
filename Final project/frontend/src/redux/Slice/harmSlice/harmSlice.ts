@@ -8,7 +8,7 @@ const initialHarm :InitialHarmType = {
 };
 
 export const harmLoad = createAsyncThunk(ActionHarm.LOAD_HARM, (id: PostId) =>
-  api.axiosHarm(id)
+  api.axiosHarm(id),
 );
 
 const harmSlice = createSlice({
@@ -23,3 +23,6 @@ const harmSlice = createSlice({
 });
 
 export default harmSlice.reducer;
+
+
+

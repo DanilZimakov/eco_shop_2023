@@ -1,13 +1,16 @@
 import { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { PostType } from "../../types/posts/posts";
 import LikeButton from "../LikeButton/LikeButton";
+import "./PostPage.css";
+import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 
 function PostPage() {
   const { categoryId, postId } = useParams();
   const { posts } = useSelector((store: RootState) => store.posts);
   console.log(posts);
+  const dispatch = useDispatch();
 
   function fillPost(posts: PostType[]) {
     return posts.filter(
@@ -19,8 +22,12 @@ function PostPage() {
 
   const filteredPosts = fillPost(posts);
 
+  const handleAddClick = (post) => {
+    dispatch(addItem(post));
+  };
+
   return (
-    <div className="card-container">
+    <div className="product-card">
       {filteredPosts.map((post) => {
         return (
           <div key={post.id}>
@@ -32,11 +39,17 @@ function PostPage() {
               />
             )}
             <h3>Название: {post.name}</h3>
-            <p>{post.price}.Руб</p>
+            <p>Цена: {post.price}.Руб</p>
             <p>Описание: {post.description}</p>
             <p>Размер: {post.size}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
+              <button
+                className="bis-primary is-small"
+                onClick={() => handleAddClick(post)}
+              >
+                Add
+              </button>
             </div>
           </div>
         );
