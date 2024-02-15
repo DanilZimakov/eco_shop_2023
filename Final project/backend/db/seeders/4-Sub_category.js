@@ -170,7 +170,7 @@ module.exports = {
            updatedAt: new Date(),
          },
          {
-           name: "DIOR",
+           name: "HUGO BOSS",
            category_id: 6,
            createdAt: new Date(),
            updatedAt: new Date(),

@@ -81,6 +81,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "Золото",
+        harm: "При добыче драгоценного металла для вымывания золота из руды используются токсичные химикаты. В частности, используются ртуть и цианид. ",
+        environmental_impact: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Серебро",
+        harm: "Серебро — тяжелый и опасный металл, который еще и имеет свойство накапливаться в организме. ",
+        environmental_impact: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ];
 
     await queryInterface.bulkInsert("Materials", materialsData);
