@@ -86,12 +86,6 @@ module.exports = {
            updatedAt: new Date(),
          },
          {
-           name: "Нижнее белье",
-           category_id: 2,
-           createdAt: new Date(),
-           updatedAt: new Date(),
-         },
-         {
            name: "Рюкзаки",
            category_id: 3,
            createdAt: new Date(),
@@ -105,12 +99,6 @@ module.exports = {
          },
          {
            name: "Клатчи",
-           category_id: 3,
-           createdAt: new Date(),
-           updatedAt: new Date(),
-         },
-         {
-           name: "Сумки через плечо",
            category_id: 3,
            createdAt: new Date(),
            updatedAt: new Date(),
@@ -135,12 +123,6 @@ module.exports = {
          },
          {
            name: "Туфли",
-           category_id: 4,
-           createdAt: new Date(),
-           updatedAt: new Date(),
-         },
-         {
-           name: "Кеды",
            category_id: 4,
            createdAt: new Date(),
            updatedAt: new Date(),

@@ -4,7 +4,7 @@ import { PostId } from "../../../types/posts/posts";
 import * as api from "../../../App/api/harm";
 import { InitialHarmType } from "../../../types/initialState/initialState";
 const initialHarm :InitialHarmType = {
-  harm: [],
+  harm: null,
 };
 
 export const harmLoad = createAsyncThunk(ActionHarm.LOAD_HARM, (id: PostId) =>
@@ -17,7 +17,7 @@ const harmSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(harmLoad.fulfilled, (state, action) => {
-      state.harm.push(action.payload);
+      state.harm = action.payload;
     });
   },
 });

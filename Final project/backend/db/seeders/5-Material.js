@@ -53,6 +53,34 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "Пластик",
+        harm: "Пластик - наносит серьезный ущерб окружающей среде, начиная с его производства и заканчивая утилизацией.",
+        environmental_impact: 10,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Стекло",
+        harm: "Стекло - подвергается коррозии — то есть разрушается, выделяя при этом большое количество щелочи",
+        environmental_impact: 7,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Металл",
+        harm: "Металлы - загрязняют все слои биосферы. В результате антропогенной нагрузки в атмосферу попадают выбросы дыма, пыли и аэрозоли, которые выпадают в виде кислотных дождей.",
+        environmental_impact: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "Кашемир",
+        harm: "Кашемир поддается биологическому разложению и при правильном обращении может быть экологически безопасным",
+        environmental_impact: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ];
 
     await queryInterface.bulkInsert("Materials", materialsData);

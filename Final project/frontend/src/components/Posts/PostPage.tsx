@@ -48,6 +48,8 @@ import LikeButton from "../LikeButton/LikeButton";
 function PostPage() {
   const { categoryId, postId } = useParams();
   const { posts } = useSelector((store: RootState) => store.posts);
+  console.log(posts);
+  
 
   function fillPost(posts: PostType[]) {
     return posts.filter(

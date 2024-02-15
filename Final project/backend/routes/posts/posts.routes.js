@@ -21,6 +21,7 @@ router.post("/add", async (req, res) => {
       category_id,
       sub_category_id,
     } = req.body;
+    
     const post = await Post.create({
       name,
       price,

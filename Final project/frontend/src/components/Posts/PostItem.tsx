@@ -22,13 +22,27 @@ function PostItem({post}:{post:PostType}) {
       dispatch(harmLoad(id));
     };
     const {harm} = useSelector((store:RootState) => store.harm)
-    console.log(JSON.stringify(harm));
+    console.log(JSON.stringify(harm?.message));
+    function colorCase (message:string | undefined) {
+      switch (message) {
+        case "Материалы с низким уровнем вреда. Могут считаться экологически устойчивыми и безопасными для окружающей среды.":
+          return "green";
+        case "Материалы с умеренным уровнем вреда. Требуют внимания и могут потребовать улучшений в производственных процессах для снижения воздействия.":
+          return "yellow";
+        case "Материалы с высоким уровнем вреда. Могут быть экологически небезопасными и требуют серьезных усилий для снижения их влияния на окружающую среду.":
+        default:
+          break;
+      }
+    }
+    const color = colorCase(harm?.message);
+    
+    
     
     
     
 
     return (
-      <div className="product-card" style={{border: `1px solid ${post.publich ? 'green' : 'red'}`}}>
+      <div className="product-card" style={post.id === harm?.postId ? {border: `2px solid ${color}`} : {border: "none"}} >
         <img src={post.image} alt={post.name} />
         <h3>{post.name}</h3>
         <p>Цена: {post.price}</p>
