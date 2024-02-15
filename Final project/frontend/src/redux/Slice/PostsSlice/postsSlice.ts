@@ -22,7 +22,6 @@ export const editPost = createAsyncThunk(
   ActionPosts.EDIT_POST,
   async (postData: PostEditType) => {
     const responce = await api.axiosEditPost(postData.id, postData);
-    console.log("ActionPosts", responce.data);
     return responce.data;
   },
 );

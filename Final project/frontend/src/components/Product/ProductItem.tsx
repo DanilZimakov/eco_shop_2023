@@ -1,5 +1,5 @@
 import "./ProductItem.css";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { RootState, useAppDispatch } from "..//..//redux/store";
 import { useSelector } from "react-redux";
 import { deletePost } from "../../redux/Slice/PostsSlice/postsSlice";
@@ -16,27 +16,24 @@ function ProductItem(): JSX.Element {
     (el: PostType) => el.user_id === user?.id,
   );
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalState, setModalState] = useState<{ [key: number]: boolean }>({});
   const [editingPost, setEditingPost] = useState<PostEditType | null>(null);
-  const [editingPostId, setEditingPostId] = useState<number | null>(null);
 
   const handleDelete = (id: CategoryId) => {
     dispatch(deletePost(id));
   };
 
-  // const handleEdit = (postId: number) => {
-  //   dispatch(editProduct({ id: postId.toString(), changes: {} }));
-  // };
-
-  const handleEdit = (post: PostEditType) => {
-    setEditingPost(post);
-    setEditingPostId(post.id);
-    setIsModalOpen(true);
+  const handleEdit = (postId: number) => {
+    const postToEdit = posts.find((post) => post.id === postId);
+    if (postToEdit) {
+      setEditingPost(postToEdit);
+      setModalState({ ...modalState, [postId]: true });
+    }
   };
+
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setModalState({});
     setEditingPost(null);
-    setEditingPostId(null);
   };
 
   return (
@@ -55,13 +52,13 @@ function ProductItem(): JSX.Element {
             </button>
           </div>
           <div>
-            <button onClick={() => handleEdit(post)}>
+            <button onClick={() => handleEdit(el.id)}>
               Изменить публикацию
             </button>
           </div>
-          {isModalOpen && editingPost && (
+          {modalState[el.id] && editingPost && (
             <Modal
-              isOpen={isModalOpen}
+              isOpen={true}
               post={editingPost}
               onRequestClose={handleCloseModal}
             />
