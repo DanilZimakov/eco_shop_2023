@@ -5,12 +5,14 @@ const postsRouter = require("./posts/posts.routes");
 const likesRouter = require("./posts/likes.routes");
 const favoritesRouter = require("./posts/favorites.routes");
 const formula = require("./posts/harmFormula.routes")
+const materials = require('./posts/materials.routes')
 router.use("/api/auth", authRouter);
 router.use("/categories", categoriesRouter);
 router.use("/posts", postsRouter);
 router.use("/categories/:categoryId/posts", likesRouter);
 router.use("/", favoritesRouter);
 router.use("/harm", formula)
+router.use('/materials', materials)
 
 
 module.exports = router;

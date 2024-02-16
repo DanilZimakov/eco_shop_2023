@@ -14,7 +14,8 @@ interface Subcategories {
   name: string;
 }
 interface Compounds {
-  material_id: string;
+  id: number;
+  material: string;
   parcent: number;
 }
 
@@ -30,8 +31,9 @@ const AddForm = (): JSX.Element => {
   const [name, setName] = useState("");
   const referenceElement = useRef(null);
   const [compositions, setCompositions] = useState<Compounds[]>([
-    { material_id: "", parcent: 0 },
+    { id: 0, material: "", parcent: 0 },
   ]);
+  const [selectedMaterial, setSelectedMaterial] = useState<string>("");
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
@@ -59,6 +61,20 @@ const AddForm = (): JSX.Element => {
       setSubCategories([]);
     }
   }, [selectedCategory]);
+
+  useEffect(() => {
+    axios
+    .get("http://localhost:3000/materials")
+    .then((response) => {
+      setCompositions(response.data);
+      console.log(response.data);
+      
+    })
+    .catch((error) => {
+      console.error("Error fetching materials:", error);
+    });
+    
+  }, [selectedMaterial]);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -92,7 +108,7 @@ const AddForm = (): JSX.Element => {
   ) => {
     const updatedCompositions = [...compositions];
     if (field === "material") {
-      updatedCompositions[index].material_id = value as string;
+      updatedCompositions[index].material = value as string;
     } else if (field === "percentage") {
       updatedCompositions[index].parcent = Number(value);
     }
@@ -100,7 +116,7 @@ const AddForm = (): JSX.Element => {
   };
 
   const addCompositionField = () => {
-    setCompositions([...compositions, { material_id: "", parcent: 0 }]);
+    setCompositions([...compositions, { id: 0, material: "", parcent: 0 }]);
   };
 
   const removeCompositionField = (index: number) => {
@@ -141,7 +157,7 @@ const AddForm = (): JSX.Element => {
       setPrice("");
       setDescription("");
       setSize("");
-      setCompositions([{ material_id: "", parcent: 0 }]);
+      setCompositions([{ id: 0, material: "", parcent: 0 }]);
       setImage("");
       setSubCategories([]);
     } catch (error) {
@@ -291,15 +307,17 @@ const AddForm = (): JSX.Element => {
           <div className="control">
             <div className="select">
               <select
-                value={composition.material_id}
+                value={composition.material}
                 onChange={(e) =>
                   handleCompositionChange(index, "material", e.target.value)
                 }
               >
                 <option value="">Выберите материал</option>
-                <option value="cotton">Хлопок</option>
-                <option value="viscose">Вискоза</option>
-                <option value="polyester">Полиэстер</option>
+                {compositions.map((comp) => (
+                  <option key={comp.id} value={comp.material}>
+                    {comp.material}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -318,13 +336,11 @@ const AddForm = (): JSX.Element => {
                   )
                 }
               >
-                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
-                  (value) => (
-                    <option key={value} value={value}>
-                      {value}%
-                    </option>
-                  ),
-                )}
+                {[0,  5,  10,  20,  30,  40,  50,  60,  70,  80,  90,  100].map((value) => (
+                  <option key={value} value={value}>
+                    {value}%
+                  </option>
+                ))}
               </select>
             </div>
           </div>

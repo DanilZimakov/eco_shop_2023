@@ -1,5 +1,6 @@
 import { CategoriesType } from "../categories/categories";
 import { HarmType } from "../harm/harm";
+import { MaterialType } from "../materials/materials";
 import { PostType } from "../posts/posts";
 import { SubCategoryType } from "../sub_category/sub_category";
 import { User } from "../user/userType";
@@ -25,3 +26,7 @@ export type InitialCategoryType = {
 export type InitialHarmType = {
   harm: HarmType | null;
 }
+export type InitialMaterials = {
+  materials: MaterialType[];
+};
+
