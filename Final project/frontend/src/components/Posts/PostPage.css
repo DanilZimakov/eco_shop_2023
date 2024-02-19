@@ -26,6 +26,11 @@
 .product-card p {
   font-size: 1rem;
   color: #333;
+<<<<<<< HEAD
+  line-height:  1.5;
+  margin-bottom:  5px;
+=======
   line-height: 1.5;
   margin-bottom: 5px;
+>>>>>>> dev
 }

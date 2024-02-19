@@ -13,11 +13,15 @@ const PostPage: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const filteredPosts = posts.filter(
-    (post) =>
-      post.category_id === Number(categoryId) &&
-      post.sub_category_id === Number(postId),
-  );
+  function fillPost(posts: PostType[]) {
+    return posts.filter(
+      (post) =>
+        post.category_id === Number(categoryId) &&
+        post.sub_category_id === Number(postId) &&
+        post.publich === true
+    );
+  }
+  const filteredPosts = fillPost(posts);
 
   const handleAddClick = async (post: PostType) => {
     try {
@@ -63,7 +67,7 @@ const PostPage: React.FC = () => {
 
   return (
     <div className="product-card">
-      {filteredPosts.map((post) => {
+      {filteredPosts.map((post:PostType) => {
         return (
           <div key={post.id}>
             {post.image && post.image.length > 0 && (

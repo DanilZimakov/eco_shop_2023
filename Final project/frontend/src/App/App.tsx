@@ -18,6 +18,7 @@ import Profile from "../components/Profile/Profile/Profile";
 import Favorites from "../components/Favorites/Favorites";
 
 import { loadCategory } from "../redux/Slice/categorySlice/categorySlice";
+import { harmLoad } from "../redux/Slice/harmSlice/harmSlice";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,7 +29,8 @@ function App(): JSX.Element {
     dispatch(loadCategory());
     dispatch(loadSubCategory());
     dispatch(loadPost());
-  }, [dispatch]);
+    dispatch(harmLoad());
+  }, []);
 
   return (
     <Routes>
