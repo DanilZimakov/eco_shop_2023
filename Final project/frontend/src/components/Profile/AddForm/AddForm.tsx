@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-// import "bulma/css/bulma.min.css";
+import "./AddForm.css";
 
 interface Category {
   id: number;
@@ -256,8 +256,9 @@ const AddForm = (): JSX.Element => {
       </div>
 
       <div className="field">
-        <label className="label dropdown is-active">
-          Выбор категории товара:
+        {/* <label className="label dropdown is-active"> */}
+        <label className="label">
+        Выбор категории товара:
         </label>
         <div className="control">
           <div className="select">
@@ -280,7 +281,8 @@ const AddForm = (): JSX.Element => {
 
       {subCategories.length > 0 && (
         <div className="field">
-          <label className="label dropdown is-active">
+          {/* <label className="label dropdown is-active"> */}
+          <label className="label">
             Выбор подкатегории:
           </label>
           <div className="control">
@@ -322,7 +324,9 @@ const AddForm = (): JSX.Element => {
             </div>
           </div>
 
-          <label className="label">Процентное соотношение:</label>
+          <label className="label" style={{marginTop: "15px"}}>
+            Процентное соотношение:
+          </label>
           <div className="control">
             <div className="select">
               <select
@@ -345,7 +349,7 @@ const AddForm = (): JSX.Element => {
             </div>
           </div>
           <button
-            className="button is-small is-danger"
+            // className="button is-small is-danger"
             type="button"
             onClick={() => removeCompositionField(index)}
           >
@@ -353,15 +357,20 @@ const AddForm = (): JSX.Element => {
           </button>
         </div>
       ))}
-      <button
-        className="button is-info"
-        type="button"
-        onClick={addCompositionField}
-      >
-        Добавить материал
-      </button>
+      <div>
+        <button
+          // className="button is-info"
+          type="button"
+          onClick={addCompositionField}
+        >
+          Добавить материал
+        </button>
+      </div>
       <div className="control">
-        <button className="button is-primary" type="submit">
+        <button 
+        // className="button is-primary" 
+        className="btn-form"
+        type="submit">
           Отправить форму
         </button>
       </div>
