@@ -4,13 +4,15 @@ const categoriesRouter = require("./categories/categories.routes");
 const postsRouter = require("./posts/posts.routes");
 const likesRouter = require("./posts/likes.routes");
 const favoritesRouter = require("./posts/favorites.routes");
-const formula = require("./posts/harmFormula.routes")
+const formula = require("./posts/harmFormula.routes");
+const cartRouter = require("./api/cart.api.routes");
+
 router.use("/api/auth", authRouter);
 router.use("/categories", categoriesRouter);
 router.use("/posts", postsRouter);
 router.use("/categories/:categoryId/posts", likesRouter);
 router.use("/", favoritesRouter);
-router.use("/harm", formula)
-
+router.use("/harm", formula);
+router.use("/cart", cartRouter);
 
 module.exports = router;

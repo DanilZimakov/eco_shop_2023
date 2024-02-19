@@ -4,12 +4,9 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 
-
 const Categories: React.FC = () => {
-
-  const {category} = useSelector((store: RootState) => store.categories)
+  const { category } = useSelector((store: RootState) => store.categories);
   console.log(category);
-  
 
   const getCardColorClass = (index: number) => {
     const colors = ["primary", "secondary", "success", "danger", "warning"];

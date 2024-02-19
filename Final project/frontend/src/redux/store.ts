@@ -15,7 +15,7 @@ const store = configureStore({
     posts: postsSlice,
     modal: modalSlice,
     categories: categorySlice,
-    harm: harmSlice
+    harm: harmSlice,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
