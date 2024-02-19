@@ -1,4 +1,5 @@
 export type HarmType = {
-    postId: number,
-    message: string
-}
+  data: HarmType[] | RejectWithValue<unknown, unknown> | PromiseLike<HarmType[] | RejectWithValue<unknown, unknown>>;
+  postId: number;
+  message: string;
+};
