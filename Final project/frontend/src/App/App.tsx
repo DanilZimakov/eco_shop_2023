@@ -29,7 +29,7 @@ function App(): JSX.Element {
     dispatch(loadCategory());
     dispatch(loadSubCategory());
     dispatch(loadPost());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>

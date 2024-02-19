@@ -36,8 +36,8 @@ router.get("/:postId/like", async (req, res) => {
   }
 });
 
-router.post("/:postId/like", checkUser, async (req, res) => {
-  const { postId } = req.params;
+router.post("/:postId/dislike", checkUser, async (req, res) => {
+  const postId = req.params.postId;
   const userId = req.user.id;
 
   try {

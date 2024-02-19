@@ -1,3 +1,4 @@
+import { CartItemType } from "../cart/cartItemType";
 import { CategoriesType } from "../categories/categories";
 import { HarmType } from "../harm/harm";
 import { PostType } from "../posts/posts";
@@ -23,5 +24,10 @@ export type InitialCategoryType = {
   category: CategoriesType[];
 };
 export type InitialHarmType = {
-  harm: HarmType | null;
-}
+  harm: HarmType[];
+};
+
+export type InitialCartType = {
+  items: CartItemType[];
+  totalPrice: number;
+};
