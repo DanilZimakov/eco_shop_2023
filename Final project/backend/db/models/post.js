@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Post.init(
     {
       name: DataTypes.STRING,
-      price: DataTypes.STRING,
+      price: DataTypes.INTEGER,
       description: DataTypes.STRING,
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,

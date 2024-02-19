@@ -1,7 +1,7 @@
 export type PostType = {
   id: number;
   name: string;
-  price: string;
+  price: number;
   description: string;
   image: string;
   size: string;
@@ -12,11 +12,12 @@ export type PostType = {
   createdAt: Date,
   updatedAt: Date
 };
+
 export type PostId = PostType["id"];
 
 export type PostAddType = {
   name: string;
-  price: string;
+  price: number;
   description: string;
   image: string;
   size: string;
@@ -28,7 +29,7 @@ export type PostAddType = {
 export type PostEditType = {
   id: number;
   name: string;
-  price: string;
+  price: number;
   description: string;
   image: string;
   size: string;
