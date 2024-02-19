@@ -2,7 +2,6 @@ import React from "react";
 import EditPostForm from "../EditPostForm/EditPostForm";
 import { PostType } from "../../types/posts/posts";
 
-
 interface ModalProps {
   isOpen: boolean;
   post: PostType;

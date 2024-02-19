@@ -1,7 +1,6 @@
 import "./image/logo_1.svg";
-
 import "./navbar.css";
-import adminIcon from "./image/admin-icon.png"
+import adminIcon from "./image/admin-icon.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./image/logo_1.svg";
 import { useSelector } from "react-redux";

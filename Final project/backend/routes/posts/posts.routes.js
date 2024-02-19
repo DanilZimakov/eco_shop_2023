@@ -3,7 +3,7 @@ const { Post } = require("../../db/models");
 const { validateAccessToken } = require("../../jwt/validateToken");
 
 router.get("/", async (req, res) => {
-  const posts = await Post.findAll();
+  const posts = await Post.findAll({order: [["id", "ASC"]]});
   res.json(posts);
 });
 
@@ -46,7 +46,6 @@ router.delete("/delete/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
     const token = req.headers.authorization?.split(" ")[1];
-
     const validToken = validateAccessToken(token);
     const deletePost = await Post.destroy({
       where: { id: postId, user_id: validToken.id },

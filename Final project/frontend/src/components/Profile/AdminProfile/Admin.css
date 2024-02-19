@@ -1,0 +1,10 @@
+.post-admin-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.post-admin {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
