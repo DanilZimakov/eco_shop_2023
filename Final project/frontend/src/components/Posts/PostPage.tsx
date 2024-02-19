@@ -16,19 +16,20 @@ function PostPage() {
     return posts.filter(
       (post) =>
         post.category_id === Number(categoryId) &&
-        post.sub_category_id === Number(postId)
+        post.sub_category_id === Number(postId) &&
+        post.publich === true
     );
   }
 
   const filteredPosts = fillPost(posts);
 
-  const handleAddClick = (post) => {
+  const handleAddClick = (post: PostType) => {
     dispatch(addItem(post));
   };
 
   return (
     <div className="product-card">
-      {filteredPosts.map((post) => {
+      {filteredPosts.map((post:PostType) => {
         return (
           <div key={post.id}>
             {post.image && post.image.length > 0 && (
