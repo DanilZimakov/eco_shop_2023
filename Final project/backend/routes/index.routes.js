@@ -4,6 +4,7 @@ const categoriesRouter = require("./categories/categories.routes");
 const postsRouter = require("./posts/posts.routes");
 const likesRouter = require("./posts/likes.routes");
 const favoritesRouter = require("./posts/favorites.routes");
+const materials = require('./posts/materials.routes')
 const harmRouter = require("./posts/harmFormula.routes")
 const cartRouter = require("./api/cart.api.routes");
 
@@ -12,6 +13,7 @@ router.use("/categories", categoriesRouter);
 router.use("/posts", postsRouter);
 router.use("/categories/:categoryId/posts", likesRouter);
 router.use("/", favoritesRouter);
+router.use('/materials', materials)
 router.use("/harm", harmRouter);
 router.use("/cart", cartRouter);
 
