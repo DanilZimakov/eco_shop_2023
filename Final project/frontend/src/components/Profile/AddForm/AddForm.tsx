@@ -33,7 +33,7 @@ const AddForm = (): JSX.Element => {
   const [compositions, setCompositions] = useState<Compounds[]>([
     { id: 0, material: "", parcent: 0 },
   ]);
-  const [selectedMaterial, setSelectedMaterial] = useState<string>("");
+  const [selectedMaterial] = useState<string>("");
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
@@ -64,16 +64,14 @@ const AddForm = (): JSX.Element => {
 
   useEffect(() => {
     axios
-    .get("http://localhost:3000/materials")
-    .then((response) => {
-      setCompositions(response.data);
-      console.log(response.data);
-      
-    })
-    .catch((error) => {
-      console.error("Error fetching materials:", error);
-    });
-    
+      .get("http://localhost:3000/materials")
+      .then((response) => {
+        setCompositions(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching materials:", error);
+      });
   }, [selectedMaterial]);
 
   const handleInputChange = (
@@ -257,9 +255,7 @@ const AddForm = (): JSX.Element => {
 
       <div className="field">
         {/* <label className="label dropdown is-active"> */}
-        <label className="label">
-        Выбор категории товара:
-        </label>
+        <label className="label">Выбор категории товара:</label>
         <div className="control">
           <div className="select">
             <select
@@ -282,9 +278,7 @@ const AddForm = (): JSX.Element => {
       {subCategories.length > 0 && (
         <div className="field">
           {/* <label className="label dropdown is-active"> */}
-          <label className="label">
-            Выбор подкатегории:
-          </label>
+          <label className="label">Выбор подкатегории:</label>
           <div className="control">
             <div className="select">
               <select
@@ -324,7 +318,7 @@ const AddForm = (): JSX.Element => {
             </div>
           </div>
 
-          <label className="label" style={{marginTop: "15px"}}>
+          <label className="label" style={{ marginTop: "15px" }}>
             Процентное соотношение:
           </label>
           <div className="control">
@@ -340,11 +334,13 @@ const AddForm = (): JSX.Element => {
                   )
                 }
               >
-                {[0,  5,  10,  20,  30,  40,  50,  60,  70,  80,  90,  100].map((value) => (
-                  <option key={value} value={value}>
-                    {value}%
-                  </option>
-                ))}
+                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
+                  (value) => (
+                    <option key={value} value={value}>
+                      {value}%
+                    </option>
+                  ),
+                )}
               </select>
             </div>
           </div>
@@ -367,10 +363,11 @@ const AddForm = (): JSX.Element => {
         </button>
       </div>
       <div className="control">
-        <button 
-        // className="button is-primary" 
-        className="btn-form"
-        type="submit">
+        <button
+          // className="button is-primary"
+          className="btn-form"
+          type="submit"
+        >
           Отправить форму
         </button>
       </div>
