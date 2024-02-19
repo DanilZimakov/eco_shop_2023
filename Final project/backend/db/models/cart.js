@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       user_id: DataTypes.INTEGER,
       post_id: DataTypes.INTEGER,
-      quantity: DataTypes.STRING,
+      quantity: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: "Cart",
-    }
+    },
   );
   return Cart;
 };

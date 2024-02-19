@@ -13,13 +13,13 @@ module.exports = {
         type: Sequelize.STRING,
       },
       price: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       size: {
         type: Sequelize.STRING,
@@ -27,7 +27,13 @@ module.exports = {
       publich: {
         type: Sequelize.BOOLEAN,
       },
-
+      likesCount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      weight: {
+        type: Sequelize.STRING,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {

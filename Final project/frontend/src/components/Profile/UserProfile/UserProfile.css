@@ -1,53 +1,49 @@
-/* UserProfile.css */
-.user-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    max-width:  80%; /* Задайте максимальную ширину для контейнера */
-    margin: auto; /* Центрирование контейнера */
-  }
-  
-  .user-avatar {
-    width:  150px; /* Средний размер изображения */
-    height: auto; /* Сохранение пропорций изображения */
-    border-radius:  20px; /* Сделать изображение круглым */
-    margin-bottom:  1rem; /* Отступ снизу для текста */
-  }
-  .user-info h5 {
-    /* Пример стилей, которые вы можете применить */
-    font-size:  1.5rem; /* Размер шрифта */
-    color: #333; /* Цвет текста */
-    margin-top:  0.5rem; /* Отступ снизу */
-    font-weight: bold; /* Жирность текста */
-  }
+UserProfile.css .user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 80%; /* Задайте максимальную ширину для контейнера */
+  margin: auto; /* Центрирование контейнера */
+}
 
-  .rating-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .stars {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .star {
-    margin:  0  1px;
-    font-size:  1.5em;
-    color: gray;
-  }
+.user-avatar {
+  width: 150px; /* Средний размер изображения */
+  height: auto; /* Сохранение пропорций изображения */
+  border-radius: 20px; /* Сделать изображение круглым */
+  margin-bottom: 1rem; /* Отступ снизу для текста */
+}
+.user-info h5 {
+  /* Пример стилей, которые вы можете применить */
+  font-size: 1.5rem; /* Размер шрифта */
+  color: #333; /* Цвет текста */
+  margin-top: 0.5rem; /* Отступ снизу */
+  font-weight: bold; /* Жирность текста */
+}
 
-  .star.full {
-    color: gold;
-  }
-  
-  .reviews-section {
-    margin-top:  1em;
-  }
-  
-  
-  
+.rating-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.star {
+  margin: 0 1px;
+  font-size: 1.5em;
+  color: gray;
+}
+
+.star.full {
+  color: gold;
+}
+
+.reviews-section {
+  margin-top: 1em;
+}

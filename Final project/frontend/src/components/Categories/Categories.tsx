@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./categories.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
-
-interface Category {
-  id: number;
-  category_name: string;
-  category_image: string;
-}
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 const Categories: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/categories");
-        setCategories(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { category } = useSelector((store: RootState) => store.categories);
+  console.log(category);
 
   const getCardColorClass = (index: number) => {
     const colors = ["primary", "secondary", "success", "danger", "warning"];
@@ -32,7 +15,7 @@ const Categories: React.FC = () => {
 
   return (
     <div className="card-container">
-      {categories.map((category, index) => (
+      {category.map((category, index) => (
         <div
           key={category.id}
           className={`animated-card ${getCardColorClass(index)}`}
@@ -47,7 +30,8 @@ const Categories: React.FC = () => {
             className={`card-body text-${index % 2 === 0 ? "dark" : "light"}`}
           >
             <Link to={`/categories/${category.id}`}>
-            <h5 className="card-title">{category.category_name}</h5></Link>
+              <h5 className="card-title">{category.category_name}</h5>
+            </Link>
             <p className="card-text">
               Категория обещает уникальные и модные товары, соответствующие
               трендам ресайкла и устойчивости.

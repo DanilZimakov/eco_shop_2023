@@ -10,15 +10,28 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message });
   }
 });
-router.get("/sub", async (req,res) => {
+
+router.get("/sub", async (req, res) => {
+  try {
     const subCategories = await Sub_category.findAll();
-    res.json(subCategories)
-})
+    res.json(subCategories);
+  } catch (error) {
+    console.error("Error fetching subcategories:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 router.get("/sub/:subId", async (req, res) => {
-    const { subId } = req.params;
+  const { subId } = req.params;
+  try {
     const subCategory = await Sub_category.findAll({
-      where: {category_id: subId}
-    })
-    res.json(subCategory)
-})
+      where: { category_id: subId },
+    });
+    res.json(subCategory);
+  } catch (error) {
+    console.error("Ошибка при получении подкатегорий:", error);
+    res.status(500).send("Внутренняя ошибка сервера");
+  }
+});
+
 module.exports = router;

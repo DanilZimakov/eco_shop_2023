@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./style.css";
-import { useAppDispatch } from "../../redux/store";
-import { signUp } from "../../redux/authSlice/authSlice";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { signUp } from "../../redux/Slice/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function SignUp() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -11,34 +12,47 @@ function SignUp() {
   const [phone, setPhone] = useState<string>("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { error } = useSelector((store: RootState) => store.auth);
   function hadnlerSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(signUp({ name, email, password, cpassword, phone }));
-    setName(""), setEmail(""), setPassword(""), setCpassword(""), setPhone("");
-    navigate("/");
+    dispatch(signUp({ name, email, password, cpassword, phone })).then(
+      (res) => {
+        if (res.payload) {
+          setName(""),
+            setEmail(""),
+            setPassword(""),
+            setCpassword(""),
+            setPhone("");
+          navigate("/");
+        }
+      }
+    );
   }
-  
+
   return (
     <main className="main-auth">
       <form className="form-auth" onSubmit={hadnlerSignUp}>
+        {error && (
+          <span style={{ color: "red", fontSize: "20px" }}>{error}</span>
+        )}
         <input
           className="input-auth"
           type="text"
-          placeholder="Придумайте имя"
+          placeholder="Имя"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           className="input-auth"
           type="email"
-          placeholder="Введите вашу почту"
+          placeholder="Почта"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="input-auth"
           type="password"
-          placeholder="Придумайте пароль"
+          placeholder="Пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -52,13 +66,12 @@ function SignUp() {
         <input
           className="input-auth"
           type="text"
-          placeholder="Введите ваш номер телефона"
+          placeholder="Номер телефона"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
         <button type="submit">Зарегистрироваться</button>
       </form>
-      
     </main>
   );
 }

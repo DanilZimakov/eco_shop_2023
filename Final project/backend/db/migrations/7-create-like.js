@@ -1,5 +1,5 @@
 "use strict";
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Likes", {
@@ -12,7 +12,7 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Users",
+          model: "Users", 
           key: "id",
         },
         onDelete: "CASCADE",
@@ -20,13 +20,10 @@ module.exports = {
       post_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Posts",
+          model: "Posts", 
           key: "id",
         },
         onDelete: "CASCADE",
-      },
-      counter: {
-        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +33,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+    });
+    await queryInterface.addIndex("Likes", ["user_id", "post_id"], {
+      unique: true,
     });
   },
   async down(queryInterface, Sequelize) {
