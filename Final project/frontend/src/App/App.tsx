@@ -9,7 +9,7 @@ import SignIn from "../components/Auth/Sign-in";
 import { useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/Slice/authSlice/authSlice";
-import PostPage from "../components/Posts/PostPage";
+import PostPage from "../components/Posts/postpage/PostPage";
 
 import Cart from "../components/Cart/Cart";
 import { loadPost } from "../redux/Slice/PostsSlice/postsSlice";
