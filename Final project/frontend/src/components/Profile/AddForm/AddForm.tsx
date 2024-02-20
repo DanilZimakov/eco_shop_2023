@@ -201,6 +201,7 @@ const AddForm = (): JSX.Element => {
             value={weight}
             name="weight"
             onChange={(e) => setWeight(e.target.value)}
+            placeholder="Укажите вес в граммах"
           />
         </div>
       </div>
