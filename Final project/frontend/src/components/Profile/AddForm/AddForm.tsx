@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../redux/store";
-import { loadMaterials } from "../../../redux/Slice/materialsSlice/MaterialsSlice";
+import { loadMaterials } from "../../../redux/Slice/materialsSlice/materialsSlice";
 // import "bulma/css/bulma.min.css";
-import { RootState } from "../../../redux/store";
 import "./AddForm.css";
 
 interface Category {
