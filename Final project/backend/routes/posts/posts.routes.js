@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User } = require("../../db/models");
+const { Post, User, Compound } = require("../../db/models");
 const { validateAccessToken } = require("../../jwt/validateToken");
 
 router.get("/", async (req, res) => {
@@ -9,33 +9,25 @@ router.get("/", async (req, res) => {
 
 router.post("/add", async (req, res) => {
   try {
-    const {
-      name,
-      price,
-      description,
-      image,
-      size,
-      material,
-      parcent,
-      user_id,
-      category_id,
-      sub_category_id,
-    } = req.body;
-
+   const {name, price, description, image, size, weight, materials, user_id, category_id, sub_category_id} = req.body;
     const post = await Post.create({
       name,
       price,
       description,
-      image,
       size,
       publich: false,
-      material,
-      parcent,
+      likesCount:0,
+      image,
+      weight,
       user_id,
       category_id,
       sub_category_id,
     });
-    res.json({ success: true, post: post });
+    for (let i = 0; i < materials.length; i += 1){
+      
+    }
+    
+    // res.status(200).json(post);
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PostEditType, PostId, PostType } from "../../types/posts/posts";
+import { PostAddType, PostEditType, PostId, PostType } from "../../types/posts/posts";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -8,7 +8,12 @@ export const axiosLoadPosts = async () => {
   return res.data;
 };
 
-
+export const axiosAddPost = async (data:PostAddType): Promise<PostType> => {
+ const res = await axios.post(`${BASE_URL}/posts/add`, data)
+ console.log(res.data);
+ 
+ return res.data
+}
 export const axiosDelPosts = async (
   postId: PostId,
 ): Promise<PostId> => {

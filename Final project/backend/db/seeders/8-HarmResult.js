@@ -202,7 +202,7 @@ module.exports = {
           post_id: 25,
           message:
             "Материалы с высоким уровнем вреда. Могут быть экологически небезопасными и требуют серьезных усилий для снижения их влияния на окружающую среду.",
-          color: "red",
+          color: "purple",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -354,7 +354,7 @@ module.exports = {
           post_id: 44,
           message:
             "Материалы с высоким уровнем вреда. Могут быть экологически небезопасными и требуют серьезных усилий для снижения их влияния на окружающую среду.",
-          color: "red",
+          color: "purple",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -458,7 +458,7 @@ module.exports = {
           post_id: 57,
           message:
             "Материалы с высоким уровнем вреда. Могут быть экологически небезопасными и требуют серьезных усилий для снижения их влияния на окружающую среду.",
-          color: "red",
+          color: "purple",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

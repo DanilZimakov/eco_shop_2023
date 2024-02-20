@@ -1,61 +1,53 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { loadMaterials } from "../../../redux/Slice/MaterialsSlice/materialsSlice";
 // import "bulma/css/bulma.min.css";
 import "./AddForm.css";
+import { addPost } from "../../../redux/Slice/PostsSlice/postsSlice";
 
-interface Category {
-  id: number;
-  category_name: string;
-}
-
-interface Subcategories {
-  id: number;
-  name: string;
-}
-interface Compounds {
-  id: number;
-  material: string;
-  parcent: number;
-}
+import { Compounds } from "../../../types/posts/posts";
+import { SubCategoryType } from "../../../types/sub_category/sub_category";
 
 const AddForm = (): JSX.Element => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [subCategories, setSubCategories] = useState<Subcategories[]>([]);
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string>("");
-  const [size, setSize] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [name, setName] = useState("");
-  const referenceElement = useRef(null);
-  const [compositions, setCompositions] = useState<Compounds[]>([
-    { id: 0, material: "", parcent: 0 },
-  ]);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadMaterials());
   }, []);
-  const [selectedMaterial, setSelectedMaterial] = useState<string>("");
-  const user = useSelector((state: RootState) => state.auth.user);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [subCategories, setSubCategories] = useState<SubCategoryType[]>([]);
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string>("");
+  const [size, setSize] = useState<string>("");
+  const [image, setImage] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [compositions, setCompositions] = useState<Compounds[]>([
+    {  material: "", parcent: 0 },
+  ]);
+  const [weight, setWeight] = useState<string>("");
+ 
+  const {category} = useSelector((store:RootState) => store.categories)
+  const subCategory = useSelector(
+    (store: RootState) => store.subCategories.subCategories
+  );
   const { materials } = useSelector((state: RootState) => state.materials);
-  console.log("materials", materials);
-  console.log("compozition", compositions);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/categories/")
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching categories:", error);
-      });
-  }, []);
-
+  const user = useSelector((state: RootState) => state.auth.user);
+  const parcents = [
+    { id: 1, value: 0 },
+    { id: 2, value: 5 },
+    { id: 3, value: 10 },
+    { id: 4, value: 20 },
+    { id: 5, value: 30 },
+    { id: 6, value: 40 },
+    { id: 7, value: 50 },
+    { id: 8, value: 60 },
+    { id: 9, value: 70 },
+    { id: 10, value: 80 },
+    { id: 11, value: 90 },
+    { id: 12, value: 100 },
+  ];
   useEffect(() => {
     if (selectedCategory) {
       axios
@@ -70,44 +62,7 @@ const AddForm = (): JSX.Element => {
       setSubCategories([]);
     }
   }, [selectedCategory]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/materials")
-      .then((response) => {
-        setCompositions(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching materials:", error);
-      });
-  }, [selectedMaterial]);
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-    switch (name) {
-      case "name":
-        setName(value);
-        break;
-      case "price":
-        setPrice(value);
-        break;
-      case "description":
-        setDescription(value);
-        break;
-      case "size":
-        setSize(value);
-        break;
-      case "image":
-        setImage(value);
-        break;
-      default:
-        break;
-    }
-  };
-
+ 
   const handleCompositionChange = (
     index: number,
     field: string,
@@ -121,9 +76,10 @@ const AddForm = (): JSX.Element => {
     }
     setCompositions(updatedCompositions);
   };
+  
 
   const addCompositionField = () => {
-    setCompositions([...compositions, { id: 0, material: "", parcent: 0 }]);
+    setCompositions([...compositions, {  material: "", parcent: 0 }]);
   };
 
   const removeCompositionField = (index: number) => {
@@ -137,34 +93,28 @@ const AddForm = (): JSX.Element => {
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     try {
-      const response = await axios.post(
-        "http://localhost:3000/posts/add",
-        {
+      dispatch(
+        addPost({
           name,
           price,
           description,
           image,
           size,
-          sub_category_id: selectedSubCategory,
+          weight,
+          sub_category_id: +selectedSubCategory,
           materials: compositions,
           user_id: user?.id,
-          category_id: selectedCategory,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+          category_id: +selectedCategory,
+        })
       );
-      console.log("Form submission response:", response.data);
 
       setName("");
       setPrice("");
       setDescription("");
       setSize("");
-      setCompositions([{ id: 0, material: "", parcent: 0 }]);
+      setWeight("");
+      setCompositions([{  material: "", parcent: 0 }]);
       setImage("");
       setSubCategories([]);
     } catch (error) {
@@ -188,7 +138,6 @@ const AddForm = (): JSX.Element => {
       reader.readAsDataURL(file);
     }
   };
-
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="field">
@@ -199,7 +148,7 @@ const AddForm = (): JSX.Element => {
             type="text"
             value={name}
             name="name"
-            onChange={handleInputChange}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
       </div>
@@ -212,7 +161,7 @@ const AddForm = (): JSX.Element => {
             type="number"
             value={price}
             name="price"
-            onChange={handleInputChange}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
       </div>
@@ -225,7 +174,7 @@ const AddForm = (): JSX.Element => {
             type="text"
             value={description}
             name="description"
-            onChange={handleInputChange}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
       </div>
@@ -235,10 +184,23 @@ const AddForm = (): JSX.Element => {
         <div className="control">
           <input
             className="input"
-            type="number"
+            type="text"
             value={size}
             name="size"
-            onChange={handleInputChange}
+            onChange={(e) => setSize(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="field">
+        <label className="label">Вес:</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={weight}
+            name="weight"
+            onChange={(e) => setWeight(e.target.value)}
           />
         </div>
       </div>
@@ -269,12 +231,12 @@ const AddForm = (): JSX.Element => {
           <div className="select">
             <select
               className="dropdown-trigger"
-              ref={referenceElement}
+              // ref={referenceElement}
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
               <option value="">Выберите категорию</option>
-              {categories.map((category) => (
+              {category.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.category_name}
                 </option>
@@ -295,17 +257,18 @@ const AddForm = (): JSX.Element => {
                 onChange={handleSubCategoryChange}
               >
                 <option value="">Выберите подкатегорию</option>
-                {subCategories.map((subCategory) => (
-                  <option key={subCategory.id} value={subCategory.id}>
-                    {subCategory.name}
-                  </option>
-                ))}
+                {subCategory
+                  .filter((sub) => sub.category_id === Number(selectedCategory))
+                  .map((subCategory) => (
+                    <option key={subCategory.id} value={subCategory.id}>
+                      {subCategory.name}
+                    </option>
+                  ))}
               </select>
             </div>
           </div>
         </div>
       )}
-
       {compositions.map((composition, index) => (
         <div key={index} className="field">
           <label className="label">Материал:</label>
@@ -318,9 +281,9 @@ const AddForm = (): JSX.Element => {
                 }
               >
                 <option value="">Выберите материал</option>
-                {compositions.map((comp) => (
-                  <option key={comp.id} value={comp.material}>
-                    {comp.material}
+                {materials.map((comp) => (
+                  <option key={comp.id} value={comp.id}>
+                    {comp.name}
                   </option>
                 ))}
               </select>
@@ -343,13 +306,11 @@ const AddForm = (): JSX.Element => {
                   )
                 }
               >
-                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
-                  (value) => (
-                    <option key={value} value={value}>
-                      {value}%
-                    </option>
-                  )
-                )}
+                {parcents.map((value) => (
+                  <option key={value.id} value={value.value}>
+                    {value.value}%
+                  </option>
+                ))}
               </select>
             </div>
           </div>
