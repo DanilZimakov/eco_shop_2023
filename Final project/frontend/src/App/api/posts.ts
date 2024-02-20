@@ -1,5 +1,4 @@
 import axios from "axios";
-import { CategoryId } from "../../types/categories/categories";
 import { PostEditType, PostId, PostType } from "../../types/posts/posts";
 
 const BASE_URL = "http://localhost:3000";
@@ -11,8 +10,8 @@ export const axiosLoadPosts = async () => {
 
 
 export const axiosDelPosts = async (
-  postId: CategoryId,
-): Promise<CategoryId> => {
+  postId: PostId,
+): Promise<PostId> => {
   const res = await axios.delete(`${BASE_URL}/posts/delete/${postId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,

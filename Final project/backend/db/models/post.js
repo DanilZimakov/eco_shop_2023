@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Cart, { foreignKey: "post_id" });
       this.hasMany(models.Like, { foreignKey: "post_id" });
       this.hasMany(models.Compound, { foreignKey: "post_id" });
+      this.hasOne(models.HarmResult, { foreignKey: "post_id" });
     }
   }
   Post.init(
     {
       name: DataTypes.STRING,
-      price: DataTypes.STRING,
+      price: DataTypes.INTEGER,
       description: DataTypes.STRING,
       size: DataTypes.STRING,
       publich: DataTypes.BOOLEAN,

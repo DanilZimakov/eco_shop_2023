@@ -36,7 +36,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
       }
 
       await axios.post(
-        `http://localhost:3000/categories/${categoryId}/posts/${postId}/like`,
+        `http://localhost:3000/categories/${categoryId}/posts/${postId}/dislike`,
         {},
         {
           headers: {
@@ -56,11 +56,11 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
 
   return (
     <button onClick={toggleLike} className="like-button">
-      <FontAwesomeIcon
+      <FontAwesomeIcon style={{color: "#F0CD7F"}}
         icon={liked ? faHeartSolid : faHeartRegular}
         color={liked ? "red" : "black"}
       />
-      <span className="likes-count">{likesCount}</span>
+      <span className="likes-count" style={{color: "#F0CD7F"}}>{likesCount}</span>
     </button>
   );
 };

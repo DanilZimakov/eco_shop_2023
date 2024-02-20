@@ -1,0 +1,134 @@
+/* Сброс стилей для формы и ее элементов */
+form,
+fieldset,
+select,
+textarea,
+input,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding:   0;
+  margin:   0;
+  box-sizing: border-box;
+}
+
+/* Сброс стилей для input */
+input {
+  -webkit-appearance: none;
+}
+
+/* Сброс стилей для кнопок */
+button {
+  background-color: transparent;
+  border: none;
+  padding:   0;
+  margin:   0;
+  box-sizing: border-box;
+}
+
+/* Общие стили для формы */
+form {
+  width:   100%;
+  max-width:   600px;
+  margin:   0 auto;
+  padding:   20px;
+  background-color: #F5F6EF;
+  border-radius:   5px;
+  box-shadow:   0   0   10px rgba(0,   0,   0,   0.1);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Стили для полей ввода */
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form select {
+  width:   100%;
+  padding:   10px;
+  margin-bottom:   10px;
+  border:   1px solid #ddd;
+  border-radius:   3px;
+  font-size:   14px;
+
+  font-family: "Source Serif 4", serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #000000;
+}
+
+/* Стили для кнопок */
+form button {
+  width:   50%;
+  padding:   10px;
+  background-color: #DFDFDF; /* Ваш цвет для кнопок */
+  border: none;
+  border-radius:   15px; /* Ваш радиус для кнопок */
+  color: white;
+  font-size:   16px;
+  cursor: pointer;
+  margin-top:   10px;
+}
+
+form button:hover {
+  background-color: #F0CD7F; /* Ваш цвет при нажатии */
+}
+
+/* Стили для кнопки "Отправить форму" */
+/* form button.is-primary {
+  background-color: #007BFF;
+  border-radius:   12px;
+} */
+
+/* form button.is-primary:hover {
+  background-color: #0056b3;
+} */
+
+.btn-form {
+  background-color: #F0CD7F;
+}
+
+/* Стили для выпадающего списка */
+.select {
+  width:   100%;
+}
+
+/* Стили для изображений */
+form img {
+  width:   100px;
+  height: auto;
+  margin-top:   10px;
+}
+
+/* Стили для подсказок и ошибок */
+form .error,
+form .hint {
+  margin-top:   10px;
+  font-size:   12px;
+}
+
+form .error {
+  color: #f44336;
+}
+
+form .hint {
+  color: #4caf50;
+}
+
+.label {
+  font-family: "Source Serif 4", serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #000000;
+}
+label {
+  text-align: center;
+}
