@@ -26,6 +26,9 @@ export type InitialCategoryType = {
 };
 export type InitialHarmType = {
   harm: HarmType[];
+}
+export type InitialMaterials = {
+  materials: MaterialsType[];
 };
 
 export type InitialCartType = {

@@ -9,3 +9,7 @@ export const axiosSubCategoryLoad = async ():Promise<SubCategoryType[]> => {
     const res = await axios.get(`${BASE_URL}/categories/sub`);
     return res.data
 }
+
+export function axiosMaterialsLoad(): any {
+    throw new Error("Function not implemented.");
+}
