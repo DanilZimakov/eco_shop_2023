@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const { Post } = require("../../db/models");
+const { Post, User } = require("../../db/models");
 const { validateAccessToken } = require("../../jwt/validateToken");
 
 router.get("/", async (req, res) => {
-  const posts = await Post.findAll({order: [["id", "ASC"]]});
+  const posts = await Post.findAll({ order: [["id", "ASC"]] });
   res.json(posts);
 });
 
@@ -21,7 +21,7 @@ router.post("/add", async (req, res) => {
       category_id,
       sub_category_id,
     } = req.body;
-    
+
     const post = await Post.create({
       name,
       price,
@@ -47,16 +47,20 @@ router.delete("/delete/:postId", async (req, res) => {
     const { postId } = req.params;
     const token = req.headers.authorization?.split(" ")[1];
     const validToken = validateAccessToken(token);
-    const deletePost = await Post.destroy({
-      where: { id: postId, user_id: validToken.id },
-    });
-    if (deletePost) {
-      res.json(postId);
-      return;
+    const post = await Post.findByPk(postId);
+    const admin = await User.findOne({ where: { is_admin: true } });
+    if (admin.is_admin === true || post.user_id === validToken.id) {
+      const deletePost = await Post.destroy({
+        where: { id: postId },
+      });
+      if (deletePost) {
+        res.json(postId);
+        return;
+      }
     }
     throw new Error();
-  } catch ({ message }) {
-    res.status(500).json({ message });
+  } catch (error) {
+    console.error("ERRRORR DELETE: ", error);
   }
 });
 

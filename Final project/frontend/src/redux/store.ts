@@ -6,6 +6,7 @@ import postsSlice from "./Slice/PostsSlice/postsSlice";
 import modalSlice from "./Slice/modalSlice/modalSlice";
 import categorySlice from "./Slice/categorySlice/categorySlice";
 import harmSlice from "./Slice/harmSlice/harmSlice";
+import MaterialsSlice from "./Slice/MaterialsSlice/MaterialsSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     modal: modalSlice,
     categories: categorySlice,
     harm: harmSlice,
+    materials: MaterialsSlice,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

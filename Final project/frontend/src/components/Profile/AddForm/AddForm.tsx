@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState, useAppDispatch } from "../../../redux/store";
+import { loadMaterials } from "../../../redux/Slice/MaterialsSlice/MaterialsSlice";
+// import "bulma/css/bulma.min.css";
 import "./AddForm.css";
 
 interface Category {
@@ -33,8 +35,15 @@ const AddForm = (): JSX.Element => {
   const [compositions, setCompositions] = useState<Compounds[]>([
     { id: 0, material: "", parcent: 0 },
   ]);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(loadMaterials());
+  }, []);
   const [selectedMaterial, setSelectedMaterial] = useState<string>("");
   const user = useSelector((state: RootState) => state.auth.user);
+  const { materials } = useSelector((state: RootState) => state.materials);
+  console.log("materials", materials);
+  console.log("compozition", compositions);
 
   useEffect(() => {
     axios
@@ -64,20 +73,18 @@ const AddForm = (): JSX.Element => {
 
   useEffect(() => {
     axios
-    .get("http://localhost:3000/materials")
-    .then((response) => {
-      setCompositions(response.data);
-      console.log(response.data);
-      
-    })
-    .catch((error) => {
-      console.error("Error fetching materials:", error);
-    });
-    
+      .get("http://localhost:3000/materials")
+      .then((response) => {
+        setCompositions(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching materials:", error);
+      });
   }, [selectedMaterial]);
 
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
     switch (name) {
@@ -104,7 +111,7 @@ const AddForm = (): JSX.Element => {
   const handleCompositionChange = (
     index: number,
     field: string,
-    value: string | number,
+    value: string | number
   ) => {
     const updatedCompositions = [...compositions];
     if (field === "material") {
@@ -124,7 +131,7 @@ const AddForm = (): JSX.Element => {
   };
 
   const handleSubCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setSelectedSubCategory(event.target.value);
   };
@@ -149,7 +156,7 @@ const AddForm = (): JSX.Element => {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       console.log("Form submission response:", response.data);
 
@@ -163,7 +170,7 @@ const AddForm = (): JSX.Element => {
     } catch (error) {
       console.error("Error submitting form:", error);
       alert(
-        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.",
+        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз."
       );
     }
   };
@@ -257,9 +264,7 @@ const AddForm = (): JSX.Element => {
 
       <div className="field">
         {/* <label className="label dropdown is-active"> */}
-        <label className="label">
-        Выбор категории товара:
-        </label>
+        <label className="label">Выбор категории товара:</label>
         <div className="control">
           <div className="select">
             <select
@@ -282,9 +287,7 @@ const AddForm = (): JSX.Element => {
       {subCategories.length > 0 && (
         <div className="field">
           {/* <label className="label dropdown is-active"> */}
-          <label className="label">
-            Выбор подкатегории:
-          </label>
+          <label className="label">Выбор подкатегории:</label>
           <div className="control">
             <div className="select">
               <select
@@ -324,7 +327,7 @@ const AddForm = (): JSX.Element => {
             </div>
           </div>
 
-          <label className="label" style={{marginTop: "15px"}}>
+          <label className="label" style={{ marginTop: "15px" }}>
             Процентное соотношение:
           </label>
           <div className="control">
@@ -336,15 +339,17 @@ const AddForm = (): JSX.Element => {
                   handleCompositionChange(
                     index,
                     "percentage",
-                    Number(e.target.value),
+                    Number(e.target.value)
                   )
                 }
               >
-                {[0,  5,  10,  20,  30,  40,  50,  60,  70,  80,  90,  100].map((value) => (
-                  <option key={value} value={value}>
-                    {value}%
-                  </option>
-                ))}
+                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
+                  (value) => (
+                    <option key={value} value={value}>
+                      {value}%
+                    </option>
+                  )
+                )}
               </select>
             </div>
           </div>
@@ -367,10 +372,11 @@ const AddForm = (): JSX.Element => {
         </button>
       </div>
       <div className="control">
-        <button 
-        // className="button is-primary" 
-        className="btn-form"
-        type="submit">
+        <button
+          // className="button is-primary"
+          className="btn-form"
+          type="submit"
+        >
           Отправить форму
         </button>
       </div>

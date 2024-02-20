@@ -7,6 +7,7 @@ const favoritesRouter = require("./posts/favorites.routes");
 const materials = require('./posts/materials.routes')
 const harmRouter = require("./posts/harmFormula.routes")
 const cartRouter = require("./api/cart.api.routes");
+const materialsRouter = require("./materials/materials.routes");
 
 router.use("/api/auth", authRouter);
 router.use("/categories", categoriesRouter);
@@ -16,5 +17,6 @@ router.use("/", favoritesRouter);
 router.use('/materials', materials)
 router.use("/harm", harmRouter);
 router.use("/cart", cartRouter);
+router.use("/materials", materialsRouter);
 
 module.exports = router;

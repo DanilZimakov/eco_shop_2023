@@ -1,7 +1,7 @@
 import { CartItemType } from "../cart/cartItemType";
 import { CategoriesType } from "../categories/categories";
 import { HarmType } from "../harm/harm";
-import { MaterialType } from "../materials/materials";
+import { MaterialsType } from "../materials/materials";
 import { PostType } from "../posts/posts";
 import { SubCategoryType } from "../sub_category/sub_category";
 import { User } from "../user/userType";
@@ -28,10 +28,13 @@ export type InitialHarmType = {
   harm: HarmType[];
 }
 export type InitialMaterials = {
-  materials: MaterialType[];
+  materials: MaterialsType[];
 };
 
 export type InitialCartType = {
   items: CartItemType[];
   totalPrice: number;
 };
+export type InitialMaterialsType = {
+  materials: MaterialsType[];
+}

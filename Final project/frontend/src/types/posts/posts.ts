@@ -9,8 +9,6 @@ export type PostType = {
   user_id: number;
   category_id: number;
   sub_category_id: number;
-  createdAt: Date,
-  updatedAt: Date
 };
 
 export type PostId = PostType["id"];

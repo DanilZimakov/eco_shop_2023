@@ -33,8 +33,6 @@ export enum ActionHarm {
   LOAD_HARM = "LOAD_HARM",
   ADD_HARM = "ADD_HARM",
 }
-
 export enum ActionMaterials {
   LOAD_MATERIALS = "LOAD_MATERIALS",
 }
-
