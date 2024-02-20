@@ -18,6 +18,9 @@ const AdminProfile = () => {
       return post.publich === true;
     }
   });
+  const sortedPost = post.sort((a, b) => b.id - a.id); 
+  
+  
 
   return (
     <div>
@@ -29,7 +32,7 @@ const AdminProfile = () => {
         {postPublich === "false" ? <h2>Ожидающие</h2> : <h2>Опубликованные</h2>}
       </div>
       <div className="post-admin-list">
-        {post.map((el) => {
+        {sortedPost.map((el) => {
           const harmSearch = harm.find(
             (harm: HarmType) => harm.post_id === el.id
           );

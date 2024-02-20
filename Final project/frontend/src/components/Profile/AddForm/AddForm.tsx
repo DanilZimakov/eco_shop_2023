@@ -24,7 +24,7 @@ const AddForm = (): JSX.Element => {
   const [price, setPrice] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [compositions, setCompositions] = useState<Compounds[]>([
-    {  material: "", parcent: 0 },
+    {  material: 0, parcent: 0 },
   ]);
   const [weight, setWeight] = useState<string>("");
  
@@ -70,7 +70,7 @@ const AddForm = (): JSX.Element => {
   ) => {
     const updatedCompositions = [...compositions];
     if (field === "material") {
-      updatedCompositions[index].material = value as string;
+      updatedCompositions[index].material = value as number;
     } else if (field === "percentage") {
       updatedCompositions[index].parcent = Number(value);
     }
@@ -79,7 +79,7 @@ const AddForm = (): JSX.Element => {
   
 
   const addCompositionField = () => {
-    setCompositions([...compositions, {  material: "", parcent: 0 }]);
+    setCompositions([...compositions, {  material: 0, parcent: 0 }]);
   };
 
   const removeCompositionField = (index: number) => {
@@ -114,7 +114,7 @@ const AddForm = (): JSX.Element => {
       setDescription("");
       setSize("");
       setWeight("");
-      setCompositions([{  material: "", parcent: 0 }]);
+      setCompositions([{  material: 0, parcent: 0 }]);
       setImage("");
       setSubCategories([]);
     } catch (error) {

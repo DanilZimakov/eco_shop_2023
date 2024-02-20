@@ -23,11 +23,17 @@ router.post("/add", async (req, res) => {
       category_id,
       sub_category_id,
     });
+    let material;
     for (let i = 0; i < materials.length; i += 1){
-      
+       material = await Compound.create({
+        material_id: materials[i].material,
+        post_id: post.id,
+        parcent: materials[i].parcent
+      })
     }
+   
     
-    // res.status(200).json(post);
+    res.status(200).json(post);
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

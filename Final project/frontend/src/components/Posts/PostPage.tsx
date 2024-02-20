@@ -88,14 +88,14 @@ const PostPage: React.FC = () => {
             <p>Размер: {post.size}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
-              <div className="add ">
+              {/* <div className="add ">
                 <img
                   className="a"
                   src={cart}
                   alt="Add"
                   onClick={() => handleAddClick(post)}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         );

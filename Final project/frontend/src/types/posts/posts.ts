@@ -9,6 +9,8 @@ export type PostType = {
   user_id: number;
   category_id: number;
   sub_category_id: number;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type PostId = PostType["id"];
@@ -39,6 +41,6 @@ export type PostEditType = {
   sub_category_id: number;
 };
 export interface Compounds {
-  material: string;
+  material: number;
   parcent: number;
 }
