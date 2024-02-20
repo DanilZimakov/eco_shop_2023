@@ -1,10 +1,22 @@
+.main-content {
+  margin-top: 200px;
+}
+
 .nav-sub {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  padding: 0 10px;
+  padding: 10px;
   flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 0.01px solid black;
+  background-color: rgb(246, 235, 219);
 }
+
 .link-sub {
   text-decoration: none !important;
   color: inherit;
@@ -18,7 +30,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color:burlywood;
+  background-color: burlywood;
   transform: scaleX(0);
   transform-origin: bottom;
   transition: transform 0.3s ease-in-out;

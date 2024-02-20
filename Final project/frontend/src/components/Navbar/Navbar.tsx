@@ -1,9 +1,9 @@
 import "./image/logo_1.svg";
 
 import "./navbar.css";
-import adminIcon from "./image/admin-icon.png"
+import adminIcon from "./image/admin-icon.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./image/logo_1.svg";
+import photo from "./Vector.png";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/Slice/authSlice/authSlice";
@@ -19,8 +19,16 @@ const Navbar = () => {
   }
   return (
     <>
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav
+        className="navbar is-lemonchiffon"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-brand">
+          <a className="navbar-item" href="/">
+            <img src={photo} alt="logo" />
+          </a>
+
           <NavLink
             role="button"
             className="navbar-burger"
@@ -36,22 +44,23 @@ const Navbar = () => {
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
+          {/* <img src={photo} alt="" /> */}
           <div className="navbar-start">
             <NavLink className="navbar-item" to={"/"}>
-              Home
+              Главная страница
             </NavLink>
             <NavLink className="navbar-item" to={"/categories"}>
-              Categories
+              Категории
             </NavLink>
             <NavLink className="navbar-item" to={"/cart"}>
-              Cart
+              Корзина
             </NavLink>
             <NavLink className="navbar-item" to={"/favorites"}>
-              Favorites
+              Избранные
             </NavLink>
             {user && (
               <NavLink className="navbar-item" to="/profile">
-                User profile
+                Личная страница
               </NavLink>
             )}
           </div>
@@ -73,10 +82,10 @@ const Navbar = () => {
                 ) : (
                   <>
                     <NavLink className="button is-black" to={"/registration"}>
-                      Sign up
+                      Зарегестрироваться
                     </NavLink>
                     <NavLink className="button is-black" to={"/login"}>
-                      Log in
+                      Войти
                     </NavLink>
                   </>
                 )}
