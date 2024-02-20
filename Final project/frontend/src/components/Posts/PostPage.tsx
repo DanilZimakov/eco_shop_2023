@@ -7,6 +7,7 @@ import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 import axios from "axios";
 import { PostType } from "../../types/posts/posts";
 import { HarmType } from "../../types/harm/harm";
+// import cart from "./cart.png";
 
 const PostPage: React.FC = () => {
   const { categoryId, postId } = useParams();
@@ -79,24 +80,22 @@ const PostPage: React.FC = () => {
             style={{ border: color ? `1px solid ${color}` : "none" }}
           >
             {post.image && post.image.length > 0 && (
-              <img
-                style={{ width: "200px", height: "200px" }}
-                src={post.image}
-                alt={post.name}
-              />
+              <img src={post.image} alt={post.name} />
             )}
-            <h3>Название: {post.name}</h3>
+            <h3>{post.name}</h3>
             <p>Цена: {post.price}.Руб</p>
-            <p>Описание: {post.description}</p>
+            {/* <p>Описание: {post.description}</p> */}
             <p>Размер: {post.size}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
-              <button
-                className="bis-primary is-small"
-                onClick={() => handleAddClick(post)}
-              >
-                Add
-              </button>
+              <div className="add ">
+                <img
+                  className="a"
+                  src={cart}
+                  alt="Add"
+                  onClick={() => handleAddClick(post)}
+                />
+              </div>
             </div>
           </div>
         );

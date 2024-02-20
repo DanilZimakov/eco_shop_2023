@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-
+import "./likebuttom.css";
 interface LikeButtonProps {
   postId: number;
   categoryId: number;
@@ -16,7 +16,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
   const fetchLikes = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/categories/${categoryId}/posts/${postId}/like`,
+        `http://localhost:3000/categories/${categoryId}/posts/${postId}/like`
       );
       setLiked(response.data.liked);
       setLikesCount(response.data.likesCount);
@@ -30,7 +30,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
       const token = localStorage.getItem("token");
       if (!token) {
         console.error(
-          "Authentication token is not found. User might not be logged in.",
+          "Authentication token is not found. User might not be logged in."
         );
         return;
       }
@@ -42,7 +42,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        },
+        }
       );
       fetchLikes();
     } catch (error) {
@@ -56,11 +56,11 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
 
   return (
     <button onClick={toggleLike} className="like-button">
-      <FontAwesomeIcon
+      <FontAwesomeIcon style={{color: "#F0CD7F"}}
         icon={liked ? faHeartSolid : faHeartRegular}
         color={liked ? "red" : "black"}
       />
-      <span className="likes-count">{likesCount}</span>
+      <span className="likes-count" style={{color: "#F0CD7F"}}>{likesCount}</span>
     </button>
   );
 };

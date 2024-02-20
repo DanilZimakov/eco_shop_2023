@@ -1,0 +1,20 @@
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.3s ease-in-out;
+  /* font-weight: bold; */
+}
+
+.likes-count {
+  margin-left: 4px;
+}
+
+.like-button:hover {
+  transform: scale(1.2); /* Увеличиваем размер при наведении */
+  cursor: pointer;
+}

@@ -1,81 +1,316 @@
-body {
-  font-family: "Montserrat", sans-serif;
-}
-
-.home-container {
-  position: relative;
-  background-color: rgba(235, 250, 255, 0.8);
-}
-
 .video-background {
+  position: relative;
+  top: -50px;
   width: 100%;
-  height: 70vh;
+  height: 100%;
   object-fit: cover;
 }
 
-.scroll-text {
-  position: relative;
-  /* z-index: 1; */
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 100px;
-  border-radius: 10px;
-  margin-top: -6px;
+/* .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 790px;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+} */
+
+.text-overlay {
+  position: absolute;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+
+  height: 400px;
+  width: 1200px;
 }
 
 .category-button {
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 750px;
+  left: 739px;
   transform: translate(-50%, -50%);
   background-color: transparent;
   color: #fff;
-  padding: 10px 20px;
-  border: 2px solid #fff;
+  padding: 20px 20px;
+  border: 2px solid #ffffff;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: "Montserrat", sans-serif;
+  /* font-family: "Libre Baskerville"; */
+  width: 300px;
+  height: 65px;
+}
+
+.category-button {
+  background-color: rgba(251, 248, 248, 0.8);
+  color: #000; /* Цвет текста кнопки */
+  padding: 10px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.6s ease; /* Плавное изменение цвета при наведении */
 }
 
 .category-button:hover {
-  background-color: #fff;
-  color: #333;
+  background-color: rgb(159, 159, 139); /* Цвет кнопки при наведении */
+}
+/* контейнер после видео */
+.cont-1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; /* Ширина контейнера теперь 100% */
+  max-width: 1200px; /* Максимальная ширина контейнера, чтобы ограничить его размер */
+  margin: 5 auto; /* Центрирование контейнера по горизонтали */
 }
 
-.text-container {
+.conttext-1 {
+  flex: 1;
+  box-sizing: border-box; /* Добавлено свойство box-sizing: border-box; для учета границы внутри размеров */
+  padding: 40px; /* Добавлен отступ внутри контейнера */
+}
+
+.contname-1 {
+  width: 1045.79px;
+  height: 39px;
+  top: 1041px;
+  left: 148.21px;
+  /* border: 1px solid green; */
+}
+.onas {
+  font-family: Source Serif 4;
+  font-size: 29px;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: 0.1em;
+  text-align: left;
+
+  font-family: Sora;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+.lane-1 {
+  width: 800px;
+  height: 0.1px;
+  top: 1094.73px;
+  left: 148.21px;
+  border: 0.1px solid black;
+  background-color: black;
+}
+.title-1 {
+  width: 849px;
+  height: 116px;
+  top: 1118.83px;
+  left: 143px;
+  /* border: 1px solid orange; */
+}
+
+.nasha {
+  font-family: Source Serif 4;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 116px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.description-1 {
+  width: 900px;
+  height: 200px;
+  /* border: 1px solid red; */
+}
+
+.text {
+  font-size: 25px;
+  font-weight: 400px;
+  line-height: 50px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.text-2 {
+  font-family: Source Serif 4;
+  font-size: 30px;
+  font-weight: 50px;
+  line-height: 50px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 40px;
+  margin: 90px;
+}
+
+.cont-2 {
   display: flex;
-  align-items: stretch;
+  /* justify-content: left; */
+  width: 100%;
+  max-width: 1300px;
+  margin: 2px auto;
+  /* border: 0.1px solid rgb(14, 14, 13); */
+  transform: translateY(-50px);
   padding: 20px;
 }
 
-.left-text,
-.right-text {
+.number-01 {
+  width: 116.18px;
+  height: 80.8px;
+  top: -4px;
+  left: 39.53px;
+  /* border: 2px solid red; */
+}
+.n-01 {
+  font-family: Roboto;
+  font-size: 95px;
+  font-weight: 400;
+  line-height: 81px;
+  letter-spacing: 2.3763442039489746px;
+  text-align: left;
+}
+.context-2 {
+  width: 789.95px;
+  height: 91.91px;
+  top: 2252px;
+  left: 131px;
+  /* border: 2px solid green; */
+}
+.card {
+  margin-left: auto;
+  /* border: 3px solid saddlebrown; */
+}
+.card-container {
+  margin-left: auto;
+}
+
+.text-01 {
+  font-family: Sora;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 90px;
+  letter-spacing: 0.03em;
+  text-align: left;
+}
+.t {
+  font-family: Sora;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 70px;
+  text-align: left;
+}
+.cont-02 {
+  /* border: 2px solid yellowgreen; */
+  width: 1006px;
+  height: 100px;
+
+  float: left;
   flex: 1;
+  /* box-sizing: border-box; */
 }
 
-.divider {
-  width: 2px;
-  height: 100%;
-  background-color: #fff;
-  margin: 0 20px;
+.osnov {
+  /* border: 2px solid orange; */
+  font-family: Source Serif 4;
+  font-size: 20px;
+  font-weight: 500;
+
+  letter-spacing: -0.03em;
+  text-align: left;
+  line-height: 35px;
 }
 
-.diagram-container {
+.flex-container {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px; /* Или любое другое значение для отступа между диаграммами */
+
+  /* border: 2px solid yellow; */
 }
 
-.diagramm {
-  width: 600px;
-  height: 250px;
-  padding: 10px;
-  text-align: center;
+.chart-container {
+  width: 450px;
+
+  margin-left: -190px;
+  /* border: 2px solid pink; */
 }
 
-.diagramm img {
-  max-width: 300%;
-  max-height: 100%;
-  object-fit: contain;
+.text-container {
+  flex: 10;
+  margin-left: 20px;
+  /* border: 3px solid black; */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  /* border: 3px solid salmon; */
+}
+
+.card-1 {
+  border: 1.5px solid purple;
+  height: 400px;
+  width: 400px;
+}
+.card-2 {
+  border: 1.5px solid khaki;
+  height: 400px;
+  width: 400px;
+}
+.card-3 {
+  border: 1.5px solid olive;
+  height: 400px;
+  width: 400px;
+}
+
+.card-container .card-1,
+.card-container .card-2,
+.card-container .card-3 {
+  transition: box-shadow 0s;
+}
+
+.card-container .card-1:hover {
+  box-shadow: 0px 0px 15px rgba(128, 0, 128, 0.8);
+  transform: translateY(-10px);
+}
+
+.card-container .card-2:hover {
+  box-shadow: 0px 0px 15px khaki;
+  transform: translateY(-10px);
+}
+
+.card-container .card-3:hover {
+  box-shadow: 0px 0px 15px olive;
+  transform: translateY(-10px);
+}
+
+.name {
+  /* display: flex; */
+
+  width: 800px;
+  height: 500px;
+
+  /* border: 0.1px solid grey; */
+}
+
+.lane-t {
+  width: 1050px;
+  height: 0.1px;
+  margin: 30px;
+  border: 0.1px solid black;
+  background-color: black;
+}
+
+.h2 {
+  display: flex;
+
+  font-family: "Libre Baskerville";
+  font-size: 30px;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  color: #f8f5f5; /* Цвет текста (можно выбрать подходящий) */
+  /* border: 1px solid black; */
 }

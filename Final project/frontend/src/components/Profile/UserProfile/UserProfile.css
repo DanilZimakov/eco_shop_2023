@@ -5,6 +5,7 @@
   align-items: center; /* Центрирование элементов по вертикали */
   justify-content: flex-start; /* Выравнивание элементов по левому краю */
   width:  100%; /* Ширина элемента равна ширине родительского элемента */
+  /* background-color: rgb(253, 250, 224); */
 }
 .user-profile {
   display: flex;
@@ -29,6 +30,12 @@
 .posts-in-profile {
   width:  100%;
   margin-top:  1rem; /* Отступ сверху от формы и товаров */
+
+}
+
+.posts-in-profile {
+  display: flex;
+  flex-direction: column;
 }
 
 
