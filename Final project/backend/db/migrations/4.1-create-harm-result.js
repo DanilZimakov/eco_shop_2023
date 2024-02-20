@@ -14,7 +14,8 @@ module.exports = {
         references: {
           model: "Posts",
           key: "id"
-        }
+        },
+        onDelete: "CASCADE"
       },
       message: {
         type: Sequelize.TEXT

@@ -10,7 +10,6 @@ router.post("/:postId", async (req, res) => {
     const compouds = await Compound.findAll({ where: { post_id: postId } });
     const materials = await Material.findAll();
 
-<<<<<<< HEAD
     const arrPosts = await JSON.parse(JSON.stringify(posts));
     const arrCompouds = await JSON.parse(JSON.stringify(compouds));
     const arrMaterials = await JSON.parse(JSON.stringify(materials));
@@ -28,16 +27,6 @@ router.post("/:postId", async (req, res) => {
         100;
 
       return result;
-=======
-    const compounds = await Compound.findAll({
-      where: { post_id: postId },
-      include: [
-        {
-          model: Material,
-          as: "material",
-        },
-      ],
->>>>>>> dev
     });
 
     function generateHarm() {

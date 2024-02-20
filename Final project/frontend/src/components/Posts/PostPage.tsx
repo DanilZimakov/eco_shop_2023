@@ -6,11 +6,12 @@ import "./PostPage.css";
 import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 import axios from "axios";
 import { PostType } from "../../types/posts/posts";
+import { HarmType } from "../../types/harm/harm";
 
 const PostPage: React.FC = () => {
   const { categoryId, postId } = useParams();
   const posts = useSelector((store: RootState) => store.posts.posts);
-
+  const { harm } = useSelector((store: RootState) => store.harm);
   const dispatch = useDispatch();
 
   function fillPost(posts: PostType[]) {
@@ -38,7 +39,7 @@ const PostPage: React.FC = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       console.log("Item added to cart:", response.data);
@@ -58,7 +59,7 @@ const PostPage: React.FC = () => {
             category_id: 0,
             sub_category_id: 0,
           },
-        }),
+        })
       );
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -67,9 +68,16 @@ const PostPage: React.FC = () => {
 
   return (
     <div className="product-card">
-      {filteredPosts.map((post:PostType) => {
+      {filteredPosts.map((post: PostType) => {
+        const harmSearch = harm.find(
+          (harm: HarmType) => harm.post_id === post.id
+        );
+        const color = harmSearch ? harmSearch.color : "none";
         return (
-          <div key={post.id}>
+          <div
+            key={post.id}
+            style={{ border: color ? `1px solid ${color}` : "none" }}
+          >
             {post.image && post.image.length > 0 && (
               <img
                 style={{ width: "200px", height: "200px" }}

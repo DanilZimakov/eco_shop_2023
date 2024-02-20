@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState, useAppDispatch } from "../../../redux/store";
+import { loadMaterials } from "../../../redux/Slice/MaterialsSlice/MaterialsSlice";
 // import "bulma/css/bulma.min.css";
 
 interface Category {
@@ -32,8 +33,15 @@ const AddForm = (): JSX.Element => {
   const [compositions, setCompositions] = useState<Compounds[]>([
     { material_id: "", parcent: 0 },
   ]);
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(loadMaterials())
+  },[])
   const user = useSelector((state: RootState) => state.auth.user);
-
+  const {materials} = useSelector((state: RootState) => state.materials);
+  console.log("materials", materials);
+  console.log("compozition", compositions);
+  
   useEffect(() => {
     axios
       .get("http://localhost:3000/categories/")
