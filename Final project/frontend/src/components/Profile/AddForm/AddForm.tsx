@@ -9,8 +9,9 @@ import { addPost } from "../../../redux/Slice/PostsSlice/postsSlice";
 
 import { Compounds } from "../../../types/posts/posts";
 import { SubCategoryType } from "../../../types/sub_category/sub_category";
-import { loadMaterials } from "../../../redux/Slice/materialsSlice/materialsSlice";
+
 import { MaterialsType } from "../../../types/materials/materials";
+import { loadMaterials } from "../../../redux/Slice/materialsSlice/MaterialsSlice";
 
 const AddForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -35,7 +36,9 @@ const AddForm = (): JSX.Element => {
     (store: RootState) => store.subCategories.subCategories,
   );
 
-  const { materials } = useSelector((state: RootState) => state.materials);
+  const materials = useSelector(
+    (state: RootState) => state.materials.materials,
+  );
   const user = useSelector((state: RootState) => state.auth.user);
   const parcents = [
     { id: 1, value: 0 },

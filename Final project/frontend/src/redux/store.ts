@@ -7,7 +7,7 @@ import postsSlice from "./Slice/PostsSlice/postsSlice";
 import modalSlice from "./Slice/modalSlice/modalSlice";
 import categorySlice from "./Slice/categorySlice/categorySlice";
 import harmSlice from "./Slice/harmSlice/harmSlice";
-import materialsSlice from "./Slice/materialsSlice/materialsSlice";
+import materialsSlice from "./Slice/materialsSlice/MaterialsSlice";
 import userSlice from "./Slice/UserSlice/userSlice";
 
 const store = configureStore({
