@@ -38,18 +38,16 @@ const Footer = () => {
             важного!
           </p>
           <p>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Введите email..."
-              />
-              <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
-                  <span className="glyphicon glyphicon-envelope"></span>
-                </button>
-              </span>
-            </div>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Введите email..."
+            />
+            <span className="input-group-btn">
+              <button className="btn btn-default" type="button">
+                <span className="glyphicon glyphicon-envelope"></span>
+              </button>
+            </span>
           </p>
         </div>
       </div>

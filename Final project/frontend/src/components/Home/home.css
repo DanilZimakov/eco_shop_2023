@@ -1,9 +1,11 @@
 .video-background {
   position: relative;
-  top: -50px;
+  top: -15px;
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  border-radius: 7px;
 }
 
 /* .overlay {
@@ -65,9 +67,9 @@
 .cont-1 {
   display: flex;
   flex-wrap: wrap;
-  width: 100%; /* Ширина контейнера теперь 100% */
-  max-width: 1200px; /* Максимальная ширина контейнера, чтобы ограничить его размер */
-  margin: 5 auto; /* Центрирование контейнера по горизонтали */
+  width: 100%;
+  max-width: 1200px;
+  /* padding: 60px; */
 }
 
 .conttext-1 {
@@ -130,10 +132,10 @@
 }
 
 .text {
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 400px;
-  line-height: 50px;
-  letter-spacing: 0.02em;
+  line-height: 45px;
+  /* letter-spacing: 0.02em; */
   text-align: left;
 }
 
@@ -153,10 +155,11 @@
   /* justify-content: left; */
   width: 100%;
   max-width: 1300px;
-  margin: 2px auto;
-  /* border: 0.1px solid rgb(14, 14, 13); */
+  margin: 10px auto;
+  border: 0.1px solid rgb(14, 14, 13);
   transform: translateY(-50px);
-  padding: 20px;
+  padding: 40px;
+  border: 0.1px solid black;
 }
 
 .number-01 {
@@ -312,5 +315,89 @@
   letter-spacing: 0.01em;
   line-height: 1.4;
   color: #f8f5f5; /* Цвет текста (можно выбрать подходящий) */
+  /* border: 1px solid black; */
+}
+
+/* YourComponent.css */
+
+.contq {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px;
+  /* border: 1px solid black; */
+}
+
+.text-container1 {
+  max-width: 50%;
+  /* border: 2px solid black; */
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 600px;
+  gap: 30px;
+  /* border: 1px solid red; */
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  /* border: 1px solid rgb(135, 138, 188); */
+}
+
+.image-row img {
+  width: 130px;
+  height: 140px;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  /* border: 1px solid rgb(0, 17, 255); */
+}
+
+/* YourComponent.css */
+
+.contq1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid black; */
+}
+
+.imagecontainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px; /* Пример расстояния между изображениями */
+}
+
+.imagecontainer img {
+  width: 100%; /* Установите нужную ширину */
+  height: auto; /* Сохранение пропорций */
+  /* border: 1px solid red; */
+  margin: 40px;
+  margin-right: 800px;
+  border: 3px solid #ddd;
+}
+
+.textcontainer {
+  margin-left: -30px;
+  /* border: 3px solid blue; */
+  padding: 100px; /* Пример внутреннего отступа */
+}
+
+.textcontainer h1 {
+  margin-bottom: 4px; /* Пример отступа для заголовка */
+}
+
+.textcontainer p {
+  margin: 1px; /* Убираем внешний отступ у параграфа */
+}
+
+.textp {
+  width: 500px;
+  height: 300px;
+  padding: 0px;
   /* border: 1px solid black; */
 }

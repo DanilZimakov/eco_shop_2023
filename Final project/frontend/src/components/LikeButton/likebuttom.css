@@ -7,14 +7,25 @@
   align-items: center;
   gap: 4px;
   transition: transform 0.3s ease-in-out;
+
   /* font-weight: bold; */
+  /* border: 1px solid black; */
 }
 
 .likes-count {
   margin-left: 4px;
+  /* width: 30px; */
+  /* border: 3px solid black; */
+  /* width: 100px; */
 }
 
 .like-button:hover {
-  transform: scale(1.2); /* Увеличиваем размер при наведении */
+  transform: scale(1.2);
   cursor: pointer;
+  /* border: 3px solid cadetblue; */
+}
+
+.bl {
+  width: 30px;
+  padding: 5px;
 }

@@ -1,9 +1,11 @@
-.card-container {
+.card-containerr {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 25px;
   border-radius: 10px;
+  /* border: 2px solid red; */
+  background-color: rgb(246, 235, 219);
 }
 
 .card {
@@ -18,4 +20,9 @@
 .animated-card:hover {
   transform: translateY(-10px);
   box-shadow: 0px 0px 15px rgb(23, 23, 23);
+}
+
+.q {
+  /* border: 2px solid red; */
+  height: 1000px;
 }

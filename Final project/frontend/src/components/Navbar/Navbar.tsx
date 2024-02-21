@@ -43,7 +43,6 @@ const Navbar = () => {
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
-          {/* <img src={photo} alt="" /> */}
           <div className="navbar-start">
             <NavLink className="navbar-item" to={"/"}>
               Главная страница
@@ -73,7 +72,7 @@ const Navbar = () => {
                 {user ? (
                   <>
                     <button className="button is-black" onClick={handlerLogout}>
-                      Logout
+                      Выйти
                     </button>
                     <NavLink className="navbar-item" to={"/cart"}>
                       Корзина
@@ -82,7 +81,7 @@ const Navbar = () => {
                 ) : (
                   <>
                     <NavLink className="button is-black" to={"/registration"}>
-                      Зарегестрироваться
+                      Зарегистрироваться
                     </NavLink>
                     <NavLink className="button is-black" to={"/login"}>
                       Войти

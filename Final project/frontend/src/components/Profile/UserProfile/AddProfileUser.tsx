@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { addUserProfile, loadUserProfile } from "../../../redux/Slice/UserSlice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 type genderType = "" |"Муж" | "Жен";
 function AddProfileUser() {
@@ -10,9 +11,10 @@ function AddProfileUser() {
   const [image, setImage] = useState<string>("");
 const {user} = useSelector((store:RootState) => store.auth)
 const dispatch = useAppDispatch()
-
+const navigate = useNavigate()
 useEffect(() => {
     dispatch(loadUserProfile())
+   
 })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +33,7 @@ useEffect(() => {
   function handlerEditProfile(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(addUserProfile({ age, gender, image }));
+     navigate("/profile");
   }
 
   return (

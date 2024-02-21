@@ -20,7 +20,7 @@ import { loadCategory } from "../redux/Slice/categorySlice/categorySlice";
 import { harmLoad } from "../redux/Slice/harmSlice/harmSlice";
 import AddProfileUser from "../components/Profile/UserProfile/AddProfileUser";
 import { loadUserProfile } from "../redux/Slice/UserSlice/userSlice";
-import Cart from "../components/Cart/Cart";
+import AllCategoryPost from "../components/Categories/AllCategoryPost";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ function App(): JSX.Element {
     if (localStorage.getItem("token")) {
       dispatch(loadUserProfile());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
@@ -49,21 +49,21 @@ function App(): JSX.Element {
         }
       >
         <Route index element={<Home />} />
-        <Route path="/login" element={<SignIn />} />
-        <Route path="/registration" element={<SignUp />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:categoryId" element={<SubCategories />}>
-          <Route
-            path="/categories/:categoryId/posts/:postId"
-            element={<PostPage />}
-          />
+        <Route path="login" element={<SignIn />} />
+        <Route path="registration" element={<SignUp />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="categories/:categoryId" element={<SubCategories />}>
+          <Route index element={<AllCategoryPost />} />
+          <Route path="posts/:postId" element={<PostPage />} />
         </Route>
-        <Route path="/sub-categories" element={<SubCategories />} />
-        <Route path="/categories/:categoryId" element={<SubCategories />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<AddProfileUser />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/categories/:categoryId/posts/:postId"
+          element={<PostPage />}
+        />
+        <Route path="profile" element={<Profile />} />
+        <Route path="profile/edit" element={<AddProfileUser />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );

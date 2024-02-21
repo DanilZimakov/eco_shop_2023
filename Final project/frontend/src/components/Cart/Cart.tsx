@@ -27,26 +27,33 @@ const Cart: React.FC = () => {
   const navigate = useNavigate();
 
   const handleImageClick = (categoryId: number, postId: number) => {
+    console.log(`Navigating to: /categories/${categoryId}/posts/${postId}`);
     navigate(`/categories/${categoryId}/posts/${postId}`);
   };
+
+  console.log();
+
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/cart/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        if (token) {
+          const response = await axios.get("http://localhost:3000/cart/", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          // Переносим очистку корзины после успешного получения данных
+          dispatch(clearCartAction());
+          response.data.forEach((item: CartItemType) => {
+            dispatch(addItem(item));
+          });
 
-        dispatch(clearCartAction());
-        response.data.forEach((item: CartItemType) => {
-          dispatch(addItem(item));
-        });
-
-        console.log("fetchCartItems", response.data);
+          console.log("fetchCartItems", response.data);
+        }
       } catch (error) {
         console.error("Error fetching cart items:", error);
+        // Обработка ошибки загрузки данных корзины
       }
     };
     fetchCartItems();
@@ -119,63 +126,100 @@ const Cart: React.FC = () => {
   };
   return (
     <>
-      <div className="container">
-        <div className="cart">
-          {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item.post.id} className="cart-item">
-                <img
-                  src={item.post.image}
-                  alt={item.post.name}
-                  onClick={() =>
-                    handleImageClick(item.post.category_id, item.post.id)
-                  }
-                />
-                <h3>{item.post.name}</h3>
-                <p>{item.post.price}</p>
-                <div className="quantity">
-                  <button onClick={() => handleDecQuantity(item.id)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => hendleIncQuantity(item.id)}>+</button>
+      <div className="q">
+        <div className="container">
+          <div className="cart">
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <div key={item.post.id} className="cart-item">
+                  <img
+                    src={item.post.image}
+                    alt={item.post.name}
+                    onClick={() =>
+                      handleImageClick(
+                        item.post.category_id,
+                        item.post.sub_category_id,
+                      )
+                    }
+                  />
+                  <h3>{item.post.name}</h3>
+                  <p>{item.post.price}</p>
+                  <div className="quantity">
+                    <button
+                      className="plus"
+                      onClick={() => handleDecQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      className="minus"
+                      onClick={() => hendleIncQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="result">₽{item.post.price * item.quantity}</p>
+                  <button
+                    className="delete"
+                    onClick={() => handleRemoveItem(item.id)}
+                  >
+                    Удалить
+                  </button>
                 </div>
-                <p>${item.post.price * item.quantity}</p>
-                <button onClick={() => handleRemoveItem(item.id)}>
-                  Delete
-                </button>
+              ))
+            ) : (
+              <div>
+                Кажется, ваша корзина испытывает одиночество. <br />
+                Составьте ей компанию, добавив экологичные товары. <br /> Вместе
+                мы можем сделать мир чище! ♻️
               </div>
-            ))
-          ) : (
-            <div>Cart is empty</div>
-          )}
-          <div className="total">Total Price: ${totalPrice}</div>
-          <button
-            className="modal-close is-large"
-            aria-label="close"
-            onClick={handleClearCart}
-          >
-            Clear Cart
-          </button>
-        </div>
+            )}
 
-        <button className="buy-button" onClick={handleOpenModal}>
-          Buy Now
-        </button>
+            {cartItems.length > 0 && (
+              <div>
+                <p>
+                  Ваш выбор – настоящий вклад в заботу о нашей земле. <br />
+                  Мы думаем, что даже деревья аплодируют своими листьями в знак
+                  благодарности. <br /> Продолжайте с нами в этом экологическом
+                  приключении! 🌳👏
+                </p>
+              </div>
+            )}
 
-        {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
-              <span className="close" onClick={handleCloseModal}>
-                &times;
-              </span>
-              <form>
-                <label htmlFor="cardNumber">Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" />
-                <input type="text" id="cardNumber" name="cardNumber" />
-                <button type="submit">Submit</button>
-              </form>
+            <div className="total">
+              Общая сумма: ₽{totalPrice} <br />
             </div>
+
+            <button
+              className="modal-close is-large"
+              aria-label="close"
+              onClick={handleClearCart}
+            >
+              Clear Cart
+            </button>
           </div>
-        )}
+
+          <button className="buy" onClick={handleOpenModal}>
+            Купить
+          </button>
+
+          {isModalOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <span className="close" onClick={handleCloseModal}>
+                  &times;
+                </span>
+                <form>
+                  <label htmlFor="cardNumber">Card Number</label>
+                  <input type="text" id="cardNumber" name="cardNumber" />
+                  <input type="text" id="cardNumber" name="cardNumber" />
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
