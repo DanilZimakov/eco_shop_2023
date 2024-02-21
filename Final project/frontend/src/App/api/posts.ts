@@ -2,13 +2,14 @@ import axios from "axios";
 import { CategoryId } from "../../types/categories/categories";
 import { PostEditType, PostId, PostType } from "../../types/posts/posts";
 
-const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3000";
+
+const BASE_URL = "https://swap-style-eco.shop";
 
 export const axiosLoadPosts = async () => {
   const res = await axios.get(`${BASE_URL}/posts`);
   return res.data;
 };
-
 
 export const axiosDelPosts = async (
   postId: CategoryId,

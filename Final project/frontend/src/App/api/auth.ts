@@ -1,7 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { User } from "../../types/user/userType";
 import { SignInType, SignUpType } from "../../types/auth/authTypes";
-const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://swap-style-eco.shop";
+
 axios.defaults.withCredentials = true;
 export const axiosSignUp = async (data: SignUpType): Promise<User> => {
   try {
