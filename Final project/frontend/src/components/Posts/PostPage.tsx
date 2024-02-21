@@ -80,7 +80,7 @@ const PostPage: React.FC = () => {
           <div
             key={post.id}
             className="product-card"
-            style={{ border: color ? `1px solid ${color}` : "none" }}
+            style={{ border: color ? `3px solid ${color}` : "none" }}
           >
             {post.image && post.image.length > 0 && (
               <img src={post.image} alt={post.name} />
@@ -89,8 +89,10 @@ const PostPage: React.FC = () => {
             <p>Цена: {post.price} ₽</p>
             {/* <p>Описание: {post.description}</p> */}
             <p>Размер: {post.size}</p>
+            <p>
+              <b>Экологическая оценка:</b> {harmSearch?.ecoStatus}
+            </p>
             <p>Рекомендации: {harmSearch?.message}</p>
-            <p>Экологическая оценка: {harmSearch?.ecoStatus}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
               <div className="add" onClick={() => handleAddClick(post)}>

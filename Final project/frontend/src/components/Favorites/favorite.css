@@ -6,7 +6,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
- 
 }
 
 .favorite-card {
@@ -20,66 +19,49 @@
 
   &:hover {
     transform: scale(1.05);
-}
-
-img.favorite-image {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-p {
-  margin-bottom: 5px;
-}
-
-/* button {
-  background-color: #3498db;
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #2980b9;
   }
 
-  & + button {
-    margin-left: 10px;
+  img.favorite-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
   }
-} */
 
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  width: 40px;
-}
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
 
-.img1,
-.img2 {
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
+  p {
+    margin-bottom: 5px;
+  }
 
-.img1 {
-  order: 1; /* Помещаем корзину в левую часть */
-}
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 40px;
+  }
 
-.img2 {
-  order: 4; /* Помещаем крестик в правую часть */
-  margin-left: 150px;
-  /* width: 35px; */
-}
+  .img1,
+  .img2 {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
 
-.img1:hover,
-.img2:hover {
-  transform: scale(1.2);
+  .img1 {
+    order: 1; /* Помещаем корзину в левую часть */
+  }
+
+  .img2 {
+    order: 4; /* Помещаем крестик в правую часть */
+    margin-left: 150px;
+    /* width: 35px; */
+  }
+
+  .img1:hover,
+  .img2:hover {
+    transform: scale(1.2);
+  }
 }
