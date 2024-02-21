@@ -12,7 +12,7 @@ function UserProfile(): JSX.Element {
     <>
       <div className="user-profile-all">
         <div className="user-profile">
-          {profile ? (
+          {profile && profile.image ? (
             <>
               <img
                 src={profile.image}
@@ -23,7 +23,7 @@ function UserProfile(): JSX.Element {
           ) : (
             <img
               src={
-                "https://cdn.fishki.net/upload/post/2018/04/09/2564770/1-4d137341-2db8-49c6-83de-e8ef75519d43.jpg"
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5sN1P0X-a0dyw92sbM_zSvaFJD32H9PDJ2g&usqp=CAU"
               }
               alt="User avatar"
               className="user-avatar"
@@ -34,8 +34,8 @@ function UserProfile(): JSX.Element {
             <div className="user-info">
               {profile ? (
                 <>
-                <p>Возраст: {profile.age}</p>
-                <p>Пол: {profile.gender}</p>
+                  <p>Возраст: {profile.age}</p>
+                  <p>Пол: {profile.gender}</p>
                 </>
               ) : (
                 <>
