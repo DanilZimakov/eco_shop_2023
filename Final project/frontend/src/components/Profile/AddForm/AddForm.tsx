@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../redux/store";
-import { loadMaterials } from "../../../redux/Slice/MaterialsSlice/materialsSlice";
+
 // import "bulma/css/bulma.min.css";
 import "./AddForm.css";
 import { addPost } from "../../../redux/Slice/PostsSlice/postsSlice";
 
 import { Compounds } from "../../../types/posts/posts";
 import { SubCategoryType } from "../../../types/sub_category/sub_category";
+import { loadMaterials } from "../../../redux/Slice/materialsSlice/materialsSlice";
 
 const AddForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -24,13 +25,13 @@ const AddForm = (): JSX.Element => {
   const [price, setPrice] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [compositions, setCompositions] = useState<Compounds[]>([
-    {  material: 0, parcent: 0 },
+    { material: 0, parcent: 0 },
   ]);
   const [weight, setWeight] = useState<string>("");
- 
-  const {category} = useSelector((store:RootState) => store.categories)
+
+  const { category } = useSelector((store: RootState) => store.categories);
   const subCategory = useSelector(
-    (store: RootState) => store.subCategories.subCategories
+    (store: RootState) => store.subCategories.subCategories,
   );
   const { materials } = useSelector((state: RootState) => state.materials);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -62,11 +63,11 @@ const AddForm = (): JSX.Element => {
       setSubCategories([]);
     }
   }, [selectedCategory]);
- 
+
   const handleCompositionChange = (
     index: number,
     field: string,
-    value: string | number
+    value: string | number,
   ) => {
     const updatedCompositions = [...compositions];
     if (field === "material") {
@@ -76,10 +77,9 @@ const AddForm = (): JSX.Element => {
     }
     setCompositions(updatedCompositions);
   };
-  
 
   const addCompositionField = () => {
-    setCompositions([...compositions, {  material: 0, parcent: 0 }]);
+    setCompositions([...compositions, { material: 0, parcent: 0 }]);
   };
 
   const removeCompositionField = (index: number) => {
@@ -87,7 +87,7 @@ const AddForm = (): JSX.Element => {
   };
 
   const handleSubCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setSelectedSubCategory(event.target.value);
   };
@@ -106,7 +106,7 @@ const AddForm = (): JSX.Element => {
           materials: compositions,
           user_id: user?.id,
           category_id: +selectedCategory,
-        })
+        }),
       );
 
       setName("");
@@ -114,13 +114,13 @@ const AddForm = (): JSX.Element => {
       setDescription("");
       setSize("");
       setWeight("");
-      setCompositions([{  material: 0, parcent: 0 }]);
+      setCompositions([{ material: 0, parcent: 0 }]);
       setImage("");
       setSubCategories([]);
     } catch (error) {
       console.error("Error submitting form:", error);
       alert(
-        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз."
+        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.",
       );
     }
   };
@@ -302,7 +302,7 @@ const AddForm = (): JSX.Element => {
                   handleCompositionChange(
                     index,
                     "percentage",
-                    Number(e.target.value)
+                    Number(e.target.value),
                   )
                 }
               >
