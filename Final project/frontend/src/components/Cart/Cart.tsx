@@ -78,7 +78,7 @@ const Cart: React.FC = () => {
           { quantity: newQuantity },
           {
             headers: { Authorization: `Bearer ${token}` },
-          },
+          }
         );
         const updatedItem = response.data;
         dispatch(increaseQuantity({ id, quantity: updatedItem.quantity }));
@@ -99,7 +99,7 @@ const Cart: React.FC = () => {
           { quantity: newQuantity },
           {
             headers: { Authorization: `Bearer ${token}` },
-          },
+          }
         );
 
         const updatedItem = response.data;
@@ -119,63 +119,78 @@ const Cart: React.FC = () => {
   };
   return (
     <>
-      <div className="container">
-        <div className="cart">
-          {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item.post.id} className="cart-item">
-                <img
-                  src={item.post.image}
-                  alt={item.post.name}
-                  onClick={() =>
-                    handleImageClick(item.post.category_id, item.post.id)
-                  }
-                />
-                <h3>{item.post.name}</h3>
-                <p>{item.post.price}</p>
-                <div className="quantity">
-                  <button onClick={() => handleDecQuantity(item.id)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => hendleIncQuantity(item.id)}>+</button>
+      <div className="q">
+        <div className="container">
+          <div className="cart">
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <div key={item.post.id} className="cart-item">
+                  <img
+                    src={item.post.image}
+                    alt={item.post.name}
+                    onClick={() =>
+                      handleImageClick(item.post.category_id, item.post.id)
+                    }
+                  />
+                  <h3>{item.post.name}</h3>
+                  <p>{item.post.price}</p>
+                  <div className="quantity">
+                    <button
+                      className="plus"
+                      onClick={() => handleDecQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      className="minus"
+                      onClick={() => hendleIncQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="result">₽{item.post.price * item.quantity}</p>
+                  <button
+                    className="delete"
+                    onClick={() => handleRemoveItem(item.id)}
+                  >
+                    Удалить
+                  </button>
                 </div>
-                <p>${item.post.price * item.quantity}</p>
-                <button onClick={() => handleRemoveItem(item.id)}>
-                  Delete
-                </button>
-              </div>
-            ))
-          ) : (
-            <div>Cart is empty</div>
-          )}
-          <div className="total">Total Price: ${totalPrice}</div>
-          <button
-            className="modal-close is-large"
-            aria-label="close"
-            onClick={handleClearCart}
-          >
-            Clear Cart
-          </button>
-        </div>
-
-        <button className="buy-button" onClick={handleOpenModal}>
-          Buy Now
-        </button>
-
-        {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
-              <span className="close" onClick={handleCloseModal}>
-                &times;
-              </span>
-              <form>
-                <label htmlFor="cardNumber">Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" />
-                <input type="text" id="cardNumber" name="cardNumber" />
-                <button type="submit">Submit</button>
-              </form>
-            </div>
+              ))
+            ) : (
+              <div>Cart is empty</div>
+            )}
+            <div className="total">Общая сумма: ₽{totalPrice}</div>
+            <button
+              className="modal-close is-large"
+              aria-label="close"
+              onClick={handleClearCart}
+            >
+              Clear Cart
+            </button>
           </div>
-        )}
+
+          <button className="buy" onClick={handleOpenModal}>
+            Купить
+          </button>
+
+          {isModalOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <span className="close" onClick={handleCloseModal}>
+                  &times;
+                </span>
+                <form>
+                  <label htmlFor="cardNumber">Card Number</label>
+                  <input type="text" id="cardNumber" name="cardNumber" />
+                  <input type="text" id="cardNumber" name="cardNumber" />
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

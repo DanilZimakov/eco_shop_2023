@@ -75,13 +75,13 @@ const Navbar = () => {
                 {user ? (
                   <>
                     <button className="button is-black" onClick={handlerLogout}>
-                      Logout
+                      Выйти
                     </button>
                   </>
                 ) : (
                   <>
                     <NavLink className="button is-black" to={"/registration"}>
-                      Зарегестрироваться
+                      Зарегистрироваться
                     </NavLink>
                     <NavLink className="button is-black" to={"/login"}>
                       Войти

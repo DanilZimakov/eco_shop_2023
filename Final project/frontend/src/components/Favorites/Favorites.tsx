@@ -3,6 +3,9 @@ import axios from "axios";
 import { PostType } from "../../types/posts/posts";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
+import "./favorite.css";
+import cart from "./cart.png";
+import crest from "./crest.png";
 
 const Favorites: React.FC = () => {
   const [favoritePosts, setFavoritePosts] = useState<PostType[]>([]);
@@ -42,7 +45,7 @@ const Favorites: React.FC = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       if (
@@ -57,12 +60,12 @@ const Favorites: React.FC = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         );
 
         if (removeFromFavoritesResponse.status === 200) {
           setFavoritePosts(
-            favoritePosts.filter((favoritePost) => favoritePost.id !== post.id),
+            favoritePosts.filter((favoritePost) => favoritePost.id !== post.id)
           );
 
           dispatch(
@@ -81,14 +84,14 @@ const Favorites: React.FC = () => {
                 category_id: 0,
                 sub_category_id: 0,
               },
-            }),
+            })
           );
         }
       }
     } catch (error) {
       console.error(
         "Error adding item to cart or removing from favorites:",
-        error,
+        error
       );
     }
   };
@@ -107,12 +110,12 @@ const Favorites: React.FC = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       if (response.status === 200) {
         setFavoritePosts(
-          favoritePosts.filter((favoritePost) => favoritePost.id !== post.id),
+          favoritePosts.filter((favoritePost) => favoritePost.id !== post.id)
         );
       }
     } catch (error) {
@@ -121,22 +124,33 @@ const Favorites: React.FC = () => {
   };
 
   return (
-    <div className="favorites-container">
-      {favoritePosts.map((post) => (
-        <div key={post.id} className="favorite-card">
-          <img src={post.image} alt={post.name} className="favorite-image" />
-          <h3>{post.name}</h3>
-          <p>Price: ${post.price}</p>
-          <p>Description: {post.description}</p>
-          <p>Size: {post.size}</p>
-          <button onClick={() => handleAddClick(post)}>Add to Cart</button>
-          <button onClick={() => removeFavorite(post)}>
-            Remove from Favorites
-          </button>
-        </div>
-      ))}
+    <div className="q">
+      <div className="favorites-container">
+        {favoritePosts.map((post) => (
+          <div key={post.id} className="favorite-card">
+            <img src={post.image} alt={post.name} className="favorite-image" />
+            <h3>{post.name}</h3>
+            <p>Price: ${post.price}</p>
+            {/* <p>Description: {post.description}</p> */}
+            <p>Size: {post.size}</p>
+            <div className="action-buttons">
+              <img
+                className="img1"
+                src={cart}
+                alt="Add to Cart"
+                onClick={() => handleAddClick(post)}
+              />
+              <img
+                className="img2"
+                src={crest}
+                alt="Remove from Favorites"
+                onClick={() => removeFavorite(post)}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
-
 export default Favorites;
