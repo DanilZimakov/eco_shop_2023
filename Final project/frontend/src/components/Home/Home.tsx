@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import video from "./3.mp4";
+import video from "./vi.mp4";
 import { Chart, ChartConfiguration } from "chart.js/auto";
 import red from "./133.jpeg";
 import yellow from "./14.jpg";

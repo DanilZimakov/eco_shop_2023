@@ -7,7 +7,7 @@ import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 import axios from "axios";
 import { PostType } from "../../types/posts/posts";
 import { HarmType } from "../../types/harm/harm";
-// import cart from "./cart.png";
+import cart from "./cart.png";
 
 const PostPage: React.FC = () => {
   const { categoryId, postId } = useParams();
@@ -68,7 +68,7 @@ const PostPage: React.FC = () => {
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card-container">
       {filteredPosts.map((post: PostType) => {
         const harmSearch = harm.find(
           (harm: HarmType) => harm.post_id === post.id
@@ -77,25 +77,21 @@ const PostPage: React.FC = () => {
         return (
           <div
             key={post.id}
+            className="product-card"
             style={{ border: color ? `1px solid ${color}` : "none" }}
           >
             {post.image && post.image.length > 0 && (
               <img src={post.image} alt={post.name} />
             )}
             <h3>{post.name}</h3>
-            <p>Цена: {post.price}.Руб</p>
+            <p>Цена: {post.price} ₽</p>
             {/* <p>Описание: {post.description}</p> */}
             <p>Размер: {post.size}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
-              {/* <div className="add ">
-                <img
-                  className="a"
-                  src={cart}
-                  alt="Add"
-                  onClick={() => handleAddClick(post)}
-                />
-              </div> */}
+              <div className="add" onClick={() => handleAddClick(post)}>
+                <img className="a" src={cart} alt="Add to Cart" />
+              </div>
             </div>
           </div>
         );
