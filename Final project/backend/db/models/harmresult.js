@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       post_id: DataTypes.INTEGER,
       message: DataTypes.TEXT,
       color: DataTypes.STRING,
+      ecoStatus: DataTypes.STRING,
     },
     {
       sequelize,

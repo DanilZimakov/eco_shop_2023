@@ -23,6 +23,9 @@ module.exports = {
       color: {
         type: Sequelize.STRING
       },
+      ecoStatus: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
