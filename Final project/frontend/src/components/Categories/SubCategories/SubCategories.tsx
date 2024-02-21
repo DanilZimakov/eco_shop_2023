@@ -4,6 +4,7 @@ import { RootState } from "../../../redux/store";
 import { SubCategoryType } from "../../../types/sub_category/sub_category";
 import "./subStyle.css";
 
+
 const SubCategories = () => {
   const { categoryId } = useParams();
 
@@ -14,6 +15,7 @@ const SubCategories = () => {
   const sub = subCategory.filter(
     (el: SubCategoryType) => el.category_id === Number(categoryId)
   );
+  
 
   return (
     <div>
@@ -29,8 +31,8 @@ const SubCategories = () => {
             </Link>
           );
         })}
-      </div>
-      <Outlet />
+      </div>      
+        <Outlet />
     </div>
   );
 };

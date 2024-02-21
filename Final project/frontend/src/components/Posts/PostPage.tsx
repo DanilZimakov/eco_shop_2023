@@ -87,6 +87,8 @@ const PostPage: React.FC = () => {
             <p>Цена: {post.price} ₽</p>
             {/* <p>Описание: {post.description}</p> */}
             <p>Размер: {post.size}</p>
+            <p>Рекомендации: {harmSearch?.message}</p>
+            <p>Экологическая оценка: {harmSearch?.ecoStatus}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
               <div className="add" onClick={() => handleAddClick(post)}>
