@@ -51,9 +51,7 @@ const Navbar = () => {
             <NavLink className="navbar-item" to={"/categories"}>
               Категории
             </NavLink>
-            <NavLink className="navbar-item" to={"/cart"}>
-              Корзина
-            </NavLink>
+
             <NavLink className="navbar-item" to={"/favorites"}>
               Избранные
             </NavLink>
@@ -77,6 +75,9 @@ const Navbar = () => {
                     <button className="button is-black" onClick={handlerLogout}>
                       Logout
                     </button>
+                    <NavLink className="navbar-item" to={"/cart"}>
+                      Корзина
+                    </NavLink>
                   </>
                 ) : (
                   <>
