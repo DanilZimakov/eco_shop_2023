@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { InitialPost } from "../../../types/initialState/initialState";
 import { ActionPosts } from "../../../types/enum/Action";
 import * as api from "../../../App/api/posts";
-import { PostEditType, PostId } from "../../../types/posts/posts";
+import { PostAddType, PostEditType, PostId } from "../../../types/posts/posts";
+
 const initialPost: InitialPost = {
   posts: [],
 };
@@ -16,6 +17,10 @@ export const deletePost = createAsyncThunk(
 export const publichPost = createAsyncThunk(
   ActionPosts.PUBLICH_POST,
   (id: PostId) => api.axiosPublichPosts(id),
+);
+export const addPost = createAsyncThunk(
+  ActionPosts.ADD_POST,
+  async (data: PostAddType) => api.axiosAddPost(data),
 );
 
 export const editPost = createAsyncThunk(
@@ -34,6 +39,9 @@ const postSlice = createSlice({
     builder
       .addCase(loadPost.fulfilled, (state, action) => {
         state.posts = action.payload;
+      })
+      .addCase(addPost.fulfilled, (state, action) => {
+        state.posts.push(action.payload);
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         state.posts = state.posts.filter(

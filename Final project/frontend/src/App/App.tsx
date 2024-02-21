@@ -6,7 +6,6 @@ import SubCategories from "../components/Categories/SubCategories/SubCategories"
 import SignUp from "../components/Auth/Sign-up";
 import SignIn from "../components/Auth/Sign-in";
 
-import Cart from "../components/Cart/Cart";
 import { useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/Slice/authSlice/authSlice";
@@ -19,6 +18,9 @@ import Favorites from "../components/Favorites/Favorites";
 
 import { loadCategory } from "../redux/Slice/categorySlice/categorySlice";
 import { harmLoad } from "../redux/Slice/harmSlice/harmSlice";
+import AddProfileUser from "../components/Profile/UserProfile/AddProfileUser";
+import { loadUserProfile } from "../redux/Slice/UserSlice/userSlice";
+import Cart from "../components/Cart/Cart";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -30,6 +32,9 @@ function App(): JSX.Element {
     dispatch(loadSubCategory());
     dispatch(loadPost());
     dispatch(harmLoad());
+    if (localStorage.getItem("token")) {
+      dispatch(loadUserProfile());
+    }
   }, []);
 
   return (
@@ -56,6 +61,7 @@ function App(): JSX.Element {
         <Route path="/sub-categories" element={<SubCategories />} />
         <Route path="/categories/:categoryId" element={<SubCategories />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<AddProfileUser />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
       </Route>

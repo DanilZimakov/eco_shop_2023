@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-
+import "./likebuttom.css";
 interface LikeButtonProps {
   postId: number;
   categoryId: number;
@@ -57,10 +57,13 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
   return (
     <button onClick={toggleLike} className="like-button">
       <FontAwesomeIcon
+        style={{ color: "#F0CD7F" }}
         icon={liked ? faHeartSolid : faHeartRegular}
         color={liked ? "red" : "black"}
       />
-      <span className="likes-count">{likesCount}</span>
+      <span className="likes-count" style={{ color: "#F0CD7F" }}>
+        {likesCount}
+      </span>
     </button>
   );
 };

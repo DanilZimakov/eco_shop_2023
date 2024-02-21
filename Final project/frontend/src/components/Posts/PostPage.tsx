@@ -6,11 +6,13 @@ import "./PostPage.css";
 import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 import axios from "axios";
 import { PostType } from "../../types/posts/posts";
+import { HarmType } from "../../types/harm/harm";
+// import cart from "./cart.png";
 
 const PostPage: React.FC = () => {
   const { categoryId, postId } = useParams();
   const posts = useSelector((store: RootState) => store.posts.posts);
-
+  const { harm } = useSelector((store: RootState) => store.harm);
   const dispatch = useDispatch();
 
   function fillPost(posts: PostType[]) {
@@ -38,7 +40,7 @@ const PostPage: React.FC = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       console.log("Item added to cart:", response.data);
@@ -58,7 +60,7 @@ const PostPage: React.FC = () => {
             category_id: 0,
             sub_category_id: 0,
           },
-        }),
+        })
       );
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -67,28 +69,35 @@ const PostPage: React.FC = () => {
 
   return (
     <div className="product-card">
-      {filteredPosts.map((post:PostType) => {
+      {filteredPosts.map((post: PostType) => {
+        const harmSearch = harm.find(
+          (harm: HarmType) => harm.post_id === post.id
+        );
+        const color = harmSearch ? harmSearch.color : "none";
         return (
-          <div key={post.id}>
+          <div
+            key={post.id}
+            style={{ border: color ? `1px solid ${color}` : "none" }}
+          >
             {post.image && post.image.length > 0 && (
-              <img
-                style={{ width: "200px", height: "200px" }}
-                src={post.image}
-                alt={post.name}
-              />
+              <img src={post.image} alt={post.name} />
             )}
-            <h3>Название: {post.name}</h3>
+            <h3>{post.name}</h3>
             <p>Цена: {post.price}.Руб</p>
-            <p>Описание: {post.description}</p>
+            {/* <p>Описание: {post.description}</p> */}
             <p>Размер: {post.size}</p>
+            <p>Рекомендации: {harmSearch?.message}</p>
+            <p>Экологическая оценка: {harmSearch?.ecoStatus}</p>
             <div>
               <LikeButton postId={post.id} categoryId={Number(categoryId)} />
-              <button
-                className="bis-primary is-small"
-                onClick={() => handleAddClick(post)}
-              >
-                Add
-              </button>
+              {/* <div className="add ">
+                <img
+                  className="a"
+                  src={cart}
+                  alt="Add"
+                  onClick={() => handleAddClick(post)}
+                />
+              </div> */}
             </div>
           </div>
         );

@@ -1,41 +1,39 @@
 const router = require("express").Router();
-const { Post } = require("../../db/models");
+const { Post, User, Compound } = require("../../db/models");
 const { validateAccessToken } = require("../../jwt/validateToken");
 
 router.get("/", async (req, res) => {
-  const posts = await Post.findAll({order: [["id", "ASC"]]});
+  const posts = await Post.findAll({ order: [["id", "ASC"]] });
   res.json(posts);
 });
 
 router.post("/add", async (req, res) => {
   try {
-    const {
-      name,
-      price,
-      description,
-      image,
-      size,
-      material,
-      parcent,
-      user_id,
-      category_id,
-      sub_category_id,
-    } = req.body;
-    
+   const {name, price, description, image, size, weight, materials, user_id, category_id, sub_category_id} = req.body;
     const post = await Post.create({
       name,
       price,
       description,
-      image,
       size,
       publich: false,
-      material,
-      parcent,
+      likesCount:0,
+      image,
+      weight,
       user_id,
       category_id,
       sub_category_id,
     });
-    res.json({ success: true, post: post });
+    let material;
+    for (let i = 0; i < materials.length; i += 1){
+       material = await Compound.create({
+        material_id: materials[i].material,
+        post_id: post.id,
+        parcent: materials[i].parcent
+      })
+    }
+   
+    
+    res.status(200).json(post);
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -47,16 +45,20 @@ router.delete("/delete/:postId", async (req, res) => {
     const { postId } = req.params;
     const token = req.headers.authorization?.split(" ")[1];
     const validToken = validateAccessToken(token);
-    const deletePost = await Post.destroy({
-      where: { id: postId, user_id: validToken.id },
-    });
-    if (deletePost) {
-      res.json(postId);
-      return;
+    const post = await Post.findByPk(postId);
+    const admin = await User.findOne({ where: { is_admin: true } });
+    if (admin.is_admin === true || post.user_id === validToken.id) {
+      const deletePost = await Post.destroy({
+        where: { id: postId },
+      });
+      if (deletePost) {
+        res.json(postId);
+        return;
+      }
     }
     throw new Error();
-  } catch ({ message }) {
-    res.status(500).json({ message });
+  } catch (error) {
+    console.error("ERRRORR DELETE: ", error);
   }
 });
 

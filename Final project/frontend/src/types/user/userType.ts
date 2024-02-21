@@ -5,3 +5,11 @@ export type User = {
   phone: string;
   admin: boolean;
 };
+
+export type UserProfileType = {
+  id: number;
+  user_id: number;
+  age:string;
+  image: string;
+  gender: string;
+}

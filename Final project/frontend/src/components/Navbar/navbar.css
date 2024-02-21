@@ -1,1 +1,34 @@
+.is-lemonchiffon {
+  background-color: rgb(246, 235, 219) !important;
+}
 
+.navbar.is-lemonchiffon {
+  background-color: rgb(246, 235, 219) !important;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
+  background-color: rgb(232, 232, 154);
+  padding: 2px;
+  /* border: 1px solid black; */
+}
+
+.navbar-item:hover {
+  text-decoration: none;
+}
+
+.navbar-item:hover {
+  color: black;
+}
+
+.navbar-item:hover {
+  background-color: transparent;
+}
+
+.navbar-item:active,
+.navbar-item:focus {
+  background-color: transparent;
+}
