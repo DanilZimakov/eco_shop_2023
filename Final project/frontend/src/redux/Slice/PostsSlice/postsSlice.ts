@@ -18,7 +18,10 @@ export const publichPost = createAsyncThunk(
   ActionPosts.PUBLICH_POST,
   (id: PostId) => api.axiosPublichPosts(id),
 );
-export const addPost = createAsyncThunk(ActionPosts.ADD_POST, async (data:PostAddType) => api.axiosAddPost(data))
+export const addPost = createAsyncThunk(
+  ActionPosts.ADD_POST,
+  async (data: PostAddType) => api.axiosAddPost(data),
+);
 
 export const editPost = createAsyncThunk(
   ActionPosts.EDIT_POST,
