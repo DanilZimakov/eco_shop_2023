@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { InitialMaterialsType } from "../../../types/initialState/initialState";
 import { ActionMaterials } from "../../../types/enum/Action";
 import * as api from "../../../App/api/materials";
+
 const initialCategory: InitialMaterialsType = {
   materials: [],
 };
@@ -20,4 +21,5 @@ const materialsSlice = createSlice({
     });
   },
 });
+
 export default materialsSlice.reducer;

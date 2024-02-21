@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { RootState, useAppDispatch } from "../../../redux/store";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../../redux/store";
 
 // import "bulma/css/bulma.min.css";
 import "./AddForm.css";
@@ -10,6 +10,7 @@ import { addPost } from "../../../redux/Slice/PostsSlice/postsSlice";
 import { Compounds } from "../../../types/posts/posts";
 import { SubCategoryType } from "../../../types/sub_category/sub_category";
 import { loadMaterials } from "../../../redux/Slice/materialsSlice/materialsSlice";
+import { MaterialsType } from "../../../types/materials/materials";
 
 const AddForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ const AddForm = (): JSX.Element => {
   const subCategory = useSelector(
     (store: RootState) => store.subCategories.subCategories,
   );
+
   const { materials } = useSelector((state: RootState) => state.materials);
   const user = useSelector((state: RootState) => state.auth.user);
   const parcents = [
@@ -287,7 +289,7 @@ const AddForm = (): JSX.Element => {
                 }
               >
                 <option value="">Выберите материал</option>
-                {materials.map((comp) => (
+                {materials.map((comp: MaterialsType) => (
                   <option key={comp.id} value={comp.id}>
                     {comp.name}
                   </option>
