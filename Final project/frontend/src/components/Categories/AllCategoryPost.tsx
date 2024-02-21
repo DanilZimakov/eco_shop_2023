@@ -11,9 +11,16 @@ import axios from "axios";
 function AllCategoryPost() {
   const { categoryId } = useParams();
   const { posts } = useSelector((s: RootState) => s.posts);
-  const fillPost = posts.filter(
+
+  // const fillPost = posts.filter(
+  //   (el: PostType) => el.category_id === Number(categoryId),
+  // );
+
+  const fillPost = Array.isArray(posts) ? posts.filter(
     (el: PostType) => el.category_id === Number(categoryId)
-  );
+  ) : [];
+
+  
   const { harm } = useSelector((s: RootState) => s.harm);
   const dispatch = useAppDispatch();
   const handleAddClick = async (post: PostType) => {
@@ -31,7 +38,7 @@ function AllCategoryPost() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       console.log("Item added to cart:", response.data);
@@ -52,9 +59,9 @@ function AllCategoryPost() {
             sub_category_id: 0,
             weight: "",
             createdAt: undefined,
-            updatedAt: undefined
+            updatedAt: undefined,
           },
-        })
+        }),
       );
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -64,7 +71,7 @@ function AllCategoryPost() {
     <div className="product-card-container">
       {fillPost.map((post: PostType) => {
         const harmSearch = harm.find(
-          (harm: HarmType) => harm.post_id === post.id
+          (harm: HarmType) => harm.post_id === post.id,
         );
         const color = harmSearch ? harmSearch.color : "none";
         return (
