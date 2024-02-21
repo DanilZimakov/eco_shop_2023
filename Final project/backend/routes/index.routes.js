@@ -8,7 +8,7 @@ const materials = require('./posts/materials.routes')
 const harmRouter = require("./posts/harmFormula.routes")
 const cartRouter = require("./api/cart.api.routes");
 const materialsRouter = require("./materials/materials.routes");
-
+const userRouter = require("./user/user.routes")
 router.use("/api/auth", authRouter);
 router.use("/categories", categoriesRouter);
 router.use("/posts", postsRouter);
@@ -18,5 +18,6 @@ router.use('/materials', materials)
 router.use("/harm", harmRouter);
 router.use("/cart", cartRouter);
 router.use("/materials", materialsRouter);
+router.use("/api/user", userRouter);
 
 module.exports = router;
