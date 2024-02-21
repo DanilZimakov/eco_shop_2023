@@ -6,8 +6,8 @@ import {
   PostType,
 } from "../../types/posts/posts";
 
-// const BASE_URL = "https://swap-style-eco.shop";
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://swap-style-eco.shop";
+// const BASE_URL = "http://localhost:3000";
 
 export const axiosLoadPosts = async () => {
   const res = await axios.get(`${BASE_URL}/posts`);
