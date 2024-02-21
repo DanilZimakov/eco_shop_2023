@@ -31,7 +31,7 @@ const SubCategories = () => {
             </Link>
           );
         })}
-      </div>      
+      </div>   
         <Outlet />
     </div>
   );

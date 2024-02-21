@@ -7,6 +7,7 @@ import { addItem } from "../../redux/Slice/cartSlice/cartSlice";
 import axios from "axios";
 import { PostType } from "../../types/posts/posts";
 import { HarmType } from "../../types/harm/harm";
+import AllCategoryPost from "../Categories/AllCategoryPost";
 // import cart from "./cart.png";
 
 const PostPage: React.FC = () => {
