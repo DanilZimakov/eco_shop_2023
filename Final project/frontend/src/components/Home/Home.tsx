@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from "react";
 import video from "./vi.mp4";
 import red from "./133.jpeg";
 import yellow from "./14.jpg";

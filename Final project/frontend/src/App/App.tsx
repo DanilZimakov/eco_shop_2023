@@ -21,6 +21,7 @@ import { harmLoad } from "../redux/Slice/harmSlice/harmSlice";
 import AddProfileUser from "../components/Profile/UserProfile/AddProfileUser";
 import { loadUserProfile } from "../redux/Slice/UserSlice/userSlice";
 import AllCategoryPost from "../components/Categories/AllCategoryPost";
+import Cart from "../components/Cart/Cart";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();

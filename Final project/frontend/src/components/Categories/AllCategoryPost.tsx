@@ -50,6 +50,9 @@ function AllCategoryPost() {
             user_id: 0,
             category_id: 0,
             sub_category_id: 0,
+            weight: "",
+            createdAt: undefined,
+            updatedAt: undefined
           },
         })
       );
