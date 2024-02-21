@@ -86,6 +86,9 @@ const Favorites: React.FC = () => {
                 user_id: 0,
                 category_id: 0,
                 sub_category_id: 0,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                weight: ""
               },
             }),
           );

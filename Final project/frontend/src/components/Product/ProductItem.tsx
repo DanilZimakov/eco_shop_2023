@@ -15,7 +15,7 @@ function ProductItem(): JSX.Element {
   const { harm } = useSelector((store: RootState) => store.harm);
   const dispatch = useAppDispatch();
   const FilterUserPost = posts.filter(
-    (el: PostType) => el.user_id === user?.id && el.publich === true
+    (el: PostType) => el.user_id === user?.id && el.publich === true,
   );
 
   const [modalState, setModalState] = useState<{ [key: number]: boolean }>({});
@@ -42,7 +42,7 @@ function ProductItem(): JSX.Element {
     <div className="products-all">
       {FilterUserPost.map((el: PostType) => {
         const harmSearch = harm.find(
-          (harm: HarmType) => harm.post_id === el.id
+          (harm: HarmType) => harm.post_id === el.id,
         );
         const color = harmSearch ? harmSearch.color : "none";
         return (
@@ -74,7 +74,7 @@ function ProductItem(): JSX.Element {
             {modalState[el.id] && editingPost && (
               <Modal
                 isOpen={true}
-                post={editingPost}
+                post={editingPost as PostType}
                 onRequestClose={handleCloseModal}
               />
             )}

@@ -15,7 +15,7 @@ const AddForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadMaterials());
-  }, []);
+  }, [dispatch]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [subCategories, setSubCategories] = useState<SubCategoryType[]>([]);
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>("");
@@ -64,46 +64,6 @@ const AddForm = (): JSX.Element => {
     }
   }, [selectedCategory]);
 
-<<<<<<< HEAD
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/materials")
-      .then((response) => {
-        setCompositions(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching materials:", error);
-      });
-  }, [selectedMaterial]);
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = event.target;
-    switch (name) {
-      case "name":
-        setName(value);
-        break;
-      case "price":
-        setPrice(value);
-        break;
-      case "description":
-        setDescription(value);
-        break;
-      case "size":
-        setSize(value);
-        break;
-      case "image":
-        setImage(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-=======
->>>>>>> feature/any
   const handleCompositionChange = (
     index: number,
     field: string,
@@ -132,6 +92,11 @@ const AddForm = (): JSX.Element => {
     setSelectedSubCategory(event.target.value);
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    if (!user) {
+      alert("Для добавления поста необходимо войти в систему.");
+      return; // Отмена отправки формы, если пользователь не авторизован
+    }
+
     event.preventDefault();
     try {
       dispatch(
@@ -144,7 +109,7 @@ const AddForm = (): JSX.Element => {
           weight,
           sub_category_id: +selectedSubCategory,
           materials: compositions,
-          user_id: user?.id,
+          user_id: user.id,
           category_id: +selectedCategory,
         }),
       );
@@ -347,21 +312,11 @@ const AddForm = (): JSX.Element => {
                   )
                 }
               >
-<<<<<<< HEAD
-                {[0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
-                  (value) => (
-                    <option key={value} value={value}>
-                      {value}%
-                    </option>
-                  ),
-                )}
-=======
                 {parcents.map((value) => (
                   <option key={value.id} value={value.value}>
                     {value.value}%
                   </option>
                 ))}
->>>>>>> feature/any
               </select>
             </div>
           </div>

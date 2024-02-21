@@ -7,10 +7,11 @@ export type PostType = {
   size: string;
   publich: boolean;
   user_id: number;
+  weight: string;
   category_id: number;
   sub_category_id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date | undefined;
+  updatedAt: Date | undefined;
 };
 
 export type PostId = PostType["id"];
@@ -21,7 +22,8 @@ export type PostAddType = {
   description: string;
   image: string;
   size: string;
-  user_id: number;
+  weight: string;
+  user_id: number | undefined;
   category_id: number;
   sub_category_id: number;
   materials: Compounds[];
@@ -36,9 +38,11 @@ export type PostEditType = {
   image: string;
   size: string;
   publich: boolean;
-  user_id: number | undefined;
+  user_id: number;
   category_id: number;
   sub_category_id: number;
+  createdAt: Date | undefined;
+  updatedAt: Date | undefined;
 };
 export interface Compounds {
   material: number;

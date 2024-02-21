@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../redux/store";
 import { editPost } from "../../redux/Slice/PostsSlice/postsSlice";
-import { PostType } from "../../types/posts/posts";
+import { PostEditType, PostType } from "../../types/posts/posts";
 
 interface EditPostFormProps {
-  post: PostType;
+  post: PostType | PostEditType;
   closeModal: () => void;
 }
 
@@ -26,7 +26,13 @@ const EditPostForm: React.FC<EditPostFormProps> = ({ post, closeModal }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(editPost({ ...post, ...formData }));
+    dispatch(
+      editPost({
+        ...post,
+        ...formData,
+        weight: "",
+      }),
+    );
     closeModal();
   };
 
