@@ -43,7 +43,6 @@ const Navbar = () => {
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
-          {/* <img src={photo} alt="" /> */}
           <div className="navbar-start">
             <NavLink className="navbar-item" to={"/"}>
               Главная страница
@@ -51,12 +50,17 @@ const Navbar = () => {
             <NavLink className="navbar-item" to={"/categories"}>
               Категории
             </NavLink>
-            <NavLink className="navbar-item" to={"/cart"}>
-              Корзина
-            </NavLink>
-            <NavLink className="navbar-item" to={"/favorites"}>
-              Избранные
-            </NavLink>
+
+            {user && (
+              <>
+                <NavLink className="navbar-item" to={"/cart"}>
+                  Корзина
+                </NavLink>
+                <NavLink className="navbar-item" to={"/favorites"}>
+                  Избранные
+                </NavLink>
+              </>
+            )}
             {user && (
               <NavLink className="navbar-item" to="/profile">
                 Личная страница

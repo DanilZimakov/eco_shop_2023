@@ -37,7 +37,7 @@ function App(): JSX.Element {
     if (localStorage.getItem("token")) {
       dispatch(loadUserProfile());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
@@ -51,22 +51,21 @@ function App(): JSX.Element {
         }
       >
         <Route index element={<Home />} />
-        <Route path="/login" element={<SignIn />} />
-        <Route path="/registration" element={<SignUp />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:categoryId" element={<SubCategories />}>
-          <Route path="/categories/:categoryId" element={<AllCategoryPost />} />
-          <Route
-            path="/categories/:categoryId/posts/:postId"
-            element={<PostPage />}
-          />
+        <Route path="login" element={<SignIn />} />
+        <Route path="registration" element={<SignUp />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="categories/:categoryId" element={<SubCategories />}>
+          <Route index element={<AllCategoryPost />} />
+          <Route path="posts/:postId" element={<PostPage />} />
         </Route>
-        <Route path="/sub-categories" element={<SubCategories />} />
-        <Route path="/categories/:categoryId" element={<SubCategories />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<AddProfileUser />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/categories/:categoryId/posts/:postId"
+          element={<PostPage />}
+        />
+        <Route path="profile" element={<Profile />} />
+        <Route path="profile/edit" element={<AddProfileUser />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );
