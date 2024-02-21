@@ -1,13 +1,14 @@
-.main-auth{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.main-auth {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
-.form-auth{
-    display: flex;
-    flex-direction: column;
-    width: 500px;
+.form-auth {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
 }
 
 /* Стили для полей ввода они взяты временно из AddForm.css*/
@@ -16,11 +17,11 @@ form input[type="number"],
 form input[type="email"],
 form input[type="password"],
 form select {
-  width:   100%;
-  padding:   10px;
-  margin-bottom:   10px;
-  border:   1px solid #ddd;
-  border-radius:   3px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
   font-family: "Source Serif 4", serif;
   font-size: 16px;
   font-weight: 300;
