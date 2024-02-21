@@ -1,7 +1,8 @@
 import axios from "axios";
 import { PostId } from "../../types/posts/posts";
 import { HarmType } from "../../types/harm/harm";
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://swap-style-eco.shop";
+// const BASE_URL = "http://localhost:3000";
 
 export const axiosAddHarm = async (id: PostId): Promise<HarmType> => {
   const res = await axios.post(`${BASE_URL}/harm/${id}`);

@@ -6,7 +6,7 @@ import postsSlice from "./Slice/PostsSlice/postsSlice";
 import modalSlice from "./Slice/modalSlice/modalSlice";
 import categorySlice from "./Slice/categorySlice/categorySlice";
 import harmSlice from "./Slice/harmSlice/harmSlice";
-import MaterialsSlice from "./Slice/MaterialsSlice/materialsSlice";
+import materialsSlice from "./Slice/materialsSlice/materialsSlice";
 import userSlice from "./Slice/UserSlice/userSlice";
 
 const store = configureStore({
@@ -18,8 +18,8 @@ const store = configureStore({
     modal: modalSlice,
     categories: categorySlice,
     harm: harmSlice,
-    materials: MaterialsSlice,
-    profile: userSlice
+    materials: materialsSlice,
+    profile: userSlice,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

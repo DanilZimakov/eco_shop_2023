@@ -9,18 +9,18 @@ const initialState: initialAuthType = {
 };
 export const signUp = createAsyncThunk(
   ActionAuth.AUTH_SIGN_UP,
-  (data: SignUpType) => api.axiosSignUp(data)
+  (data: SignUpType) => api.axiosSignUp(data),
 );
 
 export const signIn = createAsyncThunk(
   ActionAuth.AUTH_SIGN_IN,
-  (data: SignInType) => api.axiosSingIn(data)
+  (data: SignInType) => api.axiosSingIn(data),
 );
 export const logout = createAsyncThunk(ActionAuth.AUTH_LOGOUT, () =>
-  api.axiosLogout()
+  api.axiosLogout(),
 );
 export const check = createAsyncThunk(ActionAuth.AUTH_CHECK, () =>
-  api.axiosCheckAuth()
+  api.axiosCheckAuth(),
 );
 
 const authSlice = createSlice({

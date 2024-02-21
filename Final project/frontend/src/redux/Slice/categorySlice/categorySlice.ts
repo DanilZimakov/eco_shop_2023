@@ -6,7 +6,7 @@ const InitialCategory: InitialCategoryType = {
   category: [],
 };
 export const loadCategory = createAsyncThunk(ActionCategory.LOAD_CATEGORY, () =>
-  api.fetchCategories()
+  api.fetchCategories(),
 );
 
 const categorySlice = createSlice({

@@ -16,7 +16,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
   const fetchLikes = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/categories/${categoryId}/posts/${postId}/like`
+        `http://localhost:3000/categories/${categoryId}/posts/${postId}/like`,
       );
       setLiked(response.data.liked);
       setLikesCount(response.data.likesCount);
@@ -30,7 +30,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
       const token = localStorage.getItem("token");
       if (!token) {
         console.error(
-          "Authentication token is not found. User might not be logged in."
+          "Authentication token is not found. User might not be logged in.",
         );
         return;
       }
@@ -42,7 +42,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        }
+        },
       );
       fetchLikes();
     } catch (error) {

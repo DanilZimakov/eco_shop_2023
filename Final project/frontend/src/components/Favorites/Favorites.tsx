@@ -31,6 +31,12 @@ const Favorites: React.FC = () => {
   };
 
   const handleAddClick = async (post: PostType) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/registration";
+      return;
+    }
     try {
       const token = localStorage.getItem("token");
       if (!token) {
