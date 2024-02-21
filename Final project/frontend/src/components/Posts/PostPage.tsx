@@ -22,7 +22,7 @@ const PostPage: React.FC = () => {
       (post) =>
         post.category_id === Number(categoryId) &&
         post.sub_category_id === Number(postId) &&
-        post.publich === true
+        post.publich === true,
     );
   }
   const filteredPosts = fillPost(posts);
@@ -42,27 +42,27 @@ const PostPage: React.FC = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       console.log("Item added to cart:", response.data);
       dispatch(
         addItem({
-          ...post,
+          id: post.id,
+          post,
           quantity: 1,
-          post: {
-            id: 0,
-            name: "",
-            price: 0,
-            description: "",
-            image: "",
-            size: "",
-            publich: false,
-            user_id: 0,
-            category_id: 0,
-            sub_category_id: 0,
-          },
-        })
+          name: "",
+          price: 0,
+          description: "",
+          image: "",
+          size: "",
+          publich: false,
+          user_id: 0,
+          category_id: 0,
+          sub_category_id: 0,
+          createdAt: undefined,
+          updatedAt: undefined,
+        }),
       );
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -73,7 +73,7 @@ const PostPage: React.FC = () => {
     <div className="product-card-container">
       {filteredPosts.map((post: PostType) => {
         const harmSearch = harm.find(
-          (harm: HarmType) => harm.post_id === post.id
+          (harm: HarmType) => harm.post_id === post.id,
         );
         const color = harmSearch ? harmSearch.color : "none";
         return (

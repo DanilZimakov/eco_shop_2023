@@ -27,26 +27,33 @@ const Cart: React.FC = () => {
   const navigate = useNavigate();
 
   const handleImageClick = (categoryId: number, postId: number) => {
+    console.log(`Navigating to: /categories/${categoryId}/posts/${postId}`);
     navigate(`/categories/${categoryId}/posts/${postId}`);
   };
+
+  console.log();
+
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/cart/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        if (token) {
+          const response = await axios.get("http://localhost:3000/cart/", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          // Переносим очистку корзины после успешного получения данных
+          dispatch(clearCartAction());
+          response.data.forEach((item: CartItemType) => {
+            dispatch(addItem(item));
+          });
 
-        dispatch(clearCartAction());
-        response.data.forEach((item: CartItemType) => {
-          dispatch(addItem(item));
-        });
-
-        console.log("fetchCartItems", response.data);
+          console.log("fetchCartItems", response.data);
+        }
       } catch (error) {
         console.error("Error fetching cart items:", error);
+        // Обработка ошибки загрузки данных корзины
       }
     };
     fetchCartItems();
@@ -78,7 +85,7 @@ const Cart: React.FC = () => {
           { quantity: newQuantity },
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
         const updatedItem = response.data;
         dispatch(increaseQuantity({ id, quantity: updatedItem.quantity }));
@@ -99,7 +106,7 @@ const Cart: React.FC = () => {
           { quantity: newQuantity },
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
 
         const updatedItem = response.data;
@@ -129,7 +136,10 @@ const Cart: React.FC = () => {
                     src={item.post.image}
                     alt={item.post.name}
                     onClick={() =>
-                      handleImageClick(item.post.category_id, item.post.id)
+                      handleImageClick(
+                        item.post.category_id,
+                        item.post.sub_category_id,
+                      )
                     }
                   />
                   <h3>{item.post.name}</h3>
