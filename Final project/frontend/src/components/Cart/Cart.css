@@ -26,6 +26,7 @@
   justify-content: center;
   flex-grow: 1;
   position: relative;
+  /* border: 3px solid black; */
 }
 
 .description .name {
@@ -33,6 +34,7 @@
   left: 80px;
   top: 50%;
   transform: translateY(-50%);
+  /* border: 3px solid black; */
 }
 @media (max-width: 768px) {
   .cart-item {
@@ -52,6 +54,7 @@
   .cart-item button {
     width: 100%;
     margin-top: 10px;
+    /* border: 3px solid black; */
   }
 }
 .total {
@@ -72,6 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid black;
 }
 
 /* Modal Content/Box */
@@ -79,11 +83,12 @@
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #080808;
   width: 80%;
   max-width: 500px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid black;
 }
 
 /* The Close Button */
@@ -113,6 +118,7 @@
 .modal-content label {
   display: block;
   margin-top: 20px;
+  /* border: 3px solid black; */
 }
 
 .modal-content button[type="submit"] {
@@ -120,4 +126,50 @@
   color: white;
   border: none;
   margin-top: 20px;
+}
+
+.buy {
+  border: 1px solid black;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: rgb(253, 246, 252);
+  }
+}
+
+.result {
+  display: flex;
+  /* border: 1px solid saddlebrown; */
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.plus,
+.minus {
+  border: 1px solid black;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.plus:hover {
+  background-color: #efcbc9;
+}
+
+.minus:hover {
+  background-color: #d9e2d7;
+}
+
+.q {
+  /* border: 2px solid red; */
+  height: 1000px;
 }

@@ -6,7 +6,7 @@ import SubCategories from "../components/Categories/SubCategories/SubCategories"
 import SignUp from "../components/Auth/Sign-up";
 import SignIn from "../components/Auth/Sign-in";
 
-import {useAppDispatch } from "../redux/store";
+import { useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { check } from "../redux/Slice/authSlice/authSlice";
 import PostPage from "../components/Posts/PostPage";
@@ -22,10 +22,9 @@ import { loadCategory } from "../redux/Slice/categorySlice/categorySlice";
 import { harmLoad } from "../redux/Slice/harmSlice/harmSlice";
 import AddProfileUser from "../components/Profile/UserProfile/AddProfileUser";
 import { loadUserProfile } from "../redux/Slice/UserSlice/userSlice";
-
+import AllCategoryPost from "../components/Categories/AllCategoryPost";
 
 function App(): JSX.Element {
-  
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -56,6 +55,7 @@ function App(): JSX.Element {
         <Route path="/registration" element={<SignUp />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:categoryId" element={<SubCategories />}>
+          <Route path="/categories/:categoryId" element={<AllCategoryPost />} />
           <Route
             path="/categories/:categoryId/posts/:postId"
             element={<PostPage />}
@@ -64,7 +64,7 @@ function App(): JSX.Element {
         <Route path="/sub-categories" element={<SubCategories />} />
         <Route path="/categories/:categoryId" element={<SubCategories />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<AddProfileUser/>}/>
+        <Route path="/profile/edit" element={<AddProfileUser />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
       </Route>

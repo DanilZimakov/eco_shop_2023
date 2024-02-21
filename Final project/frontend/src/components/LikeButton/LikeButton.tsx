@@ -57,13 +57,12 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
   return (
     <button onClick={toggleLike} className="like-button">
       <FontAwesomeIcon
-        style={{ color: "#F0CD7F" }}
+        style={{ color: "coral", fontSize: "26px" }}
         icon={liked ? faHeartSolid : faHeartRegular}
         color={liked ? "red" : "black"}
+        className="bl"
       />
-      <span className="likes-count" style={{ color: "#F0CD7F" }}>
-        {likesCount}
-      </span>
+      <span className="likes-count">{likesCount}</span>
     </button>
   );
 };
