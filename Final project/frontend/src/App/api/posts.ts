@@ -6,22 +6,22 @@ import {
   PostType,
 } from "../../types/posts/posts";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://swap-style-eco.shop";
 // const BASE_URL = "http://localhost:3000";
 
 export const axiosLoadPosts = async () => {
-  const res = await axios.get(`${BASE_URL}/posts`);
+  const res = await axios.get(`${BASE_URL}/api/posts`);
   return res.data;
 };
 
 export const axiosAddPost = async (data: PostAddType): Promise<PostType> => {
-  const res = await axios.post(`${BASE_URL}/posts/add`, data);
+  const res = await axios.post(`${BASE_URL}/api/posts/add`, data);
   console.log(res.data);
 
   return res.data;
 };
 export const axiosDelPosts = async (postId: PostId): Promise<PostId> => {
-  const res = await axios.delete(`${BASE_URL}/posts/delete/${postId}`, {
+  const res = await axios.delete(`${BASE_URL}/api/posts/delete/${postId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -29,11 +29,14 @@ export const axiosDelPosts = async (postId: PostId): Promise<PostId> => {
   return res.data;
 };
 export const axiosPublichPosts = async (id: PostId): Promise<PostType> => {
-  const res = await axios.put(`${BASE_URL}/posts/publich/${id}`);
+  const res = await axios.put(`${BASE_URL}/api/posts/publich/${id}`);
   return res.data;
 };
 
 export const axiosEditPost = async (id: PostId, postData: PostEditType) => {
-  const response = await axios.post(`${BASE_URL}/posts/edit/${id}`, postData);
+  const response = await axios.post(
+    `${BASE_URL}/api/posts/edit/${id}`,
+    postData,
+  );
   return response.data;
 };
