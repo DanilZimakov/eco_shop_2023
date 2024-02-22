@@ -4,10 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-const corsOption = {
-  origin: process.env.APP_DOMAIN,
+const corsOptions = {
+  origin: "http://localhost:5173", // или ваш домен фронтенда
   credentials: true,
-  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 const serverConfig = (app) => {
@@ -15,7 +16,7 @@ const serverConfig = (app) => {
   app.use(express.urlencoded({ limit: "200mb", extended: true }));
   app.use(express.text({ limit: "200mb" }));
   app.use(express.json());
-  app.use(cors(corsOption));
+  app.use(cors(corsOptions));
   app.use(cookieParser());
 };
 

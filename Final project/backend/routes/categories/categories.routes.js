@@ -34,4 +34,21 @@ router.get("/sub/:subId", async (req, res) => {
   }
 });
 
+// В файле categoriesRouter
+router.get("/:categoryId", async (req, res) => {
+  const { categoryId } = req.params;
+  try {
+    const category = await Category.findOne({
+      where: { id: categoryId },
+    });
+    if (!category) {
+      return res.status(404).json({ message: "Категория не найдена" });
+    }
+    res.json(category);
+  } catch (error) {
+    console.error("Ошибка при получении категории:", error);
+    res.status(500).json({ message: "Внутренняя ошибка сервера" });
+  }
+});
+
 module.exports = router;

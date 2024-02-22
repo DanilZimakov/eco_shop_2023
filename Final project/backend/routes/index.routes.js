@@ -11,11 +11,11 @@ const userRouter = require("./user/user.routes");
 router.use("/api/auth", authRouter);
 router.use("/api/categories", categoriesRouter);
 router.use("/api/posts", postsRouter);
-router.use("/categories/:categoryId/posts", likesRouter);
+router.use("/api/categories/:categoryId/posts", likesRouter);
 router.use("/api/favorites", favoritesRouter);
 router.use("/api/harm", harmRouter);
 router.use("/api/cart", cartRouter);
-router.use("/materials", materialsRouter);
+router.use("/api/materials", materialsRouter);
 router.use("/api/user", userRouter);
 
 module.exports = router;
