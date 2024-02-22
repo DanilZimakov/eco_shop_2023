@@ -2,7 +2,7 @@ const router = require("express").Router();
 const checkUser = require("../../middleware/chekUser");
 const { Like, Post } = require("../../db/models");
 
-router.get("/favorites", checkUser, async (req, res) => {
+router.get("/", checkUser, async (req, res) => {
   const userId = req.user.id;
   try {
     const favoritePosts = await Like.findAll({
@@ -19,7 +19,7 @@ router.get("/favorites", checkUser, async (req, res) => {
   }
 });
 
-router.delete("/favorites/:postId", checkUser, async (req, res) => {
+router.delete("/:postId", checkUser, async (req, res) => {
   const { postId } = req.params;
   const userId = req.user.id;
   try {
