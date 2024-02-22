@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 
 function UserProfile(): JSX.Element {
-  const {user} = useSelector((s:RootState) => s.auth)
-  const profile = useSelector((store:RootState)=> store.profile.userProfile);
+  const { user } = useSelector((s: RootState) => s.auth);
+  const profile = useSelector((store: RootState) => store.profile.userProfile);
   return (
     <>
       <div className="user-profile-all">

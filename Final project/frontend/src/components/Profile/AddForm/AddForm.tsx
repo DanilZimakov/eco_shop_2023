@@ -57,7 +57,7 @@ const AddForm = (): JSX.Element => {
   useEffect(() => {
     if (selectedCategory) {
       axios
-        .get(`http://localhost:3000/categories/sub/${selectedCategory}`)
+        .get(`http://localhost:3000/api/categories/sub/${selectedCategory}`)
         .then((response) => {
           setSubCategories(response.data);
         })

@@ -6,7 +6,7 @@ export interface UserEdit {
 }
 export const editProfileUser = async (data: UserEdit) => {
   const res = await axios.post(
-    "https://swap-style-eco.shop/api/user/edit",
+    "http://localhost:3000/api/user/edit",
     data,
     {
       headers: {
@@ -17,7 +17,7 @@ export const editProfileUser = async (data: UserEdit) => {
   return res.data;
 };
 export const loadProfileUser = async () => {
-  const res = await axios.get("https://swap-style-eco.shop/api/user/", {
+  const res = await axios.get("http://localhost:3000/api/user/", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

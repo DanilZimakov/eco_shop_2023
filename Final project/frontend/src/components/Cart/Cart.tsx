@@ -28,7 +28,7 @@ const Cart: React.FC = () => {
 
   const handleImageClick = (categoryId: number, postId: number) => {
     console.log(`Navigating to: /categories/${categoryId}/posts/${postId}`);
-    navigate(`/categories/${categoryId}/posts/${postId}`);
+    navigate(`/api/categories/${categoryId}/posts/${postId}`);
   };
 
   console.log();
@@ -38,7 +38,7 @@ const Cart: React.FC = () => {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await axios.get("http://localhost:3000/cart/", {
+          const response = await axios.get("http://localhost:3000/api/cart/", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -62,7 +62,7 @@ const Cart: React.FC = () => {
   const handleRemoveItem = async (id: number) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:3000/cart/${id}`, {
+      await axios.delete(`http://localhost:3000/api/cart/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(removeItem(id));
@@ -81,7 +81,7 @@ const Cart: React.FC = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.put(
-          `http://localhost:3000/cart/${id}`,
+          `http://localhost:3000/api/cart/${id}`,
           { quantity: newQuantity },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -102,7 +102,7 @@ const Cart: React.FC = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.put(
-          `http://localhost:3000/cart/${id}`,
+          `http://localhost:3000/api/cart/${id}`,
           { quantity: newQuantity },
           {
             headers: { Authorization: `Bearer ${token}` },

@@ -16,11 +16,10 @@ function AllCategoryPost() {
   //   (el: PostType) => el.category_id === Number(categoryId),
   // );
 
-  const fillPost = Array.isArray(posts) ? posts.filter(
-    (el: PostType) => el.category_id === Number(categoryId)
-  ) : [];
+  const fillPost = Array.isArray(posts)
+    ? posts.filter((el: PostType) => el.category_id === Number(categoryId))
+    : [];
 
-  
   const { harm } = useSelector((s: RootState) => s.harm);
   const dispatch = useAppDispatch();
   const handleAddClick = async (post: PostType) => {
@@ -32,7 +31,7 @@ function AllCategoryPost() {
       }
 
       const response = await axios.post(
-        `http://localhost:3000/cart/add`,
+        `http://localhost:3000/api/cart/add`,
         { post_id: post.id, quantity: 1 },
         {
           headers: {

@@ -16,7 +16,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
   const fetchLikes = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/categories/${categoryId}/posts/${postId}/like`,
+        `http://localhost:3000/api/categories/${categoryId}/posts/${postId}/like`,
       );
       setLiked(response.data.liked);
       setLikesCount(response.data.likesCount);
@@ -36,7 +36,7 @@ const LikeButton = ({ postId, categoryId }: LikeButtonProps): JSX.Element => {
       }
 
       await axios.post(
-        `http://localhost:3000/categories/${categoryId}/posts/${postId}/dislike`,
+        `http://localhost:3000/api/categories/${categoryId}/posts/${postId}/dislike`,
         {},
         {
           headers: {

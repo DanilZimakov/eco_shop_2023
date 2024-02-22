@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../redux/store";
-import { addUserProfile, loadUserProfile } from "../../../redux/Slice/UserSlice/userSlice";
+import {
+  addUserProfile,
+  loadUserProfile,
+} from "../../../redux/Slice/UserSlice/userSlice";
 import { useNavigate } from "react-router-dom";
 
-type genderType = "" |"Муж" | "Жен";
+type genderType = "" | "Муж" | "Жен";
 function AddProfileUser() {
   const [age, setAge] = useState<string>("");
   const [gender, setGender] = useState<genderType>("");
   const [image, setImage] = useState<string>("");
-const {user} = useSelector((store:RootState) => store.auth)
-const dispatch = useAppDispatch()
-const navigate = useNavigate()
-useEffect(() => {
-    dispatch(loadUserProfile())
-   
-})
+  const { user } = useSelector((store: RootState) => store.auth);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(loadUserProfile());
+  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -33,13 +35,13 @@ useEffect(() => {
   function handlerEditProfile(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(addUserProfile({ age, gender, image }));
-     navigate("/profile");
+    navigate("/profile");
   }
 
   return (
     <main className="main-auth">
       {user && (
-        <div style={{display: "flex", flexDirection: "row"}}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
           <label className="label">Имя:</label>
           <p>{user.name}</p>
         </div>

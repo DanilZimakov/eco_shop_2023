@@ -18,7 +18,7 @@ const Favorites: React.FC = () => {
 
   const fetchFavorites = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/favorites/", {
+      const response = await axios.get("http://localhost:3000/api/favorites/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -45,13 +45,13 @@ const Favorites: React.FC = () => {
       }
 
       const addToCartResponse = await axios.post(
-        `http://localhost:3000/cart/add`,
+        `http://localhost:3000/api/cart/add`,
         { post_id: post.id, quantity: 1 },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (
@@ -61,17 +61,17 @@ const Favorites: React.FC = () => {
         console.log("Item added to cart:", addToCartResponse.data);
 
         const removeFromFavoritesResponse = await axios.delete(
-          `http://localhost:3000/favorites/${post.id}`,
+          `http://localhost:3000/api/favorites/${post.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
 
         if (removeFromFavoritesResponse.status === 200) {
           setFavoritePosts(
-            favoritePosts.filter((favoritePost) => favoritePost.id !== post.id)
+            favoritePosts.filter((favoritePost) => favoritePost.id !== post.id),
           );
 
           dispatch(
@@ -91,16 +91,16 @@ const Favorites: React.FC = () => {
                 sub_category_id: 0,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-                weight: ""
+                weight: "",
               },
-            })
+            }),
           );
         }
       }
     } catch (error) {
       console.error(
         "Error adding item to cart or removing from favorites:",
-        error
+        error,
       );
     }
   };
@@ -114,17 +114,17 @@ const Favorites: React.FC = () => {
       }
 
       const response = await axios.delete(
-        `http://localhost:3000/favorites/${post.id}`,
+        `http://localhost:3000/api/favorites/${post.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (response.status === 200) {
         setFavoritePosts(
-          favoritePosts.filter((favoritePost) => favoritePost.id !== post.id)
+          favoritePosts.filter((favoritePost) => favoritePost.id !== post.id),
         );
       }
     } catch (error) {
