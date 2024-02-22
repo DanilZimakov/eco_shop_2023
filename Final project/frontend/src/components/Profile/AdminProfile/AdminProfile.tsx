@@ -18,12 +18,10 @@ const AdminProfile = () => {
       return post.publich === true;
     }
   });
-  const sortedPost = post.sort((a, b) => b.id - a.id); 
-  
-  
+  const sortedPost = post.sort((a, b) => b.id - a.id);
 
   return (
-    <div>
+    <div className="q">
       <div className="post-admin navigation">
         <button onClick={() => setPostPublich("false")}>Ожидающие</button>
         <button onClick={() => setPostPublich("true")}>Опубликованные</button>

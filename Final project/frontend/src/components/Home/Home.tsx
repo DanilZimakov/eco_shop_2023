@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import video from "./vi.mp4";
-import red from "./133.jpeg";
-import yellow from "./14.jpg";
-import green from "./13.jpg";
+import red from "./a90a2a3f-ba7f-444f-ad78-57995f77d04e.gif";
+import yellow from "./_.gif";
+import green from "./Clothes Cashmere GIF by Everlane - Find & Share on GIPHY (1).gif";
 import first from "./1.png";
 import second from "./2.png";
 import third from "./3.png";
@@ -11,6 +11,9 @@ import five from "./5.png";
 import six from "./6.png";
 // import os from "./Grafika.jpg";
 import p from "./photo.jpeg";
+import rec2 from "./Yarrah.gif";
+import rec1 from "./Happy Good Morning Sticker by Katie Thierjung _ The Uncommon Place for iOS & Android _ GIPHY.gif";
+import rec3 from "./flower Sticker - Find & Share on GIPHY.gif";
 
 import "./home.css";
 import "../../index.css";
@@ -40,25 +43,6 @@ const Home: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* <div className="flex-container">
-          <div className="conttext-1 text-container">
-            <div className="contname-1"></div>
-           
-            <div className="title-1">
-              <p className="nasha">SWAP STYLE</p>
-            </div>
-            <div className="description-1">
-              <p className="text">
-                Наша цель - укрепить индустрию моды, снижая использование новых
-                ресурсов и акцентируя внимание на переработке существующих
-                вещей. Мы стремимся уменьшить экологический след от производства
-                текстильных волокон и сырья, а именно снизить выбросы парниковых
-                газов на 45% до 2030 года.
-              </p>
-            </div>
-          </div>
-        </div> */}
       </div>
       <div className="contq">
         <div className="text-container1">
@@ -85,6 +69,39 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <div className="video-container11">
+        <div className="video-item">
+          <img src={rec1} className="vi" width="580" height="315" />
+          <p className="text11">Вторичная мода</p>
+          <p className="pp">
+            Вторичная одежда – это наша история стиля, переписываемая каждый
+            день. Присоединяйтесь к зеленому стилю – путешествие во времени, где
+            воспоминания и стиль встречаются.
+          </p>
+        </div>
+
+        <div className="video-item">
+          <img src={rec2} className="vi" width="600" height="315" />
+          <p className="text11"> Мода с заботой</p>
+          <p className="pp">
+            В гардеробе каждая вещь – словно воспоминание, а ресайкл – ключ к
+            сохранению их смысла. Выберите моду с пользой для планеты, где
+            каждый наряд – шаг к устойчивости и заботе о мире вокруг.
+          </p>
+        </div>
+
+        <div className="video-item">
+          <img src={rec3} className="vi" width="560" height="315" />
+          <p className="text11">Живой стиль</p>
+          <p className="pp">
+            В ресайкле каждая вещь превращается в отдельную главу нашего
+            стилевого дневника. Давайте сделаем свой стиль вдохновляющим и
+            заботливым, добавляя краски в наш модный хроникон..
+          </p>
+        </div>
+      </div>
+
       <div className="cont-2">
         <div className="name">
           <div className="number-01">

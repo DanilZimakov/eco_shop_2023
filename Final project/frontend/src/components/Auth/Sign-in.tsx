@@ -11,7 +11,7 @@ function SignIn() {
   const [password, setPassword] = useState<string>("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {error} = useSelector((store:RootState) => store.auth)
+  const { error } = useSelector((store: RootState) => store.auth);
   function hadnlerSignIn(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(signIn({ email, password })).then((res) => {
@@ -21,11 +21,10 @@ function SignIn() {
         navigate("/");
       }
     });
-    
   }
 
   return (
-    <main className="main-auth">
+    <main className="q">
       <form className="form-auth" onSubmit={hadnlerSignIn}>
         {error && (
           <span style={{ color: "red", fontSize: "20px" }}>{error}</span>
