@@ -27,7 +27,7 @@ class AuthController {
         phone_number: phone,
         is_admin: false,
       });
-      //   sendMail(email);
+      sendMail(email);
       const userData = {
         id: user.id,
         name: user.name,
