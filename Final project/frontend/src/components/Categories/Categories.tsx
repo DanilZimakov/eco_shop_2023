@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const Categories: React.FC = () => {
   const { category } = useSelector((store: RootState) => store.categories);
-  console.log("category", category);
 
   const getCardColorClass = (index: number) => {
     const colors = ["primary", "secondary", "success", "danger", "warning"];
@@ -33,10 +32,10 @@ const Categories: React.FC = () => {
               <Link to={`/categories/${category.id}`}>
                 <h5 className="card-title">{category.category_name}</h5>
               </Link>
-              <p className="card-text">
+              {/* <p className="card-text">
                 Категория обещает уникальные и модные товары, соответствующие
                 трендам ресайкла и устойчивости.
-              </p>
+              </p> */}
             </div>
           </div>
         ))}

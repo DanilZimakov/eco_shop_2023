@@ -55,9 +55,18 @@ const Navbar = () => {
               Избранные
             </NavLink>
             {user && (
-              <NavLink className="navbar-item" to="/profile">
-                Личная страница
-              </NavLink>
+              <>
+                {" "}
+                <NavLink className="navbar-item" to={"/favorites"}>
+                  Избранные
+                </NavLink>
+                <NavLink className="navbar-item" to={"/cart"}>
+                  Корзина
+                </NavLink>
+                <NavLink className="navbar-item" to="/profile">
+                  Личная страница
+                </NavLink>
+              </>
             )}
           </div>
 
@@ -74,9 +83,6 @@ const Navbar = () => {
                     <button className="button is-black" onClick={handlerLogout}>
                       Выйти
                     </button>
-                    <NavLink className="navbar-item" to={"/cart"}>
-                      Корзина
-                    </NavLink>
                   </>
                 ) : (
                   <>
