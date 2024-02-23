@@ -16,6 +16,6 @@ router.use("/api/favorites", favoritesRouter);
 router.use("/api/harm", harmRouter);
 router.use("/api/cart", cartRouter);
 router.use("/api/materials", materialsRouter);
-router.use("/api/user", userRouter);
+router.use("/api/profile", userRouter);
 
 module.exports = router;

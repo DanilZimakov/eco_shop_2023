@@ -57,6 +57,10 @@ function App(): JSX.Element {
           <Route index element={<AllCategoryPost />} />
           <Route path="posts/:postId" element={<PostPage />} />
         </Route>
+        <Route
+          path="/categories/:categoryId/posts/:postId"
+          element={<PostPage />}
+        />
         <Route path="profile" element={<Profile />} />
         <Route path="profile/edit" element={<AddProfileUser />} />
         <Route path="cart" element={<Cart />} />

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const Categories: React.FC = () => {
   const { category } = useSelector((store: RootState) => store.categories);
+  console.log("category", category);
 
   const getCardColorClass = (index: number) => {
     const colors = ["primary", "secondary", "success", "danger", "warning"];

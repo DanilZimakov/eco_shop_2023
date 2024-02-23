@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 
 const corsOptions = {
   origin: "https://swap-style-eco.shop", // ваш домен фронтенда
-  credentials: true, // если вы хотите поддерживать учетные данные, такие как куки/HTTP-аутентификация и т.д.
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
