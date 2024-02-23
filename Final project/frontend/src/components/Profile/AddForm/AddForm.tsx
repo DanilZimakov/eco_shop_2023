@@ -57,7 +57,9 @@ const AddForm = (): JSX.Element => {
   useEffect(() => {
     if (selectedCategory) {
       axios
-        .get(`http://localhost:3000/api/categories/sub/${selectedCategory}`)
+        .get(
+          `https://swap-style-eco.shop/api/categories/sub/${selectedCategory}`,
+        )
         .then((response) => {
           setSubCategories(response.data);
         })

@@ -36,7 +36,7 @@ const PostPage: React.FC = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:3000/api/cart/add`,
+        `https://swap-style-eco.shop/api/cart/add`,
         { post_id: post.id, quantity: 1 },
         {
           headers: {

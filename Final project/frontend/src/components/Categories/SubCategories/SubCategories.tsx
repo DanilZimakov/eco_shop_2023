@@ -22,7 +22,7 @@ const SubCategories = () => {
           return (
             <Link
               className="link-sub"
-              to={`/api/categories/${categoryId}/posts/${el.id}`}
+              to={`/categories/${categoryId}/posts/${el.id}`}
               key={el.id}
             >
               {el.name}

@@ -1,10 +1,12 @@
 import ProductItem from "./ProductItem";
-import "./ProductList.css"
+import "./ProductList.css";
 
 const ProductList = () => {
   return (
-    <div className="big-product-container"><ProductItem /></div>
-  )
+    <div className="big-product-container">
+      <ProductItem />
+    </div>
+  );
 };
 
 export default ProductList;

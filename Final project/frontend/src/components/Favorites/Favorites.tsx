@@ -18,11 +18,14 @@ const Favorites: React.FC = () => {
 
   const fetchFavorites = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/favorites/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      const response = await axios.get(
+        "https://swap-style-eco.shop/api/favorites/",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
-      });
+      );
       setFavoritePosts(response.data);
     } catch (error) {
       console.error("Error fetching favorites:", error);
@@ -61,7 +64,7 @@ const Favorites: React.FC = () => {
         console.log("Item added to cart:", addToCartResponse.data);
 
         const removeFromFavoritesResponse = await axios.delete(
-          `http://localhost:3000/api/favorites/${post.id}`,
+          `https://swap-style-eco.shop/api/favorites/${post.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -114,7 +117,7 @@ const Favorites: React.FC = () => {
       }
 
       const response = await axios.delete(
-        `http://localhost:3000/api/favorites/${post.id}`,
+        `https://swap-style-eco.shop/api/favorites/${post.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

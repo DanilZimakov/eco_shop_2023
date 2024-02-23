@@ -29,7 +29,7 @@ const Categories: React.FC = () => {
             <div
               className={`card-body text-${index % 2 === 0 ? "dark" : "light"}`}
             >
-              <Link to={`/api/categories/${category.id}`}>
+              <Link to={`/categories/${category.id}`}>
                 <h5 className="card-title">{category.category_name}</h5>
               </Link>
               <p className="card-text">
