@@ -162,7 +162,7 @@ const Cart: React.FC = () => {
                       +
                     </button>
                   </div>
-                  <p className="result">₽{item.post.price * item.quantity}</p>
+                  <p className="result">{item.post.price * item.quantity} ₽</p>
                   <button
                     className="delete"
                     onClick={() => handleRemoveItem(item.id)}
@@ -191,7 +191,7 @@ const Cart: React.FC = () => {
             )}
 
             <div className="total">
-              Общая сумма: ₽{totalPrice} <br />
+              Общая сумма: {totalPrice} ₽<br />
             </div>
 
             <button

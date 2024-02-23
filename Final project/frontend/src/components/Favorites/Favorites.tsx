@@ -142,9 +142,9 @@ const Favorites: React.FC = () => {
           <div key={post.id} className="favorite-card">
             <img src={post.image} alt={post.name} className="favorite-image" />
             <h3>{post.name}</h3>
-            <p>Цена: ₽{post.price}</p>
+            <p>Цена: {post.price}₽</p>
             {/* <p>Description: {post.description}</p> */}
-            <p>Цена: {post.size}</p>
+            <p>Размер: {post.size}</p>
             <div className="action-buttons">
               <img
                 className="img1"
