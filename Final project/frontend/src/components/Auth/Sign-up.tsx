@@ -30,7 +30,7 @@ function SignUp() {
   }
 
   return (
-    <main className="main-auth">
+    <main className="q">
       <form className="form-auth" onSubmit={hadnlerSignUp}>
         {error && (
           <span style={{ color: "red", fontSize: "20px" }}>{error}</span>
