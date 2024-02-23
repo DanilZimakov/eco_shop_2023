@@ -364,12 +364,12 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: "NANUSHKA",
+          name: "Бомпер <<Drive>>",
           price: "35000",
           description:
             "Пальто кроя оверсайз выигрышно преподнесет хрупкость фигуры, играя на контрасте. Строгость рубашечного стиля здесь также компенсируется расслабленностью подачи, поэтому модель окажется уместной ко многим образам, как к деловым, так к неформальным.",
           image:
-            "https://static.cdn.oskelly.ru/product/1530028/item-358942bb-f8b4-4db7-a40a-01998b049efe.jpg.webp",
+            "https://i.pinimg.com/564x/a7/fc/77/a7fc77bfb92b712c31bc7531d29efa72.jpg",
           size: "XS",
           publich: true,
           weight: "1500",
@@ -380,12 +380,12 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: "PINKO",
-          price: "18000",
+          name: "Кожанная куртка <<Blue>>",
+          price: "180000",
           description:
             "Дизайнеры PINKO любят создавать одежду силуэта oversize. Не стала исключением и утепленная угольно-черная джинсовая куртка-рубашка из новой коллекции.",
           image:
-            "https://static.cdn.oskelly.ru/product/1530008/item-67692e87-51f4-4ea5-aeda-e01aa8d5fef3.webp",
+            "https://i.pinimg.com/564x/ca/fe/d4/cafed46bf39a52160c759531d5247943.jpg",
           size: "XS",
           publich: true,
           weight: "1200",
@@ -396,11 +396,11 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: "CORTIGIANI",
+          name: "Бомпер <<Pink>>",
           price: "240000",
           description: "Куртка CORTIGIANI",
           image:
-            "https://static.cdn.oskelly.ru/product/1795513/item-f902eba9-c2df-4ad7-b0fe-1aca7213eb32.webp",
+            "https://i.pinimg.com/564x/a4/7e/d1/a47ed131b825f31eb995077a26267028.jpg",
           size: "XL",
           publich: true,
           weight: "1700",
@@ -413,7 +413,7 @@ module.exports = {
         {
           name: "PRADA",
           price: "110000",
-          description: "Шикарный костюм Prada.",
+          description: "Бомпер <<Pink>>",
           image:
             "https://static.cdn.oskelly.ru/product/1588203/item-b3451c21-acb0-40b3-bf98-72ff4f09347a.jpg.webp",
           size: "S",
